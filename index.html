@@ -66,10 +66,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       <div>
         <div class="flex items-center gap-2">
-          <span class="bg-emerald-500 text-white text-[11px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider shadow-sm">Interactive Phasing Plan</span>
-          <span class="text-blue-200 text-xs">SMC ตอบสำรวจความต้องการอุปกรณ์สารสนเทศ MED.HUB70</span>
+          <span class="bg-emerald-500 text-white text-[11px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider shadow-sm">Updated Plan (9.9.69)</span>
+          <span class="text-blue-200 text-xs">SMC ตอบสำรวจความต้องการอุปกรณ์สารสนเทศ MED.HUB70 (สมบูรณ์ 100%)</span>
         </div>
-        <h1 class="text-lg md:text-xl font-bold mt-0.5 tracking-tight">ระบบวิเคราะห์แผนจัดหาคอมพิวเตอร์จำแนกตามระยะเปิดบริการ (Phase 1, 2, 3)</h1>
+        <h1 class="text-lg md:text-xl font-bold mt-0.5 tracking-tight">ระบบวิเคราะห์แผนจัดหาคอมพิวเตอร์ SMC Medical Hub 70 (Phase 1, 2, 3)</h1>
       </div>
       <div class="flex items-center gap-2">
         <button onclick="switchView('dashboard')" id="nav-dash" class="px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition shadow-sm">ภาพรวม & ตารางอุปกรณ์</button>
@@ -92,8 +92,9 @@
               <span class="text-xs font-normal text-slate-400">คลิกเพื่อสลับข้อมูลอัตโนมัติ</span>
             </h2>
           </div>
-          <div class="text-xs text-slate-500">
-            อ้างอิง: แผนเปิดเตียงทางการ 597 เตียง (ชั้น 4, 6-15)
+          <div class="text-xs text-slate-500 flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span>อัปเดต 9.9.69: เติมเต็มครบถ้วน 100% (รวมคลังเลือด, OR ชั้น 4, OR Trauma)</span>
           </div>
         </div>
 
@@ -105,8 +106,8 @@
               <span class="text-xs font-bold uppercase tracking-wider">ทุก Phase รวมกัน</span>
               <span class="w-2 h-2 rounded-full bg-blue-400"></span>
             </div>
-            <div class="text-xl font-extrabold mt-1">897 <span class="text-xs font-normal opacity-90">เครื่อง</span></div>
-            <div class="text-[11px] opacity-80 mt-0.5">ครบเต็มศักยภาพ 100% (64 แผนก)</div>
+            <div class="text-xl font-extrabold mt-1">942 <span class="text-xs font-normal opacity-90">เครื่อง</span></div>
+            <div class="text-[11px] opacity-80 mt-0.5">ครบเต็มศักยภาพ 100% (66 แผนก/วอร์ด)</div>
           </button>
 
           <!-- Button Phase 1 -->
@@ -116,8 +117,8 @@
               <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Phase 1 (0-6 เดือน)</span>
               <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
-            <div class="text-xl font-extrabold text-emerald-800 mt-1">614 <span class="text-xs font-normal text-slate-500">เครื่อง</span></div>
-            <div class="text-[11px] text-slate-500 mt-0.5">เปิดจริงวันแรก 68.5% (49 แผนก)</div>
+            <div class="text-xl font-extrabold text-emerald-800 mt-1">674 <span class="text-xs font-normal text-slate-500">เครื่อง</span></div>
+            <div class="text-[11px] text-slate-500 mt-0.5">เปิดจริงวันแรก 71.5% (51 แผนก)</div>
           </button>
 
           <!-- Button Phase 2 -->
@@ -127,8 +128,8 @@
               <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Phase 2 (7-12 เดือน)</span>
               <span class="w-2 h-2 rounded-full bg-amber-500"></span>
             </div>
-            <div class="text-xl font-extrabold text-amber-800 mt-1">157 <span class="text-xs font-normal text-slate-500">เครื่อง</span></div>
-            <div class="text-[11px] text-slate-500 mt-0.5">ขยายบริการ 17.5% (9 วอร์ด)</div>
+            <div class="text-xl font-extrabold text-amber-800 mt-1">152 <span class="text-xs font-normal text-slate-500">เครื่อง</span></div>
+            <div class="text-[11px] text-slate-500 mt-0.5">ขยายบริการ 16.1% (9 วอร์ด)</div>
           </button>
 
           <!-- Button Phase 3 -->
@@ -138,8 +139,8 @@
               <span class="text-xs font-bold uppercase tracking-wider text-purple-700">Phase 3 (13-24 เดือน)</span>
               <span class="w-2 h-2 rounded-full bg-purple-500"></span>
             </div>
-            <div class="text-xl font-extrabold text-purple-800 mt-1">126 <span class="text-xs font-normal text-slate-500">เครื่อง</span></div>
-            <div class="text-[11px] text-slate-500 mt-0.5">ขยายเต็มกำลัง 14.0% (6 วอร์ด)</div>
+            <div class="text-xl font-extrabold text-purple-800 mt-1">116 <span class="text-xs font-normal text-slate-500">เครื่อง</span></div>
+            <div class="text-[11px] text-slate-500 mt-0.5">ขยายเต็มกำลัง 12.3% (6 วอร์ด)</div>
           </button>
         </div>
       </div>
@@ -148,8 +149,8 @@
       <div id="phase-insight-banner" class="p-4 rounded-xl border transition flex items-start gap-3 text-sm bg-blue-50 border-blue-200 text-blue-950">
         <span class="text-blue-600 font-bold text-lg leading-none mt-0.5">ℹ</span>
         <div>
-          <span class="font-bold" id="banner-title">ภาพรวมทั้งโครงการ (All Phases):</span>
-          <span id="banner-desc" class="ml-1 text-slate-700">ความต้องการรวม 897 เครื่อง ครอบคลุม 10 กลุ่มงานหลัก (~90% สมบูรณ์) จัดสรรงบประมาณได้เหมาะสม ทั้งนี้สามารถคลิกปุ่ม Phase ด้านบนเพื่อดูการจัดส่งและติดตั้งตามไทม์ไลน์จริง</span>
+          <span class="font-bold" id="banner-title">ภาพรวมทั้งโครงการ (All Phases - ปรับปรุง 9.9.69):</span>
+          <span id="banner-desc" class="ml-1 text-slate-700">ความต้องการคอมพิวเตอร์รวม 942 เครื่อง ครอบคลุม 100% เต็มทุกส่วน ปิดจุดเก็บตกสำเร็จ: เติมเต็ม "คลังเลือด" (19 เครื่อง), บรรจุห้องผ่าตัดใหญ่ "OR ชั้น 4" (47 เครื่อง) และ "OR Trauma ชั้น 2" (11 เครื่อง) พร้อมระบุเครื่องพิมพ์บาร์โค้ด ICU 24 เครื่อง และแยกเครื่องพิมพ์ป้ายข้อมือ/Lab ใน IPD ครบถ้วน</span>
         </div>
       </div>
 
@@ -157,38 +158,38 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
         <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 hover:shadow transition">
           <div class="text-xs font-semibold uppercase text-slate-500">อุปกรณ์คอมฯ ทั้งหมด</div>
-          <div class="text-2xl font-bold text-blue-700 mt-1" id="kpi-total">897</div>
+          <div class="text-2xl font-bold text-blue-700 mt-1" id="kpi-total">942</div>
           <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-total">100% ของสเกลอาคาร</div>
         </div>
 
         <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 hover:shadow transition">
           <div class="text-xs font-semibold uppercase text-slate-500">PC ตั้งโต๊ะ 1 จอ</div>
-          <div class="text-2xl font-bold text-slate-800 mt-1" id="kpi-pc1">625</div>
-          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-pc1">69.7% ของคอมฯ</div>
+          <div class="text-2xl font-bold text-slate-800 mt-1" id="kpi-pc1">654</div>
+          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-pc1">69.4% ของคอมฯ</div>
         </div>
 
         <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 hover:shadow transition">
           <div class="text-xs font-semibold uppercase text-blue-700">PC ตั้งโต๊ะ 2 จอ</div>
-          <div class="text-2xl font-bold text-blue-600 mt-1" id="kpi-pc2">76</div>
+          <div class="text-2xl font-bold text-blue-600 mt-1" id="kpi-pc2">55</div>
           <div class="text-xs text-emerald-600 font-medium mt-0.5" id="kpi-sub-pc2">ห้องตรวจแพทย์ & PACS</div>
         </div>
 
         <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 hover:shadow transition">
           <div class="text-xs font-semibold uppercase text-slate-500">Notebook (พกพา)</div>
-          <div class="text-2xl font-bold text-amber-600 mt-1" id="kpi-nb">54</div>
-          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-nb">แพทย์ Round & วอร์ด</div>
+          <div class="text-2xl font-bold text-amber-600 mt-1" id="kpi-nb">86</div>
+          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-nb">OR + วอร์ด + Round</div>
         </div>
 
         <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 hover:shadow transition">
           <div class="text-xs font-semibold uppercase text-slate-500">Tablet / iPad</div>
-          <div class="text-2xl font-bold text-emerald-600 mt-1" id="kpi-tab">142</div>
-          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-tab">ICU หน้าเตียง & โมบาย</div>
+          <div class="text-2xl font-bold text-emerald-600 mt-1" id="kpi-tab">147</div>
+          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-tab">ICU หน้าเตียง 114 + โมบาย</div>
         </div>
 
         <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200 hover:shadow transition">
           <div class="text-xs font-semibold uppercase text-slate-500">Barcode Printer</div>
-          <div class="text-2xl font-bold text-purple-600 mt-1" id="kpi-bc">127</div>
-          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-bc">สติกเกอร์ Lab & ยา</div>
+          <div class="text-2xl font-bold text-purple-600 mt-1" id="kpi-bc">162</div>
+          <div class="text-xs text-slate-500 mt-0.5" id="kpi-sub-bc">สติกเกอร์ Lab ยา & ICU</div>
         </div>
       </div>
 
@@ -198,7 +199,7 @@
         <!-- Bar Chart Card -->
         <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 lg:col-span-2">
           <div class="flex items-center justify-between mb-2">
-            <h3 class="font-bold text-slate-800 text-sm md:text-base">จำนวนคอมพิวเตอร์จำแนกตามกลุ่มงาน (<span id="chart-total-text">897 เครื่อง</span>)</h3>
+            <h3 class="font-bold text-slate-800 text-sm md:text-base">จำนวนคอมพิวเตอร์จำแนกตามกลุ่มงาน (<span id="chart-total-text">942 เครื่อง</span>)</h3>
             <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium" id="chart-phase-tag">ทุก Phase</span>
           </div>
           <div id="chart-section-bars" class="space-y-3.5 pt-2">
@@ -211,27 +212,27 @@
           <div>
             <div class="flex items-center justify-between mb-1">
               <h3 class="font-bold text-slate-800 text-sm md:text-base">สัดส่วนประเภทอุปกรณ์</h3>
-              <span class="text-[11px] text-slate-400" id="donut-total-tag">897 เครื่อง</span>
+              <span class="text-[11px] text-slate-400" id="donut-total-tag">942 เครื่อง</span>
             </div>
             <div class="flex items-center justify-center py-2 relative">
               <svg viewBox="0 0 36 36" class="w-44 h-44 transform -rotate-90">
                 <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#f1f5f9" stroke-width="3.5"></circle>
-                <circle id="donut-pc1" cx="18" cy="18" r="15.915" fill="transparent" stroke="#1f4e79" stroke-width="3.5" stroke-dasharray="69.7 30.3" stroke-dashoffset="0"></circle>
-                <circle id="donut-pc2" cx="18" cy="18" r="15.915" fill="transparent" stroke="#2e86c1" stroke-width="3.5" stroke-dasharray="8.5 91.5" stroke-dashoffset="-69.7"></circle>
-                <circle id="donut-nb" cx="18" cy="18" r="15.915" fill="transparent" stroke="#d35400" stroke-width="3.5" stroke-dasharray="6.0 94.0" stroke-dashoffset="-78.2"></circle>
-                <circle id="donut-tab" cx="18" cy="18" r="15.915" fill="transparent" stroke="#27ae60" stroke-width="3.5" stroke-dasharray="15.8 84.2" stroke-dashoffset="-84.2"></circle>
+                <circle id="donut-pc1" cx="18" cy="18" r="15.915" fill="transparent" stroke="#1f4e79" stroke-width="3.5" stroke-dasharray="69.4 30.6" stroke-dashoffset="0"></circle>
+                <circle id="donut-pc2" cx="18" cy="18" r="15.915" fill="transparent" stroke="#2e86c1" stroke-width="3.5" stroke-dasharray="5.8 94.2" stroke-dashoffset="-69.4"></circle>
+                <circle id="donut-nb" cx="18" cy="18" r="15.915" fill="transparent" stroke="#d35400" stroke-width="3.5" stroke-dasharray="9.1 90.9" stroke-dashoffset="-75.2"></circle>
+                <circle id="donut-tab" cx="18" cy="18" r="15.915" fill="transparent" stroke="#27ae60" stroke-width="3.5" stroke-dasharray="15.6 84.4" stroke-dashoffset="-84.3"></circle>
               </svg>
               <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <span class="text-xs text-slate-400 font-medium">รวมในเฟส</span>
-                <span class="text-xl font-extrabold text-slate-800" id="donut-center-num">897</span>
+                <span class="text-xl font-extrabold text-slate-800" id="donut-center-num">942</span>
               </div>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2 text-xs pt-3 border-t border-slate-100" id="donut-legend">
-            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#1f4e79]"></span> <span id="leg-pc1">PC 1 จอ: <strong>625</strong> (69.7%)</span></div>
-            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#2e86c1]"></span> <span id="leg-pc2">PC 2 จอ: <strong>76</strong> (8.5%)</span></div>
-            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#d35400]"></span> <span id="leg-nb">Notebook: <strong>54</strong> (6.0%)</span></div>
-            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#27ae60]"></span> <span id="leg-tab">Tablet: <strong>142</strong> (15.8%)</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#1f4e79]"></span> <span id="leg-pc1">PC 1 จอ: <strong>654</strong> (69.4%)</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#2e86c1]"></span> <span id="leg-pc2">PC 2 จอ: <strong>55</strong> (5.8%)</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#d35400]"></span> <span id="leg-nb">Notebook: <strong>86</strong> (9.1%)</span></div>
+            <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#27ae60]"></span> <span id="leg-tab">Tablet: <strong>147</strong> (15.6%)</span></div>
           </div>
         </div>
 
@@ -243,12 +244,12 @@
           
           <!-- Section Tabs -->
           <div class="flex flex-wrap gap-1.5 text-xs sm:text-sm" id="tab-container">
-            <button onclick="filterSection('ALL')" class="tab-btn active px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-ALL">ทุกกลุ่มงาน</button>
-            <button onclick="filterSection('OPD')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-OPD">OPD SMC</button>
-            <button onclick="filterSection('พิเศษรวม (ชั้น 9-10)')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-พิเศษรวม">พิเศษรวม (ชั้น 9-10)</button>
-            <button onclick="filterSection('IPD พิเศษเดี่ยว (ชั้น 11-15)')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-IPDเดี่ยว">IPD พิเศษเดี่ยว (11-15)</button>
-            <button onclick="filterSection('ICU (ชั้น 6-8)')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-ICU">ICU (ชั้น 6-8)</button>
-            <button onclick="filterSection('Office พยาบาล SMC')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-Office">Office พยาบาล SMC</button>
+            <button onclick="filterSection('ALL')" class="tab-btn active px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-ALL">ทุกกลุ่มงาน (66)</button>
+            <button onclick="filterSection('OPD')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-OPD">OPD, OR & คลังเลือด (39)</button>
+            <button onclick="filterSection('พิเศษรวม (ชั้น 9-10)')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-พิเศษรวม">พิเศษรวม ชั้น 9-10 (4)</button>
+            <button onclick="filterSection('IPD พิเศษเดี่ยว (ชั้น 11-15)')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-IPDเดี่ยว">IPD พิเศษเดี่ยว (10)</button>
+            <button onclick="filterSection('ICU (ชั้น 6-8)')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-ICU">ICU ชั้น 6-8 (12)</button>
+            <button onclick="filterSection('Office พยาบาล SMC')" class="tab-btn px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition" id="tab-btn-Office">Office พยาบาล (1)</button>
           </div>
 
           <!-- Search Input -->
@@ -280,7 +281,7 @@
                 <th class="py-2.5 px-2 text-center">Multi</th>
                 <th class="py-2.5 px-2 text-center">Barcode</th>
                 <th class="py-2.5 px-2 text-center">SmartCard</th>
-                <th class="py-2.5 px-3">หมายเหตุ</th>
+                <th class="py-2.5 px-3">หมายเหตุ & ผู้ประสานงาน</th>
               </tr>
             </thead>
             <tbody id="table-body" class="divide-y divide-slate-200 text-slate-700">
@@ -290,8 +291,8 @@
         </div>
 
         <div class="p-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2" id="table-footer">
-          <span>แสดง <strong id="shown-count" class="text-slate-800">64</strong> รายการ ในเงื่อนไขปัจจุบัน</span>
-          <span class="text-slate-700">ยอดรวมคอมพิวเตอร์ในตารางที่แสดง: <strong id="shown-pc-sum" class="text-blue-700 text-sm font-bold">897</strong> เครื่อง</span>
+          <span>แสดง <strong id="shown-count" class="text-slate-800">66</strong> รายการ ในเงื่อนไขปัจจุบัน</span>
+          <span class="text-slate-700">ยอดรวมคอมพิวเตอร์ในตารางที่แสดง: <strong id="shown-pc-sum" class="text-blue-700 text-sm font-bold">942</strong> เครื่อง</span>
         </div>
       </div>
 
@@ -303,15 +304,15 @@
       <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6 border-b pb-4">
           <div>
-            <h2 class="text-lg font-bold text-slate-800">เครื่องคำนวณงบประมาณ: "เช่าใช้ (Leasing)" vs "ซื้อขาด (CapEx)"</h2>
-            <p class="text-xs sm:text-sm text-slate-500">เปรียบเทียบกระแสเงินสดและ TCO ตามเฟสการเปิดบริการจริง</p>
+            <h2 class="text-lg font-bold text-slate-800">เครื่องคำนวณงบประมาณ: "เช่าใช้ (Leasing / DaaS)" vs "ซื้อขาด (CapEx)"</h2>
+            <p class="text-xs sm:text-sm text-slate-500">เปรียบเทียบภาระงบประมาณและกระแสเงินสดตามเฟสเปิดจริง (942 เครื่อง)</p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-xs text-slate-500 font-semibold">โหลด Preset เฟส:</span>
-            <button onclick="applySimPreset(897, 'ทุก Phase (897 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-blue-200 bg-blue-50 text-blue-800 hover:bg-blue-100 font-medium">ทุกเฟส (897)</button>
-            <button onclick="applySimPreset(614, 'Phase 1 (614 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-emerald-200 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-medium">Phase 1 (614)</button>
-            <button onclick="applySimPreset(157, 'Phase 2 (157 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-amber-200 bg-amber-50 text-amber-800 hover:bg-amber-100 font-medium">Phase 2 (157)</button>
-            <button onclick="applySimPreset(126, 'Phase 3 (126 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-purple-200 bg-purple-50 text-purple-800 hover:bg-purple-100 font-medium">Phase 3 (126)</button>
+            <button onclick="applySimPreset(942, 'ทุก Phase (942 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-blue-200 bg-blue-50 text-blue-800 hover:bg-blue-100 font-medium">ทุกเฟส (942)</button>
+            <button onclick="applySimPreset(674, 'Phase 1 (674 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-emerald-200 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-medium">Phase 1 (674)</button>
+            <button onclick="applySimPreset(152, 'Phase 2 (152 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-amber-200 bg-amber-50 text-amber-800 hover:bg-amber-100 font-medium">Phase 2 (152)</button>
+            <button onclick="applySimPreset(116, 'Phase 3 (116 เครื่อง)')" class="px-2.5 py-1 text-xs rounded border border-purple-200 bg-purple-50 text-purple-800 hover:bg-purple-100 font-medium">Phase 3 (116)</button>
           </div>
         </div>
 
@@ -324,13 +325,13 @@
             <div>
               <div class="flex justify-between items-center mb-1">
                 <label class="text-xs font-semibold text-slate-600">จำนวนคอมพิวเตอร์ที่จัดหา</label>
-                <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded" id="val-units-badge">897 เครื่อง</span>
+                <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded" id="val-units-badge">942 เครื่อง</span>
               </div>
-              <input type="range" id="sim-units" min="50" max="1000" value="897" step="1" 
+              <input type="range" id="sim-units" min="50" max="1100" value="942" step="1" 
                      class="w-full accent-blue-600" oninput="updateSim()">
               <div class="flex justify-between text-[11px] text-slate-400 mt-0.5">
                 <span>50 เครื่อง</span>
-                <span>1,000 เครื่อง</span>
+                <span>1,100 เครื่อง</span>
               </div>
             </div>
 
@@ -381,15 +382,15 @@
                     <span class="text-xs font-bold uppercase text-amber-800 tracking-wider">ทางเลือก 1: ซื้อขาด (CapEx)</span>
                     <span class="text-[11px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded font-bold">จ่ายก้อนใหญ่</span>
                   </div>
-                  <div class="text-2xl font-black text-amber-900" id="res-buy-total">25,116,000 บาท</div>
+                  <div class="text-2xl font-black text-amber-900" id="res-buy-total">26,376,000 บาท</div>
                   <div class="text-xs text-slate-600 mt-3 space-y-1.5">
-                    <div>• <strong>ต้องจ่ายเงินก้อนทันที</strong> ในปีแรกที่จัดซื้อ</div>
-                    <div>• สิ้นสุดประกันปีที่ 3 ➔ เสี่ยงค่าอะไหล่และช่างซ่อมเอง</div>
-                    <div>• ปีที่ 4-5 เครื่องเริ่มเสื่อมสภาพ ช้าลง และมีภาระแทงจำหน่ายซาก</div>
+                    <div>• <strong>ต้องตั้งเบิกจ่ายเงินก้อนก้อนใหญ่ทันที</strong> ในงบลงทุนปีแรก</div>
+                    <div>• สิ้นสุดประกันปีที่ 3 ➔ แบกรับความเสี่ยงค่าอะไหล่และช่าง Onsite เอง</div>
+                    <div>• สิ้นปีที่ 4-5 เครื่องเสื่อมสภาพ ตกรุ่น ช้าลง และมีภาระแทงจำหน่ายซาก</div>
                   </div>
                 </div>
                 <div class="pt-3 border-t border-amber-200 mt-3 text-[11px] text-amber-800">
-                  เหมาะกับ: อุปกรณ์ที่อายุใช้งานยาวนาน เช่น Barcode Printer, Scanner
+                  เหมาะกับ: อุปกรณ์ที่มีอายุใช้งานยาวนาน เช่น Barcode Printer (162 เครื่อง), Scanner
                 </div>
               </div>
 
@@ -400,15 +401,15 @@
                     <span class="text-xs font-bold uppercase text-emerald-800 tracking-wider">ทางเลือก 2: เช่าใช้ (OpEx / DaaS)</span>
                     <span class="text-[11px] bg-emerald-600 text-white px-2 py-0.5 rounded font-bold">แนะนำสำหรับ SMC</span>
                   </div>
-                  <div class="text-2xl font-black text-emerald-800" id="res-lease-yearly">8,073,000 บาท / ปี</div>
+                  <div class="text-2xl font-black text-emerald-800" id="res-lease-yearly">8,478,000 บาท / ปี</div>
                   <div class="text-xs text-slate-600 mt-3 space-y-1.5">
-                    <div>• จ่ายกระจายรายเดือน: <strong id="res-lease-monthly" class="text-emerald-700">672,750</strong> บาท / เดือน</div>
-                    <div>• ยอดรวมตลอดสัญญา: <strong id="res-lease-total" class="text-slate-800">32,292,000</strong> บาท</div>
-                    <div>• <strong>จุดเด่น:</strong> มีเครื่องสำรอง Onsite + สับเปลี่ยนเครื่องใหม่ยกชุดทุก 3-4 ปี</div>
+                    <div>• จ่ายกระจายรายเดือน: <strong id="res-lease-monthly" class="text-emerald-700">706,500</strong> บาท / เดือน</div>
+                    <div>• ยอดรวมตลอดสัญญา: <strong id="res-lease-total" class="text-slate-800">33,912,000</strong> บาท (4 ปี)</div>
+                    <div>• <strong>จุดเด่น:</strong> มีเครื่องสำรอง Onsite สับเปลี่ยนทันที + สลับเครื่องใหม่ยกชุดทุก 3-4 ปี</div>
                   </div>
                 </div>
                 <div class="pt-3 border-t border-emerald-200 mt-3 text-[11px] text-emerald-800">
-                  เหมาะกับ: PC ห้องตรวจ, 2 จอ, Notebook, Tablet ทั้ง 897 เครื่อง
+                  เหมาะกับ: PC สำนักงาน, PC 2 จอ, Notebook, Tablet ทั้ง 942 เครื่อง
                 </div>
               </div>
             </div>
@@ -431,35 +432,35 @@
                   <tbody class="divide-y divide-slate-100 text-slate-700">
                     <tr class="hover:bg-emerald-50/40">
                       <td class="py-2 px-3 font-semibold text-emerald-800">Phase 1 (0-6 เดือน)</td>
-                      <td class="py-2 px-2 text-center font-bold">614 เครื่อง</td>
-                      <td class="py-2 px-2 text-right">17,192,000 บ.</td>
-                      <td class="py-2 px-2 text-right font-medium text-emerald-700">460,500 บ.</td>
-                      <td class="py-2 px-2 text-right font-bold text-emerald-800">5,526,000 บ.</td>
-                      <td class="py-2 px-3 text-slate-500">จ่ายเฉพาะส่วนที่เปิดจริง ประหยัดงบต้นปีแรกได้มหาศาล</td>
+                      <td class="py-2 px-2 text-center font-bold">674 เครื่อง</td>
+                      <td class="py-2 px-2 text-right">18,872,000 บ.</td>
+                      <td class="py-2 px-2 text-right font-medium text-emerald-700">505,500 บ.</td>
+                      <td class="py-2 px-2 text-right font-bold text-emerald-800">6,066,000 บ.</td>
+                      <td class="py-2 px-3 text-slate-500">จ่ายเฉพาะส่วนที่เปิดจริง (OPD, OR, คลังเลือด, ICU 6, หอ 9A, 11-13)</td>
                     </tr>
                     <tr class="hover:bg-amber-50/40">
                       <td class="py-2 px-3 font-semibold text-amber-800">Phase 2 (7-12 เดือน)</td>
-                      <td class="py-2 px-2 text-center font-bold">157 เครื่อง</td>
-                      <td class="py-2 px-2 text-right">4,396,000 บ.</td>
-                      <td class="py-2 px-2 text-right font-medium text-amber-700">117,750 บ.</td>
-                      <td class="py-2 px-2 text-right font-bold text-amber-800">1,413,000 บ.</td>
+                      <td class="py-2 px-2 text-center font-bold">152 เครื่อง</td>
+                      <td class="py-2 px-2 text-right">4,256,000 บ.</td>
+                      <td class="py-2 px-2 text-right font-medium text-amber-700">114,000 บ.</td>
+                      <td class="py-2 px-2 text-right font-bold text-amber-800">1,368,000 บ.</td>
                       <td class="py-2 px-3 text-slate-500">เริ่มจ่ายค่าเช่าเมื่อรับมอบเครื่องเข้า ICU ชั้น 7 และหอ 9B, 14-15</td>
                     </tr>
                     <tr class="hover:bg-purple-50/40">
                       <td class="py-2 px-3 font-semibold text-purple-800">Phase 3 (13-24 เดือน)</td>
-                      <td class="py-2 px-2 text-center font-bold">126 เครื่อง</td>
-                      <td class="py-2 px-2 text-right">3,528,000 บ.</td>
-                      <td class="py-2 px-2 text-right font-medium text-purple-700">94,500 บ.</td>
-                      <td class="py-2 px-2 text-right font-bold text-purple-800">1,134,000 บ.</td>
+                      <td class="py-2 px-2 text-center font-bold">116 เครื่อง</td>
+                      <td class="py-2 px-2 text-right">3,248,000 บ.</td>
+                      <td class="py-2 px-2 text-right font-medium text-purple-700">87,000 บ.</td>
+                      <td class="py-2 px-2 text-right font-bold text-purple-800">1,044,000 บ.</td>
                       <td class="py-2 px-3 text-slate-500">เริ่มจ่ายเมื่อเปิด ICU ชั้น 8 และหอชั้น 10 ในปีที่ 2</td>
                     </tr>
                     <tr class="bg-slate-100 font-bold">
                       <td class="py-2.5 px-3 text-slate-900">รวมทั้งโครงการ (Full Scale)</td>
-                      <td class="py-2.5 px-2 text-center text-blue-700">897 เครื่อง</td>
-                      <td class="py-2.5 px-2 text-right text-slate-900">25,116,000 บ.</td>
-                      <td class="py-2.5 px-2 text-right text-blue-700">672,750 บ.</td>
-                      <td class="py-2.5 px-2 text-right text-blue-800">8,073,000 บ.</td>
-                      <td class="py-2.5 px-3 text-slate-600">การเช่าแบบแบ่งเฟส ประหยัดค่าเช่าช่วง 1-2 ปีแรกได้กว่า 3.5 ล้านบาท!</td>
+                      <td class="py-2.5 px-2 text-center text-blue-700">942 เครื่อง</td>
+                      <td class="py-2.5 px-2 text-right text-slate-900">26,376,000 บ.</td>
+                      <td class="py-2.5 px-2 text-right text-blue-700">706,500 บ.</td>
+                      <td class="py-2.5 px-2 text-right text-blue-800">8,478,000 บ.</td>
+                      <td class="py-2.5 px-3 text-slate-600">การเช่าแบบแบ่งเฟส ประหยัดงบช่วงครึ่งปีแรกได้กว่า 2.41 ล้านบาทต่อปี!</td>
                     </tr>
                   </tbody>
                 </table>
@@ -476,33 +477,33 @@
   </main>
 
   <script>
-    const hospitalData = [{"section": "OPD", "row": 5, "name": "จักษุ : 5 ห้องตรวจ, คลินิกจอตา, minor OR, ห้องจอตา OCT, ห้องตรวจกระจกตา, FA+ICG, ห้องฉีดยาวุ้นตา, LASER, ห้องวัดสายตา 5 ห้อง", "floor": 1, "zone": "Zone 1", "dept_code": "OPD Eye", "rooms": "21", "pc1": 21, "pc2": 2, "nb": 1, "tab": 1, "total_pc": 25, "prn_c": 0, "prn_bw": 5, "prn_mf": 0, "bc_p": 8, "cid": 0, "bc_s": 8, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "phase": "Phase 1"}, {"section": "OPD", "row": 6, "name": "Pre-op 2 ห้อง", "floor": 1, "zone": "-", "dept_code": "OPD Eye", "rooms": "2", "pc1": 2, "pc2": 1, "nb": 0, "tab": 0, "total_pc": 3, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "phase": "Phase 1"}, {"section": "OPD", "row": 7, "name": "ศูนย์ Wellness (Check up & Vaccine) (9 ห้อง + ห้องให้คำปรึกษา)", "floor": 1, "zone": "Zone 2", "dept_code": "OPD", "rooms": "9", "pc1": 20, "pc2": 1, "nb": 1, "tab": 1, "total_pc": 23, "prn_c": 4, "prn_bw": 5, "prn_mf": 1, "bc_p": 7, "cid": 1, "bc_s": 7, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 1 ,โทรศัพท์มีสาย =2", "phase": "Phase 1"}, {"section": "OPD", "row": 8, "name": "GYN 3 ห้อง", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "3", "pc1": 8, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 10, "prn_c": 0, "prn_bw": 4, "prn_mf": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "phase": "Phase 1"}, {"section": "OPD", "row": 9, "name": "ANC 3 ห้อง", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "3", "pc1": 3, "pc2": 1, "nb": 0, "tab": 0, "total_pc": 4, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 10, "name": "ศูนย์โรคมะเร็ง 7 ห้อง", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "7", "pc1": 10, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 12, "prn_c": 1, "prn_bw": 1, "prn_mf": 1, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "phase": "Phase 1"}, {"section": "OPD", "row": 11, "name": "ศูนย์โรค metabolic (endocrine,nutrition, nephrotic, cardio) 8 ห้อง + 1 ห้อง treatment", "floor": 1, "zone": "Zone 4", "dept_code": "Med 1", "rooms": "9", "pc1": 11, "pc2": 3, "nb": 0, "tab": 1, "total_pc": 15, "prn_c": 1, "prn_bw": 1, "prn_mf": 1, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 1 ,โทรศัพท์มีสาย =1", "phase": "Phase 1"}, {"section": "OPD", "row": 12, "name": "ศูนย์โรคผิวหนังและเลเซอร์ 3 ห้องตรวจ + 2 ห้อง treatment", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "5", "pc1": 5, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 7, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 13, "name": "ศูนย์โรคการนอนหลับ 2 ห้องตรวจ", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "2", "pc1": 2, "pc2": 1, "nb": 2, "tab": 0, "total_pc": 5, "prn_c": 0, "prn_bw": 2, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 14, "name": "ศูนย์ผู้สูงอายุ 2 ห้องตรวจ", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "2", "pc1": 2, "pc2": 1, "nb": 0, "tab": 0, "total_pc": 3, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 15, "name": "ศุนย์เวชพันธุศาสตร์ Genomic 1 ห้องตรวจ + 1 ห้องให้คำปรึกษา", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "2", "pc1": 2, "pc2": 1, "nb": 1, "tab": 0, "total_pc": 4, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 16, "name": "อายุรกรรมทั่วไป 6 ห้องตรวจ 5+ treatment 1 (Rheumato 1 +/ ID 1 + )", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "6", "pc1": 6, "pc2": 3, "nb": 0, "tab": 0, "total_pc": 9, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 1, "cid": 0, "bc_s": 1, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 17, "name": "ศูนย์โรคทางเดินหายใจ (Chest+CVT) ( 3 ห้องตรวจ + 1 ห้องเป่าปอด) *lung service : แพทย์ออกตรวจทุกวัน (ตารางแพทย์) RN ฟิก 4 ห้อง ดูแลทุกวันของ lung service", "floor": 1, "zone": "Zone 5", "dept_code": "Med 2", "rooms": "4", "pc1": 2, "pc2": 2, "nb": 1, "tab": 0, "total_pc": 5, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 1, "cid": 0, "bc_s": 1, "sc": 1, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 18, "name": "ห้อง ARI (6 ห้อง)", "floor": 1, "zone": "-", "dept_code": "Med 2", "rooms": "6", "pc1": 10, "pc2": 4, "nb": 0, "tab": 0, "total_pc": 14, "prn_c": 0, "prn_bw": 2, "prn_mf": 0, "bc_p": 4, "cid": 0, "bc_s": 4, "sc": 0, "notes": "โทรศัพท์ไร้สาย = 1", "phase": "Phase 1"}, {"section": "OPD", "row": 19, "name": "ห้องตรวจ ยังไม่จัดสรร gen ศัลย์", "floor": 1, "zone": "Zone 6", "dept_code": "Med 2", "rooms": "4", "pc1": 4, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 6, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 20, "name": "ศูนย์โรคทางเดินอาหาร (GI,Gen,Hepato.Colon) 6 ห้อง (5 ห้องตรวจ + Fibro 1) + 1 ห้อง treatment หัตถการ ICG", "floor": 1, "zone": "Zone 6", "dept_code": "Med 2", "rooms": "7", "pc1": 11, "pc2": 4, "nb": 0, "tab": 1, "total_pc": 16, "prn_c": 1, "prn_bw": 1, "prn_mf": 1, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 0, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "phase": "Phase 1"}, {"section": "OPD", "row": 22, "name": "สำนักงาน + 26 ชั้นวางยา + ส่วนจัดยา + 14 ช่องจ่ายยา + 1 ช่องให้คำปรึกษา + ห้องทำงาน + ห้องพัก + ห้องน้ำ", "floor": 1, "zone": "-", "dept_code": "ห้องยาชั้น 1 premium for OPD/นอกเวลา", "rooms": "-", "pc1": 20, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 20, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 24, "name": "สำนักงาน + 11 ช่องบริการ (พื้นที่ 8.5x8.4 ม)", "floor": 1, "zone": "-", "dept_code": "เวชระเบียน ชั้น 1", "rooms": "-", "pc1": 15, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 15, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 26, "name": "ห้องพัก+ห้องน้ำ+ห้องมั่นคง+สำนักงานการเงิน + 7 ช่องบริการ (พื้นที่ 18.35 x 4.9 ม.)", "floor": 1, "zone": "-", "dept_code": "การเงิน ชั้น 1", "rooms": "-", "pc1": 10, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 10, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 28, "name": "1 ห้องประชุม + 7 ห้องนอนเวร (ห้องนอน+ห้องน้ำ)", "floor": 1, "zone": "-", "dept_code": "ห้องพักแพทย์", "rooms": "-", "pc1": 5, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 7, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 30, "name": "Admission center (พี่ตุ๊ก/ พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "เพิ่มศูนย์ต่างๆ (หน่วย)", "rooms": "-", "pc1": 6, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 7, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 1, "bc_s": 6, "sc": 0, "notes": "โทรศัพท์ 6", "phase": "Phase 1"}, {"section": "OPD", "row": 31, "name": "Telemedicine (พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "-", "rooms": "-", "pc1": 3, "pc2": 1, "nb": 1, "tab": 1, "total_pc": 6, "prn_c": 0, "prn_bw": 1, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 3, "sc": 1, "notes": "โทรศัพท์ 3", "phase": "Phase 1"}, {"section": "OPD", "row": 32, "name": "ศูนย์ประสานสิทธิ์ (พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "-", "rooms": "-", "pc1": 3, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 4, "prn_c": 0, "prn_bw": 1, "prn_mf": 1, "bc_p": 0, "cid": 2, "bc_s": 3, "sc": 0, "notes": "โทรศัพท์ 3", "phase": "Phase 1"}, {"section": "OPD", "row": 33, "name": "ศูนย์ผู้ป่วยประกันชีวิต (พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "-", "rooms": "-", "pc1": 5, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 6, "prn_c": 0, "prn_bw": 1, "prn_mf": 1, "bc_p": 0, "cid": 2, "bc_s": 2, "sc": 0, "notes": "โทรศัพท์ 5", "phase": "Phase 1"}, {"section": "OPD", "row": 35, "name": "ลูกค้าสัมพันธ์ CRM (น้องพิน/ พี่เก๋)", "floor": 3, "zone": "-", "dept_code": "-", "rooms": "-", "pc1": 9, "pc2": 0, "nb": 1, "tab": 1, "total_pc": 11, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 1, "cid": 2, "bc_s": 3, "sc": 0, "notes": "โทรศัพท์ = 6", "phase": "Phase 1"}, {"section": "OPD", "row": 36, "name": "ศูนย์โสต ศอ นาสิกและการได้ยิน (6 ห้องตรวจ + 3 ห้อง treatment)", "floor": 3, "zone": "Zone 8", "dept_code": "ENT", "rooms": "9", "pc1": 11, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 13, "prn_c": 0, "prn_bw": 3, "prn_mf": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "phase": "Phase 1"}, {"section": "OPD", "row": 37, "name": "ห้อง speech 4 ห้อง (design พิเศษ) เปิดเฟสแรก 2 ห้อง, เฟสที่สอง 2 ห้อง", "floor": 3, "zone": "Zone 8", "dept_code": "ENT", "rooms": "4", "pc1": 4, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 6, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 38, "name": "ห้องตรวจการได้ยิน 6 ห้อง + 1 ห้อง ABR : เปิดเฟสแรก 4 ห้อง (การได้ยิน 3 + ABR 1), เฟสที่ 2 (การได้ยิน 3 ห้อง)", "floor": 3, "zone": "Zone 8", "dept_code": "ENT", "rooms": "7", "pc1": 5, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 5, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 39, "name": "ศูนย์โรคเด็ก 6 ห้องตรวจ + 5 ห้อง treatment", "floor": 3, "zone": "Zone 7", "dept_code": "ENT", "rooms": "11", "pc1": 7, "pc2": 5, "nb": 1, "tab": 0, "total_pc": 13, "prn_c": 0, "prn_bw": 3, "prn_mf": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2, โทรศัพท์มีสาย =1", "phase": "Phase 1"}, {"section": "OPD", "row": 40, "name": "ศูนย์เวชศาสตร์ฟื้นฟู 3 ห้องตรวจ +1 ห้อง treatment + ห้องกายภาพ 2 ห้องขนาดกลาง และ 2 ห้องขนาดใหญ่", "floor": 3, "zone": "Zone 9", "dept_code": "Rehab", "rooms": "8", "pc1": 10, "pc2": 4, "nb": 0, "tab": 0, "total_pc": 14, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 41, "name": "ศูนย์โรคข้อ กระดูกสันหลัง เวชศาสตร์การกีฬา Orthopedic 5 ห้องตรวจ + 1 ห้องเฝือก", "floor": 3, "zone": "Zone 10", "dept_code": "MSK Center", "rooms": "6", "pc1": 2, "pc2": 6, "nb": 0, "tab": 0, "total_pc": 8, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 42, "name": "Neuro Med/Surg 5 ห้องตรวจ ( ห้องตรวจ 3 + US + EEG) + 1 ห้อง Treatment", "floor": 1, "zone": "-", "dept_code": "-", "rooms": "6", "pc1": 2, "pc2": 6, "nb": 0, "tab": 0, "total_pc": 8, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 43, "name": "ศูนย์ส่องกล้อง 5 ห้องตรวจ + 10 เตียงสำหรับเตรียม bowel + 5 ห้องน้ำ", "floor": 3, "zone": "-", "dept_code": "Endo OPD", "rooms": "15", "pc1": 20, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 20, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 44, "name": "5 ห้อง Endoscopic + 3 ห้อง ERCP + พักฟื้น 11 เตียง", "floor": 3, "zone": "-", "dept_code": "Endoscopy", "rooms": "8", "pc1": 15, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 15, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 45, "name": "7 ห้องตรวจ + 2 ห้อง treatment", "floor": 3, "zone": "-", "dept_code": "OPD MIS", "rooms": "9", "pc1": 12, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 12, "prn_c": 0, "prn_bw": 2, "prn_mf": 0, "bc_p": 3, "cid": 0, "bc_s": 3, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 1, โทรศัพท์มีสาย =1", "phase": "Phase 1"}, {"section": "OPD", "row": 46, "name": "OR 6 ห้อง (5+1 ห้อง Robotic)", "floor": 3, "zone": "-", "dept_code": "OR MIS", "rooms": "6", "pc1": 18, "pc2": 12, "nb": 0, "tab": 0, "total_pc": 30, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "OPD", "row": 47, "name": "ห้องบริจาคเลือด + cross match", "floor": 3, "zone": "-", "dept_code": "คลังเลือด", "rooms": "-", "pc1": 0, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 0, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 5, "name": "หอผู้ป่วยพิเศษรวม 9A", "floor": 9, "zone": "Ward 52 เตียง", "dept_code": "IPD Special Shared", "rooms": "52 เตียง", "pc1": 17, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 21, "prn_c": 0, "prn_bw": 3, "prn_mf": 1, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 2, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "phase": "Phase 1"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 9, "name": "หอผู้ป่วยพิเศษรวม 9B", "floor": 9, "zone": "Ward 52 เตียง", "dept_code": "IPD Special Shared", "rooms": "52 เตียง", "pc1": 17, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 21, "prn_c": 0, "prn_bw": 3, "prn_mf": 1, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 2, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "phase": "Phase 2"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 13, "name": "หอผู้ป่วยพิเศษรวม 10A", "floor": 9, "zone": "Ward 52 เตียง", "dept_code": "IPD Special Shared", "rooms": "52 เตียง", "pc1": 17, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 21, "prn_c": 0, "prn_bw": 3, "prn_mf": 1, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 2, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "phase": "Phase 3"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 17, "name": "หอผู้ป่วยพิเศษรวม 10B", "floor": 9, "zone": "Ward 52 เตียง", "dept_code": "IPD Special Shared", "rooms": "52 เตียง", "pc1": 17, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 21, "prn_c": 0, "prn_bw": 3, "prn_mf": 1, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 2, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "phase": "Phase 3"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 5, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 11A (20 ห้อง)", "floor": 11, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร 1 เครื่อง", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 6, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 11B (19 ห้อง)", "floor": 11, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 7, "name": "หอพักผู้ป่วยพิเศษเดี่ยว12A (20 ห้อง)", "floor": 12, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร 1 เครื่อง", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 8, "name": "หอพักผู้ป่วยพิเศษเดี่ยว12B (19 ห้อง)", "floor": 12, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 9, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 13 A (20 ห้อง)", "floor": 13, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร 1 เครื่อง", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 10, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 13 B (19 ห้อง)", "floor": 13, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 0, "notes": "", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 11, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 14 A (20 ห้อง)", "floor": 14, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร 1 เครื่อง", "phase": "Phase 2"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 12, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 14 B (19 ห้อง)", "floor": 14, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 0, "notes": "", "phase": "Phase 2"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 13, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 15 A (20 ห้อง)", "floor": 15, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร 1 เครื่อง", "phase": "Phase 2"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 14, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 15 B (19 ห้อง)", "floor": 15, "zone": "Private Ward", "dept_code": "IPD Single", "rooms": "19-20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "bc_p": 5, "cid": 1, "bc_s": 2, "sc": 0, "notes": "", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 7, "name": "ICU 6A", "floor": 6, "zone": "Critical Care", "dept_code": "ICU", "rooms": "9 เตียง (7 ห้องแยก 2 ห้อง Negative)", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=7, ห้องแยก=2", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 8, "name": "ICU 6B", "floor": 6, "zone": "Critical Care", "dept_code": "ICU", "rooms": "10 เตียง (8 ห้องแยก 1 ห้อง Negative\n1 ห้อง Positive)", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=8, ห้องแยก=2", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 9, "name": "ICU 6C (Phase 1)", "floor": 6, "zone": "Critical Care", "dept_code": "ICU", "rooms": "10 เตียง (9 ห้องแยก 1 ห้อง Negative)", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=9, ห้องแยก=1", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 10, "name": "ICU 6D", "floor": 6, "zone": "Critical Care", "dept_code": "ICU", "rooms": "10 เตียง (9 ห้องแยก 1 ห้อง Negative)", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=9, ห้องแยก=1", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 11, "name": "ICU 7A", "floor": 7, "zone": "Critical Care", "dept_code": "ICU", "rooms": "9 เตียง (7 ห้องแยก 2 ห้อง Negative)", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=7, ห้องแยก=2", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 12, "name": "ICU 7B", "floor": 7, "zone": "Critical Care", "dept_code": "ICU", "rooms": "9 เตียง (7 ห้องแยก 1 ห้อง Negative\n1 ห้อง Positive)", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=7, ห้องแยก=2", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 13, "name": "ICU 7C", "floor": 7, "zone": "Critical Care", "dept_code": "ICU", "rooms": "10 เตียง (9 ห้องแยก 1 ห้อง Negative)", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=9, ห้องแยก=1", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 14, "name": "ICU 7D", "floor": 7, "zone": "Critical Care", "dept_code": "ICU", "rooms": "10 เตียง (9 ห้องแยก 1 ห้อง Negative)", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=9, ห้องแยก=1", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 15, "name": "ICU 8A", "floor": 8, "zone": "Critical Care", "dept_code": "ICU", "rooms": "9 เตียง (7 ห้องแยก 2 ห้อง Negative)", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=7, ห้องแยก=2", "phase": "Phase 3"}, {"section": "ICU (ชั้น 6-8)", "row": 16, "name": "ICU 8B (6 ห้องน้ำclean zoneclass 10,000)", "floor": 8, "zone": "Critical Care", "dept_code": "ICU", "rooms": "6 เตียง (6 ห้องแยก)", "pc1": 8, "pc2": 0, "nb": 1, "tab": 8, "total_pc": 17, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=6, ห้องแยก=0", "phase": "Phase 3"}, {"section": "ICU (ชั้น 6-8)", "row": 17, "name": "ICU 8C", "floor": 8, "zone": "Critical Care", "dept_code": "ICU", "rooms": "10 เตียง (9 ห้องแยก 1 ห้อง Negative)", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=9, ห้องแยก=1", "phase": "Phase 3"}, {"section": "ICU (ชั้น 6-8)", "row": 18, "name": "ICU 8D", "floor": 8, "zone": "Critical Care", "dept_code": "ICU", "rooms": "10 เตียง (9 ห้องแยก 1 ห้อง Negative)", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "bc_p": 0, "cid": 0, "bc_s": 2, "sc": 0, "notes": "Webcam หน้าเตียง=9, ห้องแยก=1", "phase": "Phase 3"}, {"section": "Office พยาบาล SMC", "row": 5, "name": "ฝ่ายการพยาบาล SMC", "floor": 18, "zone": "Admin", "dept_code": "Nursing Admin", "rooms": "26 ตำแหน่งงาน", "pc1": 30, "pc2": 0, "nb": 5, "tab": 5, "total_pc": 40, "prn_c": 2, "prn_bw": 6, "prn_mf": 2, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "26 ตำแหน่งบริหารและสนับสนุน", "phase": "Phase 1"}];
+    const hospitalData = [{"section": "OPD", "row": 5, "name": "จักษุ : 5 ห้องตรวจ, คลินิกจอตา, minor OR, ห้องจอตา OCT, ห้องตรวจกระจกตา, FA+ICG, ห้องฉีดยาวุ้นตา, LASER, ห้องวัดสายตา 5 ห้อง", "floor": 1, "zone": "Zone 1", "dept_code": "OPD Eye", "rooms": "21", "pc1": 21, "pc2": 2, "nb": 1, "tab": 1, "total_pc": 25, "prn_c": 0, "prn_bw": 5, "prn_mf": 1, "mouse_pen": 1, "webcam": 0, "bc_p": 8, "cid": 0, "bc_s": 8, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 6, "name": "Pre-op 2 ห้อง", "floor": 1, "zone": "-", "dept_code": "OPD Eye", "rooms": "2", "pc1": 2, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 2, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 7, "name": "ศูนย์ Wellness (Check up & Vaccine) (9 ห้อง + ห้องให้คำปรึกษา)", "floor": 1, "zone": "Zone 2", "dept_code": "OPD", "rooms": "9", "pc1": 20, "pc2": 1, "nb": 1, "tab": 1, "total_pc": 23, "prn_c": 2, "prn_bw": 5, "prn_mf": 1, "mouse_pen": 1, "webcam": 0, "bc_p": 7, "cid": 1, "bc_s": 7, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 1 ,โทรศัพท์มีสาย =2", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 8, "name": "GYN 3 ห้อง", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "3", "pc1": 8, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 8, "prn_c": 0, "prn_bw": 4, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 9, "name": "ANC 3 ห้อง", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "3", "pc1": 3, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 3, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 10, "name": "ศูนย์โรคมะเร็ง 7 ห้อง", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "7", "pc1": 10, "pc2": 2, "nb": 0, "tab": 1, "total_pc": 13, "prn_c": 1, "prn_bw": 4, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 11, "name": "ศูนย์โรค metabolic (endocrine,nutrition, nephrotic, cardio) 8 ห้อง + 1 ห้อง treatment", "floor": 1, "zone": "Zone 4", "dept_code": "Med 1", "rooms": "9", "pc1": 11, "pc2": 3, "nb": 0, "tab": 1, "total_pc": 15, "prn_c": 1, "prn_bw": 1, "prn_mf": 1, "mouse_pen": 1, "webcam": 3, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 1 ,โทรศัพท์มีสาย =1", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 12, "name": "ศูนย์โรคผิวหนังและเลเซอร์ 3 ห้องตรวจ + 2 ห้อง treatment", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "5", "pc1": 3, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 4, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 1, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 13, "name": "ศูนย์โรคการนอนหลับ 2 ห้องตรวจ", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "2", "pc1": 2, "pc2": 1, "nb": 2, "tab": 0, "total_pc": 5, "prn_c": 0, "prn_bw": 2, "prn_mf": 0, "mouse_pen": 0, "webcam": 1, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 14, "name": "ศูนย์ผู้สูงอายุ 2 ห้องตรวจ", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "2", "pc1": 2, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 2, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 1, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 15, "name": "ศุนย์เวชพันธุศาสตร์ Genomic 1 ห้องตรวจ + 1 ห้องให้คำปรึกษา", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "2", "pc1": 2, "pc2": 0, "nb": 1, "tab": 0, "total_pc": 3, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 16, "name": "อายุรกรรมทั่วไป 6 ห้องตรวจ 5+ treatment 1 (Rheumato 1 +/ ID 1 + )", "floor": 1, "zone": "Zone 3", "dept_code": "Med 1", "rooms": "6", "pc1": 6, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 6, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 2, "bc_p": 1, "cid": 0, "bc_s": 1, "sc": 0, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 17, "name": "ศูนย์โรคทางเดินหายใจ (Chest+CVT) ( 3 ห้องตรวจ + 1 ห้องเป่าปอด) *lung service : แพทย์ออกตรวจทุกวัน (ตารางแพทย์) RN ฟิก 4 ห้อง ดูแลทุกวันของ lung service", "floor": 1, "zone": "Zone 5", "dept_code": "Med 2", "rooms": "4", "pc1": 2, "pc2": 2, "nb": 1, "tab": 1, "total_pc": 6, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 1, "bc_p": 1, "cid": 0, "bc_s": 1, "sc": 1, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 18, "name": "ห้อง ARI (6 ห้อง)", "floor": 1, "zone": "-", "dept_code": "Med 2", "rooms": "6", "pc1": 10, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 10, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 1, "bc_p": 4, "cid": 0, "bc_s": 4, "sc": 0, "notes": "โทรศัพท์ไร้สาย = 1", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 19, "name": "ห้องตรวจ ยังไม่จัดสรร gen ศัลย์", "floor": 1, "zone": "Zone 6", "dept_code": "Med 2", "rooms": "4", "pc1": 4, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 4, "prn_c": 0, "prn_bw": 1, "prn_mf": 0, "mouse_pen": 0, "webcam": 1, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 20, "name": "ศูนย์โรคทางเดินอาหาร (GI,Gen,Hepato.Colon) 6 ห้อง (5 ห้องตรวจ + Fibro 1) + 1 ห้อง treatment หัตถการ ICG", "floor": 1, "zone": "Zone 6", "dept_code": "Med 2", "rooms": "7", "pc1": 11, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 1, "webcam": 2, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 0, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 22, "name": "สำนักงาน + 26 ชั้นวางยา + ส่วนจัดยา + 14 ช่องจ่ายยา + 1 ช่องให้คำปรึกษา + ห้องทำงาน + ห้องพัก + ห้องน้ำ", "floor": 1, "zone": "-", "dept_code": "ห้องยาชั้น 1 premium for OPD/นอกเวลา", "rooms": "-", "pc1": 20, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 20, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 24, "name": "สำนักงาน + 11 ช่องบริการ (พื้นที่ 8.5x8.4 ม)", "floor": 1, "zone": "-", "dept_code": "เวชระเบียน ชั้น 1", "rooms": "-", "pc1": 15, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 15, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 26, "name": "ห้องพัก+ห้องน้ำ+ห้องมั่นคง+สำนักงานการเงิน + 7 ช่องบริการ (พื้นที่ 18.35 x 4.9 ม.)", "floor": 1, "zone": "-", "dept_code": "การเงิน ชั้น 1", "rooms": "-", "pc1": 10, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 10, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 28, "name": "1 ห้องประชุม + 7 ห้องนอนเวร (ห้องนอน+ห้องน้ำ)", "floor": 1, "zone": "-", "dept_code": "ห้องพักแพทย์", "rooms": "-", "pc1": 5, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 7, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 30, "name": "Admission center (พี่ตุ๊ก/ พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "เพิ่มศูนย์ต่างๆ (หน่วย)", "rooms": "-", "pc1": 6, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 7, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 1, "bc_s": 6, "sc": 0, "notes": "โทรศัพท์ 6", "contact": "วีระวรรณ  รุจิรา", "phase": "Phase 1"}, {"section": "OPD", "row": 31, "name": "Telemedicine (พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "-", "pc1": 3, "pc2": 1, "nb": 1, "tab": 1, "total_pc": 6, "prn_c": 0, "prn_bw": 1, "prn_mf": 1, "mouse_pen": 0, "webcam": 3, "bc_p": 0, "cid": 0, "bc_s": 3, "sc": 1, "notes": "โทรศัพท์ 3", "contact": "วีระวรรณ สุพิน", "phase": "Phase 1"}, {"section": "OPD", "row": 32, "name": "ศูนย์ประสานสิทธิ์ (พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "-", "pc1": 3, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 4, "prn_c": 0, "prn_bw": 1, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 2, "bc_s": 3, "sc": 0, "notes": "โทรศัพท์ 3", "contact": "วีระวรรณ", "phase": "Phase 1"}, {"section": "OPD", "row": 33, "name": "ศูนย์ผู้ป่วยประกันชีวิต (พี่เก๋)", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "-", "pc1": 5, "pc2": 0, "nb": 0, "tab": 1, "total_pc": 6, "prn_c": 0, "prn_bw": 1, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 2, "bc_s": 2, "sc": 0, "notes": "โทรศัพท์ 5", "contact": "วีระวรรณ สุพิน", "phase": "Phase 1"}, {"section": "OPD", "row": 35, "name": "ลูกค้าสัมพันธ์ CRM (น้องพิน/ พี่เก๋)", "floor": 3, "zone": "-", "dept_code": "OPD", "rooms": "-", "pc1": 9, "pc2": 0, "nb": 1, "tab": 1, "total_pc": 11, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 1, "cid": 2, "bc_s": 3, "sc": 0, "notes": "โทรศัพท์ = 6", "contact": "วีระวรรณ สุพิน", "phase": "Phase 1"}, {"section": "OPD", "row": 36, "name": "ศูนย์โสต ศอ นาสิกและการได้ยิน (6 ห้องตรวจ + 3 ห้อง treatment)", "floor": 3, "zone": "Zone 8", "dept_code": "ENT", "rooms": "9", "pc1": 11, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 13, "prn_c": 0, "prn_bw": 3, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =1", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 37, "name": "ห้อง speech 4 ห้อง (design พิเศษ) เปิดเฟสแรก 2 ห้อง, เฟสที่สอง 2 ห้อง", "floor": 3, "zone": "Zone 8", "dept_code": "ENT", "rooms": "4", "pc1": 4, "pc2": 2, "nb": 0, "tab": 0, "total_pc": 6, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 38, "name": "ห้องตรวจการได้ยิน 6 ห้อง + 1 ห้อง ABR : เปิดเฟสแรก 4 ห้อง (การได้ยิน 3 + ABR 1), เฟสที่ 2 (การได้ยิน 3 ห้อง)", "floor": 3, "zone": "Zone 8", "dept_code": "ENT", "rooms": "7", "pc1": 5, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 5, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 39, "name": "ศูนย์โรคเด็ก 6 ห้องตรวจ + 5 ห้อง treatment", "floor": 3, "zone": "Zone 7", "dept_code": "ENT", "rooms": "11", "pc1": 7, "pc2": 5, "nb": 1, "tab": 0, "total_pc": 13, "prn_c": 0, "prn_bw": 3, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2, โทรศัพท์มีสาย =1", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 40, "name": "ศูนย์เวชศาสตร์ฟื้นฟู 3 ห้องตรวจ +1 ห้อง treatment + ห้องกายภาพ 2 ห้องขนาดกลาง และ 2 ห้องขนาดใหญ่", "floor": 3, "zone": "Zone 9", "dept_code": "Rehab", "rooms": "8", "pc1": 10, "pc2": 4, "nb": 0, "tab": 0, "total_pc": 14, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 41, "name": "ศูนย์โรคข้อ กระดูกสันหลัง เวชศาสตร์การกีฬา Orthopedic 5 ห้องตรวจ + 1 ห้องเฝือก", "floor": 3, "zone": "Zone 10", "dept_code": "MSK Center", "rooms": "6", "pc1": 2, "pc2": 6, "nb": 0, "tab": 0, "total_pc": 8, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 42, "name": "Neuro Med/Surg 5 ห้องตรวจ ( ห้องตรวจ 3 + US + EEG) + 1 ห้อง Treatment", "floor": 1, "zone": "-", "dept_code": "OPD", "rooms": "6", "pc1": 2, "pc2": 6, "nb": 0, "tab": 0, "total_pc": 8, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 43, "name": "ศูนย์ส่องกล้อง 5 ห้องตรวจ + 10 เตียงสำหรับเตรียม bowel + 5 ห้องน้ำ", "floor": 3, "zone": "-", "dept_code": "Endo OPD", "rooms": "15", "pc1": 20, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 20, "prn_c": 0, "prn_bw": 0, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "", "phase": "Phase 1"}, {"section": "OPD", "row": 44, "name": "5 ห้อง Endoscopic + 3 ห้อง ERCP + พักฟื้น 11 เตียง+รับส่ง+เตรียมส่องกล้อง", "floor": 3, "zone": "-", "dept_code": "Endoscopy", "rooms": "8", "pc1": 15, "pc2": 0, "nb": 1, "tab": 1, "total_pc": 17, "prn_c": 1, "prn_bw": 3, "prn_mf": 1, "mouse_pen": 1, "webcam": 0, "bc_p": 3, "cid": 0, "bc_s": 3, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 11, โทรศัพท์มีสาย =2, ชุดไมโครโฟนพร้อมเครื่องกระจายเสียง =1", "contact": "เสาวภา", "phase": "Phase 1"}, {"section": "OPD", "row": 45, "name": "7 ห้องตรวจ + 2 ห้อง treatment", "floor": 3, "zone": "-", "dept_code": "OPD MIS", "rooms": "9", "pc1": 12, "pc2": 0, "nb": 0, "tab": 0, "total_pc": 12, "prn_c": 0, "prn_bw": 2, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 3, "cid": 0, "bc_s": 3, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 1, โทรศัพท์มีสาย =1", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "OPD", "row": 46, "name": "OR 6 ห้อง (5+1 ห้อง Robotic)", "floor": 3, "zone": "-", "dept_code": "OR MIS", "rooms": "6", "pc1": 18, "pc2": 12, "nb": 6, "tab": 0, "total_pc": 36, "prn_c": 1, "prn_bw": 1, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 1, "cid": 0, "bc_s": 0, "sc": 0, "notes": "โทรศัพท์ไร้สาย = 9, โทรศัพท์มีสาย =2, ชุดไมโครโฟนพร้อมเครื่องกระจายเสียง =1", "contact": "อรอุรา", "phase": "Phase 1"}, {"section": "OPD", "row": 47, "name": "ห้องบริจาคเลือด + cross match", "floor": 3, "zone": "-", "dept_code": "คลังเลือด", "rooms": "2", "pc1": 17, "pc2": 0, "nb": 1, "tab": 1, "total_pc": 19, "prn_c": 0, "prn_bw": 1, "prn_mf": 2, "mouse_pen": 3, "webcam": 3, "bc_p": 13, "cid": 3, "bc_s": 15, "sc": 1, "notes": "ห้องบริจาคโทรศัพท์ 2 ,ลำโพง 1 ตัว", "contact": "Donorพูนทรัพย์ ศรีพารา 67118, Lab ฉลาวรรณ บุตรโยจันโท  67122", "phase": "Phase 1"}, {"section": "OPD", "row": 48, "name": "ห้องผ่าตัด+รับส่ง+เตรียมผ่าตัด+สำนักงาน", "floor": 4, "zone": "-", "dept_code": "OR ชั้น4", "rooms": "20", "pc1": 27, "pc2": 0, "nb": 20, "tab": 0, "total_pc": 47, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 2, "cid": 0, "bc_s": 3, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 25, โทรศัพท์มีสาย =2, ชุดไมโครโฟนพร้อมเครื่องกระจายเสียง =1", "contact": "อรอุรา", "phase": "Phase 1"}, {"section": "OPD", "row": 49, "name": "ห้องผ่าตัด+รับส่ง+เตรียมผ่าตัด+สำนักงาน", "floor": 2, "zone": "-", "dept_code": "OR trauma", "rooms": "4", "pc1": 7, "pc2": 0, "nb": 4, "tab": 0, "total_pc": 11, "prn_c": 1, "prn_bw": 1, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 7, โทรศัพท์มีสาย =2, ชุดไมโครโฟนพร้อมเครื่องกระจายเสียง =1", "contact": "อรอุรา", "phase": "Phase 1"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 5, "name": "หอผู้ป่วยพิเศษรวม 9A Infusion Unit (Day chemo, อื่นๆ)", "floor": 9, "zone": "Ward", "dept_code": "Special Shared Ward", "rooms": "12 เตียง", "pc1": 12, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 16, "prn_c": 0, "prn_bw": 3, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 2, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "contact": "อภิรดา", "phase": "Phase 1"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 9, "name": "หอผู้ป่วยพิเศษรวม 9B ACRO)", "floor": 9, "zone": "Ward", "dept_code": "Special Shared Ward", "rooms": "12 เตียง", "pc1": 12, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 16, "prn_c": 0, "prn_bw": 3, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 2, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "contact": "วิลาวัลย์", "phase": "Phase 2"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 13, "name": "หอผู้ป่วยพิเศษรวม 10A", "floor": 9, "zone": "Ward", "dept_code": "Special Shared Ward", "rooms": "12 เตียง", "pc1": 12, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 16, "prn_c": 0, "prn_bw": 3, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "contact": "", "phase": "Phase 3"}, {"section": "พิเศษรวม (ชั้น 9-10)", "row": 17, "name": "หอผู้ป่วยพิเศษรวม 10B", "floor": 9, "zone": "Ward", "dept_code": "Special Shared Ward", "rooms": "12 เตียง", "pc1": 12, "pc2": 1, "nb": 2, "tab": 1, "total_pc": 16, "prn_c": 0, "prn_bw": 3, "prn_mf": 0, "mouse_pen": 0, "webcam": 0, "bc_p": 5, "cid": 0, "bc_s": 5, "sc": 1, "notes": "โทรศัพท์ไร้สาย = 2 ,โทรศัพท์มีสาย =2", "contact": "", "phase": "Phase 3"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 5, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 11A (20 ห้อง)  (สว.13 เดิม SMC)", "floor": 11, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร: เครื่องทำลายเอกสาร 1 เครื่อง", "contact": "เชาวลิต/สุดารัตน์", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 6, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 11B (19 ห้อง) (สว.14 เดิม SMC)", "floor": 11, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "19 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 0, "notes": "-", "contact": "รัตติกรณ์/อภิญญา", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 7, "name": "หอพักผู้ป่วยพิเศษเดี่ยว12A (20 ห้อง)  (สว.15 เดิม SMC)", "floor": 12, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร: เครื่องทำลายเอกสาร 1 เครื่อง", "contact": "สุพรรณี/วันเพ็ญ", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 8, "name": "หอพักผู้ป่วยพิเศษเดี่ยว12B (19 ห้อง)  (WARD เด็ก SMC)", "floor": 12, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "19 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 0, "notes": "-", "contact": "วิลาวัลย์", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 9, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 13 A (20 ห้อง)", "floor": 13, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร: เครื่องทำลายเอกสาร 1 เครื่อง", "contact": "วิลาวัลย์", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 10, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 13 B (19 ห้อง)", "floor": 13, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "19 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 0, "notes": "-", "contact": "วิลาวัลย์", "phase": "Phase 1"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 11, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 14 A (20 ห้อง)", "floor": 14, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร: เครื่องทำลายเอกสาร 1 เครื่อง", "contact": "วิลาวัลย์", "phase": "Phase 2"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 12, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 14 B (19 ห้อง)", "floor": 14, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "19 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 0, "notes": "-", "contact": "วิลาวัลย์", "phase": "Phase 2"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 13, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 15 A (20 ห้อง)", "floor": 15, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "20 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 1, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 1, "notes": "เครื่องทำลายเอกสาร: เครื่องทำลายเอกสาร 1 เครื่อง", "contact": "วิลาวัลย์", "phase": "Phase 2"}, {"section": "IPD พิเศษเดี่ยว (ชั้น 11-15)", "row": 14, "name": "หอพักผู้ป่วยพิเศษเดี่ยว 15 B (19 ห้อง)", "floor": 15, "zone": "Ward", "dept_code": "Special Single Ward", "rooms": "19 ห้อง", "pc1": 9, "pc2": 0, "nb": 2, "tab": 1, "total_pc": 12, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 0, "bc_p": 4, "bc_p_raw": 2, "prn_lab": 1, "prn_wrist": 1, "cid": 1, "bc_s": 2, "sc": 0, "notes": "-", "contact": "วิลาวัลย์", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 7, "name": "ICU 6A", "floor": 6, "zone": "ICU", "dept_code": "ICU", "rooms": "7 ห้องแยก 2 ห้อง Negative", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 9, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 8, "name": "ICU 6B", "floor": 6, "zone": "ICU", "dept_code": "ICU", "rooms": "8 ห้องแยก 1 ห้อง Negative 1 ห้อง Positive", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 10, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 9, "name": "ICU 6C (Phase 1)", "floor": 6, "zone": "ICU", "dept_code": "ICU", "rooms": "9 ห้องแยก 1 ห้อง Negative", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 10, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 10, "name": "ICU 6D", "floor": 6, "zone": "ICU", "dept_code": "ICU", "rooms": "9 ห้องแยก 1 ห้อง Negative", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 10, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 1"}, {"section": "ICU (ชั้น 6-8)", "row": 11, "name": "ICU 7A", "floor": 7, "zone": "ICU", "dept_code": "ICU", "rooms": "7 ห้องแยก 2 ห้อง Negative", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 9, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 12, "name": "ICU 7B", "floor": 7, "zone": "ICU", "dept_code": "ICU", "rooms": "7 ห้องแยก 1 ห้อง Negative 1 ห้อง Positive", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 9, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 13, "name": "ICU 7C", "floor": 7, "zone": "ICU", "dept_code": "ICU", "rooms": "9 ห้องแยก 1 ห้อง Negative", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 10, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 14, "name": "ICU 7D", "floor": 7, "zone": "ICU", "dept_code": "ICU", "rooms": "9 ห้องแยก 1 ห้อง Negative", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 10, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 2"}, {"section": "ICU (ชั้น 6-8)", "row": 15, "name": "ICU 8A", "floor": 8, "zone": "ICU", "dept_code": "ICU", "rooms": "7 ห้องแยก 2 ห้อง Negative", "pc1": 11, "pc2": 0, "nb": 1, "tab": 9, "total_pc": 21, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 9, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 3"}, {"section": "ICU (ชั้น 6-8)", "row": 16, "name": "ICU 8B (6 ห้องน้ำclean zoneclass 10,000)", "floor": 8, "zone": "ICU", "dept_code": "ICU", "rooms": "6 ห้องแยก", "pc1": 8, "pc2": 0, "nb": 1, "tab": 8, "total_pc": 17, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 6, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 3"}, {"section": "ICU (ชั้น 6-8)", "row": 17, "name": "ICU 8C", "floor": 8, "zone": "ICU", "dept_code": "ICU", "rooms": "9 ห้องแยก 1 ห้อง Negative", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 10, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 3"}, {"section": "ICU (ชั้น 6-8)", "row": 18, "name": "ICU 8D", "floor": 8, "zone": "ICU", "dept_code": "ICU", "rooms": "9 ห้องแยก 1 ห้อง Negative", "pc1": 12, "pc2": 0, "nb": 1, "tab": 10, "total_pc": 23, "prn_c": 0, "prn_bw": 2, "prn_mf": 1, "mouse_pen": 0, "webcam": 10, "bc_p": 2, "cid": 0, "bc_s": 2, "sc": 0, "notes": "ระบบ IT ของ ICU: Monitor ที่เตียง Central Monitor และ Smart ICU; Smart TV 1 เครื่อง เป็น Central Monitor ของระบบ Smart ICU", "contact": "วีระวรรณ", "phase": "Phase 3"}, {"section": "Office พยาบาล SMC", "row": 5, "name": "ฝ่ายการพยาบาล SMC", "floor": 18, "zone": "Office", "dept_code": "Nursing Office", "rooms": "1", "pc1": 30, "pc2": 0, "nb": 5, "tab": 5, "total_pc": 40, "prn_c": 2, "prn_bw": 6, "prn_mf": 2, "mouse_pen": 0, "webcam": 0, "bc_p": 0, "cid": 0, "bc_s": 0, "sc": 0, "notes": "-", "contact": "ธิดารัตน์", "phase": "Phase 1"}];
     let currentPhase = 'ALL';
     let currentSection = 'ALL';
     let searchQuery = '';
 
     const phaseMetadata = {
       'ALL': {
-        title: 'ภาพรวมทั้งโครงการ (All Phases):',
-        desc: 'ความต้องการรวม 897 เครื่อง ครอบคลุม 10 กลุ่มงานหลัก (~90% สมบูรณ์) จัดสรรงบประมาณได้เหมาะสม ทั้งนี้สามารถคลิกปุ่ม Phase ด้านบนเพื่อดูการจัดส่งและติดตั้งตามไทม์ไลน์จริง',
+        title: 'ภาพรวมทั้งโครงการ (All Phases - ปรับปรุง 9.9.69):',
+        desc: 'ความต้องการคอมพิวเตอร์รวม 942 เครื่อง ครอบคลุม 100% เต็มทุกส่วน ปิดจุดเก็บตกสำเร็จ: เติมเต็ม "คลังเลือด" (19 เครื่อง), บรรจุห้องผ่าตัดใหญ่ "OR ชั้น 4" (47 เครื่อง) และ "OR Trauma ชั้น 2" (11 เครื่อง) พร้อมระบุเครื่องพิมพ์บาร์โค้ด ICU 24 เครื่อง และแยกเครื่องพิมพ์ป้ายข้อมือ/Lab ใน IPD ครบถ้วน',
         bg: 'bg-blue-50 border-blue-200 text-blue-950',
         iconColor: 'text-blue-600'
       },
       'Phase 1': {
-        title: 'Phase 1: เปิดบริการ 0-6 เดือนแรก (614 เครื่อง - 68.5%):',
-        desc: 'เปิดบริการ OPD ครบทุกคลินิก (391 เครื่อง), ศูนย์หัตถการ OR/Endoscopy, Office พยาบาลชั้น 18 (40 เครื่อง), ICU ชั้น 6 (6A-6D รวม 90 เครื่อง), หอพิเศษรวม 9A (21 เครื่อง), และหอพิเศษเดี่ยวชั้น 11-13 (72 เครื่อง)',
+        title: 'Phase 1: เปิดบริการ 0-6 เดือนแรก (674 เครื่อง - 71.5%):',
+        desc: 'เปิดบริการ OPD ครบทุกคลินิก (456 เครื่อง รวม OR ชั้น 4, OR Trauma, OR MIS, ส่องกล้อง, คลังเลือด), Office พยาบาลชั้น 18 (40 เครื่อง), ICU ชั้น 6 (6A-6D รวม 90 เครื่อง), หอพิเศษรวม 9A (16 เครื่อง), และหอพิเศษเดี่ยวชั้น 11-13 (72 เครื่อง)',
         bg: 'bg-emerald-50 border-emerald-300 text-emerald-950',
         iconColor: 'text-emerald-600'
       },
       'Phase 2': {
-        title: 'Phase 2: ขยายบริการช่วงเดือนที่ 7-12 (157 เครื่อง - 17.5%):',
-        desc: 'ขยาย ICU ชั้น 7 (7A-7D รวม 88 เครื่อง), หอผู้ป่วยพิเศษรวม 9B (21 เครื่อง), และหอผู้ป่วยพิเศษเดี่ยวชั้น 14-15 (14A-15B รวม 48 เครื่อง) *ไม่จำเป็นต้องส่งมอบเครื่องในวันแรก ช่วยเซฟงบค่าเช่าช่วงครึ่งปีแรกได้ทันที*',
+        title: 'Phase 2: ขยายบริการช่วงเดือนที่ 7-12 (152 เครื่อง - 16.1%):',
+        desc: 'ขยาย ICU ชั้น 7 (7A-7D รวม 88 เครื่อง), หอผู้ป่วยพิเศษรวม 9B (16 เครื่อง), และหอผู้ป่วยพิเศษเดี่ยวชั้น 14-15 (14A-15B รวม 48 เครื่อง) *ไม่จำเป็นต้องส่งมอบเครื่องในวันแรก ช่วยเซฟงบค่าเช่าช่วงครึ่งปีแรกได้ทันที*',
         bg: 'bg-amber-50 border-amber-300 text-amber-950',
         iconColor: 'text-amber-600'
       },
       'Phase 3': {
-        title: 'Phase 3: ขยายเต็มศักยภาพช่วงเดือนที่ 13-24 (126 เครื่อง - 14.0%):',
-        desc: 'ขยาย ICU ชั้น 8 (8A-8D รวม 84 เครื่อง ซึ่งรวมห้อง Clean Zone Class 10,000) และหอผู้ป่วยพิเศษรวมชั้น 10 (10A, 10B รวม 42 เครื่อง) *เข้าติดตั้งเมื่อการก่อสร้างและติดตั้งระบบทางการแพทย์ชั้น 8-10 แล้วเสร็จสมบูรณ์*',
+        title: 'Phase 3: ขยายเต็มศักยภาพช่วงเดือนที่ 13-24 (116 เครื่อง - 12.3%):',
+        desc: 'ขยาย ICU ชั้น 8 (8A-8D รวม 84 เครื่อง ซึ่งรวมห้อง Clean Zone Class 10,000) และหอผู้ป่วยพิเศษรวมชั้น 10 (10A, 10B รวม 32 เครื่อง) *เข้าติดตั้งเมื่อการก่อสร้างและติดตั้งระบบทางการแพทย์ชั้น 8-10 แล้วเสร็จสมบูรณ์*',
         bg: 'bg-purple-50 border-purple-300 text-purple-950',
         iconColor: 'text-purple-600'
       }
@@ -592,6 +593,8 @@
                             d.section.toLowerCase().includes(searchQuery) ||
                             d.dept_code.toLowerCase().includes(searchQuery) ||
                             d.phase.toLowerCase().includes(searchQuery) ||
+                            (d.notes && d.notes.toLowerCase().includes(searchQuery)) ||
+                            (d.contact && d.contact.toLowerCase().includes(searchQuery)) ||
                             String(d.floor).includes(searchQuery);
         return matchSec && matchSearch;
       });
@@ -614,7 +617,7 @@
       document.getElementById('kpi-tab').innerText = tab.toLocaleString();
       document.getElementById('kpi-bc').innerText = bc.toLocaleString();
 
-      const pctTotal = (total / 897 * 100).toFixed(1);
+      const pctTotal = (total / 942 * 100).toFixed(1);
       const pctPc1 = total > 0 ? (pc1 / total * 100).toFixed(1) : 0;
       const pctPc2 = total > 0 ? (pc2 / total * 100).toFixed(1) : 0;
       const pctNb = total > 0 ? (nb / total * 100).toFixed(1) : 0;
@@ -623,7 +626,7 @@
       document.getElementById('kpi-sub-total').innerText = currentPhase === 'ALL' ? '100% ของสเกลอาคาร' : `${pctTotal}% ของแผนรวม`;
       document.getElementById('kpi-sub-pc1').innerText = `${pctPc1}% ของเฟสนี้`;
       document.getElementById('kpi-sub-pc2').innerText = `${pctPc2}% ห้องตรวจ & PACS`;
-      document.getElementById('kpi-sub-nb').innerText = `${pctNb}% แพทย์ & วอร์ด`;
+      document.getElementById('kpi-sub-nb').innerText = `${pctNb}% OR & วอร์ด Round`;
       document.getElementById('kpi-sub-tab').innerText = `${pctTab}% ICU & โมบาย`;
     }
 
@@ -640,48 +643,61 @@
         secMap[d.section].total += d.total_pc;
       });
 
-      const sections = Object.keys(secMap).map(k => ({
-        name: k,
-        ...secMap[k]
-      })).sort((a, b) => b.total - a.total);
-
-      const totalPCs = dataSubset.reduce((acc, c) => acc + c.total_pc, 0);
-      document.getElementById('chart-total-text').innerText = `${totalPCs} เครื่อง`;
+      const totalSubset = dataSubset.reduce((acc, c) => acc + c.total_pc, 0);
+      document.getElementById('chart-total-text').innerText = `${totalSubset.toLocaleString()} เครื่อง`;
       document.getElementById('chart-phase-tag').innerText = currentPhase === 'ALL' ? 'ทุก Phase' : currentPhase;
 
-      const maxTot = sections.length > 0 ? Math.max(...sections.map(s => s.total), 1) : 1;
-      const container = document.getElementById('chart-section-bars');
-      
-      if (sections.length === 0) {
-        container.innerHTML = '<div class="text-center py-8 text-slate-400 text-xs">ไม่มีกลุ่มงานในเงื่อนไขที่เลือก</div>';
-        return;
-      }
+      const order = [
+        'OPD',
+        'ICU (ชั้น 6-8)',
+        'IPD พิเศษเดี่ยว (ชั้น 11-15)',
+        'พิเศษรวม (ชั้น 9-10)',
+        'Office พยาบาล SMC'
+      ];
 
-      container.innerHTML = sections.map(s => {
-        const wPct = (s.total / maxTot * 100).toFixed(1);
-        const p1Pct = s.total > 0 ? (s.pc1 / s.total * 100).toFixed(1) : 0;
-        const p2Pct = s.total > 0 ? (s.pc2 / s.total * 100).toFixed(1) : 0;
-        const nbPct = s.total > 0 ? (s.nb / s.total * 100).toFixed(1) : 0;
-        const tabPct = s.total > 0 ? (s.tab / s.total * 100).toFixed(1) : 0;
-        return `
+      const labels = {
+        'OPD': 'OPD, OR & คลังเลือด (ชั้น 1-4)',
+        'ICU (ชั้น 6-8)': 'ICU 12 ยูนิต (ชั้น 6-8)',
+        'IPD พิเศษเดี่ยว (ชั้น 11-15)': 'IPD พิเศษเดี่ยว 10 วอร์ด (ชั้น 11-15)',
+        'พิเศษรวม (ชั้น 9-10)': 'พิเศษรวม 4 วอร์ด (ชั้น 9-10)',
+        'Office พยาบาล SMC': 'Office ฝ่ายการพยาบาล (ชั้น 18)'
+      };
+
+      let html = '';
+      order.forEach(sec => {
+        const item = secMap[sec] || { pc1: 0, pc2: 0, nb: 0, tab: 0, total: 0 };
+        if (item.total === 0 && currentPhase !== 'ALL') return;
+
+        const maxScale = Math.max(1, totalSubset);
+        const wPc1 = (item.pc1 / maxScale * 100).toFixed(1);
+        const wPc2 = (item.pc2 / maxScale * 100).toFixed(1);
+        const wNb  = (item.nb  / maxScale * 100).toFixed(1);
+        const wTab = (item.tab / maxScale * 100).toFixed(1);
+        const pctOfSubset = totalSubset > 0 ? (item.total / totalSubset * 100).toFixed(1) : 0;
+
+        html += `
           <div>
-            <div class="flex justify-between text-xs font-semibold mb-1">
-              <span class="text-slate-800">${s.name}</span>
-              <span class="text-blue-700 font-bold">${s.total} เครื่อง</span>
+            <div class="flex justify-between items-center text-xs mb-1">
+              <span class="font-semibold text-slate-700">${labels[sec] || sec}</span>
+              <span class="font-bold text-slate-800">${item.total.toLocaleString()} เครื่อง <span class="text-slate-400 font-normal">(${pctOfSubset}%)</span></span>
             </div>
             <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden flex shadow-inner">
-              <div style="width: ${p1Pct}%" class="bg-[#1f4e79] h-full" title="PC 1จอ: ${s.pc1}"></div>
-              <div style="width: ${p2Pct}%" class="bg-[#2e86c1] h-full" title="PC 2จอ: ${s.pc2}"></div>
-              <div style="width: ${nbPct}%" class="bg-[#d35400] h-full" title="Notebook: ${s.nb}"></div>
-              <div style="width: ${tabPct}%" class="bg-[#27ae60] h-full" title="Tablet: ${s.tab}"></div>
+              <div style="width: ${wPc1}%" class="bg-[#1f4e79] h-full" title="PC 1 จอ: ${item.pc1}"></div>
+              <div style="width: ${wPc2}%" class="bg-[#2e86c1] h-full" title="PC 2 จอ: ${item.pc2}"></div>
+              <div style="width: ${wNb}%" class="bg-[#d35400] h-full" title="Notebook: ${item.nb}"></div>
+              <div style="width: ${wTab}%" class="bg-[#27ae60] h-full" title="Tablet: ${item.tab}"></div>
             </div>
-            <div class="flex justify-between text-[11px] text-slate-400 mt-0.5">
-              <span>PC 1จอ: ${s.pc1} | PC 2จอ: ${s.pc2}</span>
-              <span>NB: ${s.nb} | Tab: ${s.tab}</span>
+            <div class="flex gap-3 text-[11px] text-slate-500 mt-1">
+              <span>PC1: <strong>${item.pc1}</strong></span>
+              <span>PC2: <strong>${item.pc2}</strong></span>
+              <span>NB: <strong>${item.nb}</strong></span>
+              <span>Tab: <strong>${item.tab}</strong></span>
             </div>
           </div>
         `;
-      }).join('');
+      });
+
+      document.getElementById('chart-section-bars').innerHTML = html || '<div class="text-xs text-slate-400 py-4 text-center">ไม่มีข้อมูลในเฟสนี้</div>';
     }
 
     function renderDonut(dataSubset) {
@@ -691,14 +707,10 @@
       const nb = dataSubset.reduce((acc, c) => acc + c.nb, 0);
       const tab = dataSubset.reduce((acc, c) => acc + c.tab, 0);
 
-      document.getElementById('donut-center-num').innerText = total;
-      document.getElementById('donut-total-tag').innerText = `${total} เครื่อง`;
+      document.getElementById('donut-total-tag').innerText = `${total.toLocaleString()} เครื่อง`;
+      document.getElementById('donut-center-num').innerText = total.toLocaleString();
 
       if (total === 0) {
-        document.getElementById('donut-pc1').setAttribute('stroke-dasharray', '0 100');
-        document.getElementById('donut-pc2').setAttribute('stroke-dasharray', '0 100');
-        document.getElementById('donut-nb').setAttribute('stroke-dasharray', '0 100');
-        document.getElementById('donut-tab').setAttribute('stroke-dasharray', '0 100');
         return;
       }
 
@@ -707,79 +719,83 @@
       const p3 = (nb / total * 100);
       const p4 = (tab / total * 100);
 
-      // Dasharrays & Offsets
-      document.getElementById('donut-pc1').setAttribute('stroke-dasharray', `${p1.toFixed(1)} ${ (100 - p1).toFixed(1) }`);
-      document.getElementById('donut-pc1').setAttribute('stroke-dashoffset', '0');
+      // SVG dasharray calculations (circumference = 100)
+      const c1 = document.getElementById('donut-pc1');
+      const c2 = document.getElementById('donut-pc2');
+      const c3 = document.getElementById('donut-nb');
+      const c4 = document.getElementById('donut-tab');
 
-      document.getElementById('donut-pc2').setAttribute('stroke-dasharray', `${p2.toFixed(1)} ${ (100 - p2).toFixed(1) }`);
-      document.getElementById('donut-pc2').setAttribute('stroke-dashoffset', `${(-p1).toFixed(1)}`);
+      c1.setAttribute('stroke-dasharray', `${p1.toFixed(1)} ${ (100 - p1).toFixed(1) }`);
+      c1.setAttribute('stroke-dashoffset', '0');
 
-      document.getElementById('donut-nb').setAttribute('stroke-dasharray', `${p3.toFixed(1)} ${ (100 - p3).toFixed(1) }`);
-      document.getElementById('donut-nb').setAttribute('stroke-dashoffset', `${(-(p1 + p2)).toFixed(1)}`);
+      c2.setAttribute('stroke-dasharray', `${p2.toFixed(1)} ${ (100 - p2).toFixed(1) }`);
+      c2.setAttribute('stroke-dashoffset', `${-p1}`);
 
-      document.getElementById('donut-tab').setAttribute('stroke-dasharray', `${p4.toFixed(1)} ${ (100 - p4).toFixed(1) }`);
-      document.getElementById('donut-tab').setAttribute('stroke-dashoffset', `${(-(p1 + p2 + p3)).toFixed(1)}`);
+      c3.setAttribute('stroke-dasharray', `${p3.toFixed(1)} ${ (100 - p3).toFixed(1) }`);
+      c3.setAttribute('stroke-dashoffset', `${-(p1 + p2)}`);
 
-      // Legend
+      c4.setAttribute('stroke-dasharray', `${p4.toFixed(1)} ${ (100 - p4).toFixed(1) }`);
+      c4.setAttribute('stroke-dashoffset', `${-(p1 + p2 + p3)}`);
+
+      // Update Legend text
       document.getElementById('leg-pc1').innerHTML = `PC 1 จอ: <strong>${pc1}</strong> (${p1.toFixed(1)}%)`;
       document.getElementById('leg-pc2').innerHTML = `PC 2 จอ: <strong>${pc2}</strong> (${p2.toFixed(1)}%)`;
       document.getElementById('leg-nb').innerHTML = `Notebook: <strong>${nb}</strong> (${p3.toFixed(1)}%)`;
       document.getElementById('leg-tab').innerHTML = `Tablet: <strong>${tab}</strong> (${p4.toFixed(1)}%)`;
     }
 
-    function renderTable(filtered) {
+    function renderTable(tableData) {
       const tbody = document.getElementById('table-body');
-      document.getElementById('shown-count').innerText = filtered.length;
-      const sumPC = filtered.reduce((acc, curr) => acc + curr.total_pc, 0);
-      document.getElementById('shown-pc-sum').innerText = sumPC;
+      let html = '';
 
-      if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="15" class="py-10 text-center text-slate-400">ไม่พบข้อมูลที่ตรงกับเงื่อนไขใน Phase หรือการค้นหานี้</td></tr>';
-        return;
-      }
-
-      tbody.innerHTML = filtered.map((d, i) => {
-        const isBlank = d.total_pc === 0;
-        const rowBg = isBlank ? 'bg-amber-50/70 hover:bg-amber-100/50' : (i % 2 === 0 ? 'bg-white hover:bg-slate-50' : 'bg-slate-50/40 hover:bg-slate-100/50');
-        const blankBadge = isBlank ? '<span class="ml-2 px-1.5 py-0.5 bg-amber-500 text-white rounded text-[10px] font-bold">ยังไม่ระบุ</span>' : '';
-        
+      tableData.forEach(d => {
         let phaseBadge = '';
-        if (d.phase === 'Phase 1') {
-          phaseBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">Phase 1</span>';
-        } else if (d.phase === 'Phase 2') {
-          phaseBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">Phase 2</span>';
-        } else if (d.phase === 'Phase 3') {
-          phaseBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 border border-purple-300">Phase 3</span>';
-        }
+        if (d.phase === 'Phase 1') phaseBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Phase 1</span>';
+        else if (d.phase === 'Phase 2') phaseBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">Phase 2</span>';
+        else if (d.phase === 'Phase 3') phaseBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-800">Phase 3</span>';
 
-        return `
-          <tr class="${rowBg} transition">
+        const pc2Class = d.pc2 > 0 ? 'bg-sky-50 text-blue-800 font-bold' : 'text-slate-300';
+        const nbClass = d.nb > 0 ? 'bg-amber-50 text-amber-800 font-bold' : 'text-slate-300';
+        const tabClass = d.tab > 0 ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-300';
+        const bcClass = d.bc_p > 0 ? 'font-bold text-purple-700' : 'text-slate-300';
+
+        const extraNotes = [];
+        if (d.notes && d.notes !== '-') extraNotes.push(d.notes);
+        if (d.contact) extraNotes.push(`ผปง: ${d.contact}`);
+        const fullNotes = extraNotes.join(' | ') || '-';
+
+        html += `
+          <tr class="hover:bg-blue-50/40 transition border-b border-slate-100">
             <td class="py-2.5 px-3 whitespace-nowrap">${phaseBadge}</td>
-            <td class="py-2.5 px-2 whitespace-nowrap">
-              <span class="font-bold text-slate-900">ชั้น ${d.floor}</span>
-              <span class="text-[10px] text-slate-400 block">${d.zone}</span>
-            </td>
+            <td class="py-2.5 px-2 text-center font-bold text-slate-700">Fl.${d.floor}</td>
             <td class="py-2.5 px-3">
-              <span class="font-semibold text-slate-800">${d.name}</span>${blankBadge}
-              <span class="text-[10px] text-slate-400 block">${d.section}</span>
+              <div class="font-bold text-slate-800 text-xs">${d.name}</div>
+              <div class="text-[11px] text-slate-400">${d.dept_code} ${d.zone !== '-' ? '• ' + d.zone : ''}</div>
             </td>
-            <td class="py-2.5 px-3 text-center text-slate-600">${d.rooms || '-'}</td>
-            <td class="py-2.5 px-2 text-center font-semibold text-blue-700 bg-blue-50/30">${d.pc1 || '-'}</td>
-            <td class="py-2.5 px-2 text-center font-semibold text-sky-600 bg-sky-50/30">${d.pc2 || '-'}</td>
-            <td class="py-2.5 px-2 text-center text-amber-700 bg-amber-50/30">${d.nb || '-'}</td>
-            <td class="py-2.5 px-2 text-center text-emerald-700 bg-emerald-50/30">${d.tab || '-'}</td>
-            <td class="py-2.5 px-2 text-center font-extrabold text-slate-900 bg-slate-200/50">${d.total_pc || '-'}</td>
+            <td class="py-2.5 px-3 text-center text-slate-600">${d.rooms}</td>
+            <td class="py-2.5 px-2 text-center font-semibold bg-blue-50/50">${d.pc1 || '-'}</td>
+            <td class="py-2.5 px-2 text-center ${pc2Class}">${d.pc2 || '-'}</td>
+            <td class="py-2.5 px-2 text-center ${nbClass}">${d.nb || '-'}</td>
+            <td class="py-2.5 px-2 text-center ${tabClass}">${d.tab || '-'}</td>
+            <td class="py-2.5 px-2 text-center font-extrabold bg-slate-100 text-slate-900">${d.total_pc}</td>
             <td class="py-2.5 px-2 text-center text-slate-600">${d.prn_bw || '-'}</td>
             <td class="py-2.5 px-2 text-center text-slate-600">${d.prn_c || '-'}</td>
             <td class="py-2.5 px-2 text-center text-slate-600">${d.prn_mf || '-'}</td>
-            <td class="py-2.5 px-2 text-center text-purple-700 font-semibold">${d.bc_p || '-'}</td>
+            <td class="py-2.5 px-2 text-center ${bcClass}">${d.bc_p || '-'}</td>
             <td class="py-2.5 px-2 text-center text-slate-600">${d.cid || '-'}</td>
-            <td class="py-2.5 px-3 text-[11px] text-slate-500 max-w-xs truncate" title="${d.notes}">${d.notes || '-'}</td>
+            <td class="py-2.5 px-3 text-slate-500 max-w-xs truncate" title="${fullNotes}">${fullNotes}</td>
           </tr>
         `;
-      }).join('');
+      });
+
+      tbody.innerHTML = html || '<tr><td colspan="15" class="text-center py-6 text-slate-400">ไม่พบข้อมูลที่ตรงกับเงื่อนไข</td></tr>';
+      
+      document.getElementById('shown-count').innerText = tableData.length;
+      const sumPc = tableData.reduce((acc, c) => acc + c.total_pc, 0);
+      document.getElementById('shown-pc-sum').innerText = sumPc.toLocaleString();
     }
 
+    // SIMULATOR LOGIC
     function applySimPreset(units, label) {
       document.getElementById('sim-units').value = units;
       updateSim();
@@ -791,19 +807,19 @@
       const leasePrice = parseInt(document.getElementById('sim-lease-price').value);
       const years = parseInt(document.getElementById('sim-years').value);
 
-      document.getElementById('val-units-badge').innerText = units.toLocaleString() + ' เครื่อง';
-      document.getElementById('val-buy-price-badge').innerText = buyPrice.toLocaleString() + ' บาท';
-      document.getElementById('val-lease-price-badge').innerText = leasePrice.toLocaleString() + ' บาท / ด.';
+      document.getElementById('val-units-badge').innerText = `${units.toLocaleString()} เครื่อง`;
+      document.getElementById('val-buy-price-badge').innerText = `${buyPrice.toLocaleString()} บาท`;
+      document.getElementById('val-lease-price-badge').innerText = `${leasePrice.toLocaleString()} บาท / ด.`;
 
-      const totalBuy = units * buyPrice;
-      const monthlyLease = units * leasePrice;
-      const yearlyLease = monthlyLease * 12;
-      const totalLease = yearlyLease * years;
+      const buyTotal = units * buyPrice;
+      const leaseMonthly = units * leasePrice;
+      const leaseYearly = leaseMonthly * 12;
+      const leaseTotal = leaseYearly * years;
 
-      document.getElementById('res-buy-total').innerText = totalBuy.toLocaleString() + ' บาท';
-      document.getElementById('res-lease-monthly').innerText = monthlyLease.toLocaleString();
-      document.getElementById('res-lease-yearly').innerText = yearlyLease.toLocaleString() + ' บาท / ปี';
-      document.getElementById('res-lease-total').innerText = totalLease.toLocaleString() + ' บาท';
+      document.getElementById('res-buy-total').innerText = `${buyTotal.toLocaleString()} บาท`;
+      document.getElementById('res-lease-yearly').innerText = `${leaseYearly.toLocaleString()} บาท / ปี`;
+      document.getElementById('res-lease-monthly').innerText = `${leaseMonthly.toLocaleString()}`;
+      document.getElementById('res-lease-total').innerText = `${leaseTotal.toLocaleString()} บาท (${years} ปี)`;
     }
 
     window.onload = init;
