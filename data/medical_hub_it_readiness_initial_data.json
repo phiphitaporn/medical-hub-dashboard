@@ -1,0 +1,633 @@
+{
+  "meta": {
+    "project": "Medical Hub IT Commissioning & Readiness Platform",
+    "hospital": "Srinagarind Hospital Medical Hub, Faculty of Medicine, Khon Kaen University",
+    "targetDate": "2027-10-01T08:00:00+07:00",
+    "targetDateLabel": "1 ตุลาคม 2570 (Day-1 Operational Go-Live)",
+    "baselineVersion": "1.0.0",
+    "lastUpdated": "2026-09-22T21:15:00+07:00",
+    "frameworks": ["JCI 8th Edition", "HIMSS EMRAM Stage 6/7", "Cloud Sirisoft Hybrid", "ISO 27001", "PDPA"]
+  },
+  "pillars": [
+    {
+      "id": "pillar-1",
+      "code": "P1",
+      "name": "TOR, JCI/HIMSS Standards & Procurement",
+      "nameTh": "การยกร่าง TOR, มาตรฐาน JCI/HIMSS และการจัดซื้อจัดจ้าง",
+      "description": "มุ่งเน้นการกำหนดมาตรฐานสากล Patient Safety และสถาปัตยกรรมเปิด ป้องกันการติดกับดัก Wishlist 36 ภาควิชา และป้องกัน Vendor Lock-in",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "pillar-2",
+      "code": "P2",
+      "name": "Cloud Sirisoft Infrastructure, Network & Cyber Resilience",
+      "nameTh": "โครงสร้างพื้นฐาน Cloud Sirisoft, เครือข่าย และความมั่นคงปลอดภัย",
+      "description": "จัดเตรียมขุมพลังประมวลผลบน Cloud Sirisoft รองรับ 2,000-3,000 ผู้ใช้, โครงข่าย Private Link, DRC สำรองข้อมูล และ Local Downtime Server",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "pillar-3",
+      "code": "P3",
+      "name": "Master Data & Hospital-Wide Interoperability",
+      "nameTh": "ข้อมูลหลัก (Master Data) และการเชื่อมโยงระบบ (Interoperability)",
+      "description": "จัดระเบียบบัญชียา TMT, แล็บ, ผังราคา (Tariff), ระบบ EMPI เชื่อมโยง 3 โรงพยาบาล, ท่อส่ง LIS/PACS และเชื่อมระบบเบิกจ่าย สปสช./กรมบัญชีกลาง",
+      "color": "#10b981"
+    },
+    {
+      "id": "pillar-4",
+      "code": "P4",
+      "name": "Core HIS Clinical Workflows & Medication Safety",
+      "nameTh": "กระบวนการทางคลินิก Core HIS และความปลอดภัยด้านยา",
+      "description": "คอนฟิก OPD, IPD, ER, ICU, OR, ระบบ CPOE พร้อมตัวเตือนแพ้ยา และวงจรบริหารยาปลอดภัย eMAR / BCMA สแกนข้อมือคนไข้",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "pillar-5",
+      "code": "P5",
+      "name": "Testing, Clinical Simulation, Cutover & Day-1 Go-Live",
+      "nameTh": "การทดสอบ, ซักซ้อมทางคลินิก, การย้ายข้อมูล และการเปิดตึก",
+      "description": "ทดสอบท่อข้อมูล (SIT), UAT เสมือนจริง 6 Closed Loops, ซ้อมระบบล่ม 4 ชม., ซ้อมใหญ่ Dress Rehearsal ในตึกจริง และ Final Cutover",
+      "color": "#f59e0b"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1-01",
+      "pillarId": "pillar-1",
+      "code": "T1.1",
+      "title": "ยกร่างข้อกำหนดอิงมาตรฐาน JCI 8th Ed. และ HIMSS EMRAM Stage 6/7",
+      "scopeSummary": "ตัดข้อเรียกร้องเฉพาะตัว (Wishlist) 36 ภาควิชาออกทั้งหมด แล้วใช้มาตรฐานความปลอดภัยระดับโลก JCI (IPSG 1-6) และ HIMSS Stage 6/7 เป็นแกนกลาง",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 75,
+      "status": "in_progress",
+      "role": "Lead Architect + Clinical Champion (CMO)",
+      "dependencyWS": "WS1 (Clinical Governance)",
+      "rationale": "ตัดความต้องการที่ไม่จำเป็น 2,198 ข้อจาก 36 ภาควิชาออกแล้ว และร่างเกณฑ์มาตรฐานสากล JCI/HIMSS สำเร็จ 85% เพื่อป้องกันงบประมาณและเวลาบานปลาย",
+      "blocker": "รอการประชุมร่วมกับตัวแทนแพทย์ (CMO) เพื่อรับรอง (Sign-off) เกณฑ์ CPOE Mandatory Fields ขั้นสุดท้าย",
+      "subtasks": [
+        { "id": "st-101-1", "title": "กำหนด Patient Safety Goals (IPSG 1-6) ในทุกขั้นตอนการสั่งการรักษา", "done": true },
+        { "id": "st-101-2", "title": "กำหนดระบบแจ้งเตือนยาเสี่ยงสูง (High-Alert Medications) และ Drug Allergy Checking", "done": true },
+        { "id": "st-101-3", "title": "กำหนดมาตรฐาน Nursing Clinical Documentation ตามเกณฑ์ HIMSS Stage 6", "done": true },
+        { "id": "st-101-4", "title": "ออกประกาศคณะฯ ยกเลิก Custom Wishlist 36 ภาควิชา และล็อก Baseline มาตรฐานสากล", "done": false }
+      ]
+    },
+    {
+      "id": "T1-02",
+      "pillarId": "pillar-1",
+      "code": "T1.2",
+      "title": "ออกแบบสถาปัตยกรรมเปิด (Open API / HL7 FHIR) และ Guardrails ป้องกันผูกขาด",
+      "scopeSummary": "ห้าม Direct Database Writes ทุกกรณี ข้อมูลและ Data Dictionary ต้องเป็นกรรมสิทธิ์ของโรงพยาบาล 100% พร้อม API กลาง",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 80,
+      "status": "in_progress",
+      "role": "Lead Architect + Legal Counsel",
+      "dependencyWS": "WS4 (IT & Data Unit)",
+      "rationale": "จัดทำสถาปัตยกรรม Integration Layer ผ่าน HL7 FHIR R4 และ REST API เสร็จสมบูรณ์ ระบุเงื่อนไขห้ามล็อกสิทธิ์ข้อมูลไว้ในร่าง TOR แล้ว",
+      "blocker": "รอนิติกรคณะฯ ตรวจทานสัญญาผนวก (Annex) เงื่อนไขค่าปรับกรณี Vendor ไม่เปิดเผย Data Dictionary",
+      "subtasks": [
+        { "id": "st-102-1", "title": "ระบุข้อห้าม Direct Database Write ใน TOR อย่างเด็ดขาด", "done": true },
+        { "id": "st-102-2", "title": "กำหนดการแลกเปลี่ยนข้อมูลผ่าน HL7 FHIR R4/R5 และ DICOM Web Services", "done": true },
+        { "id": "st-102-3", "title": "ร่างเงื่อนไขกรรมสิทธิ์ข้อมูลและ Data Dictionary เป็นของ รพ. 100%", "done": true },
+        { "id": "st-102-4", "title": "ล็อกสิทธิ์ฟรี API Gateway ตลอดอายุสัญญา ไม่คิดค่า Connector เพิ่มเติม", "done": false }
+      ]
+    },
+    {
+      "id": "T1-03",
+      "pillarId": "pillar-1",
+      "code": "T1.3",
+      "title": "ออกแบบชุดข้อสอบสาธิตระบบเชิงประจักษ์ (Scenario Demo Scripts)",
+      "scopeSummary": "สร้างข้อสอบจริงให้ Vendor สาธิตสด ห้ามนำเสนอเฉพาะสไลด์การตลาด (OPD High-Alert Meds, ER Fast-Track, IPD Transfer)",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 70,
+      "status": "in_progress",
+      "role": "Clinical Champion + Lead Architect",
+      "dependencyWS": "WS1 (Clinical Services)",
+      "rationale": "ร่างข้อสอบกรณีศึกษาฉุกเฉินและผู้ป่วยนอกเสร็จแล้ว 2 เส้นทางหลัก",
+      "blocker": "รอเคสตัวอย่างผู้ป่วยมะเร็งที่ได้รับยาเคมีบำบัดซับซ้อนจากภาควิชาอายุรศาสตร์เพื่อรวมในข้อสอบ",
+      "subtasks": [
+        { "id": "st-103-1", "title": "ร่าง Scenario ผู้ป่วยนอกโรคเรื้อรัง สั่งยาเสี่ยงสูงและตรวจพบยาตีกัน", "done": true },
+        { "id": "st-103-2", "title": "ร่าง Scenario ผู้ป่วยฉุกเฉินส่งต่อเข้าห้องสวนหัวใจ (Cath Lab) / OR ด่วน", "done": true },
+        { "id": "st-103-3", "title": "จัดทำตารางเกณฑ์ให้คะแนนความสามารถจริง (Live Technical Scorecard)", "done": false }
+      ]
+    },
+    {
+      "id": "T1-04",
+      "pillarId": "pillar-1",
+      "code": "T1.4",
+      "title": "ประกาศร่าง TOR ทำ Public Hearing และกระบวนการ e-Bidding ภาครัฐ",
+      "scopeSummary": "ผ่านกระบวนการประชาพิจารณ์ ปรับปรุงข้อสังเกต และเปิดการประมูลอิเล็กทรอนิกส์ตาม พ.ร.บ. จัดซื้อจัดจ้าง",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 50,
+      "status": "in_progress",
+      "role": "Procurement Committee + IT Lead",
+      "dependencyWS": "WS5 (Finance & Procurement)",
+      "rationale": "อยู่ระหว่างสรุปเอกสารงบประมาณและเตรียมจัดทำประกาศร่าง TOR",
+      "blocker": "รอการอนุมัติกรอบวงเงิน Capex รวมอย่างเป็นทางการจากคณะกรรมการบริหารคณะฯ",
+      "subtasks": [
+        { "id": "st-104-1", "title": "ตรวจทานกรอบงบประมาณ Capex/Opex ร่วมกับฝ่ายพัสดุและการเงิน", "done": true },
+        { "id": "st-104-2", "title": "ประกาศร่าง TOR เผยแพร่รับฟังคำวิจารณ์ (Public Hearing) 3-5 วันทำการ", "done": false },
+        { "id": "st-104-3", "title": "ตอบข้อซักถามและปรับปรุงร่าง TOR ขั้นสุดท้าย", "done": false },
+        { "id": "st-104-4", "title": "เปิดรับข้อเสนอ e-Bidding ในระบบจัดซื้อจัดจ้างภาครัฐ", "done": false }
+      ]
+    },
+    {
+      "id": "T1-05",
+      "pillarId": "pillar-1",
+      "code": "T1.5",
+      "title": "ตรวจประเมินผลเชิงประจักษ์ (Site Due Diligence) และลงนามสัญญา",
+      "scopeSummary": "ลงพื้นที่ดูระบบที่ใช้งานจริงในโรงพยาบาลอ้างอิง เจรจา Commercial Guardrails และเซ็นสัญญาว่าจ้าง",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 30,
+      "status": "in_progress",
+      "role": "Steering Committee + Legal Team",
+      "dependencyWS": "คณะกรรมการบริหารคณะฯ",
+      "rationale": "กำหนดเกณฑ์การ Site Visit และเช็กลิสต์การตรวจสถานะความมั่นคงทางการเงินของผู้ยื่นข้อเสนอไว้แล้ว",
+      "blocker": "รอผลการเปิดซอง e-Bidding ทางการเพื่อจัดลำดับ Vendor ผู้มีสิทธิ์เข้าตรวจประเมิน",
+      "subtasks": [
+        { "id": "st-105-1", "title": "จัดทีมสหวิชาชีพลงพื้นที่ตรวจการใช้งานจริงในโรงพยาบาลอ้างอิง (Site Visit)", "done": false },
+        { "id": "st-105-2", "title": "เจรจาต่อรองเงื่อนไขสัญญา ป้องกันค่าใช้จ่ายแอบแฝง (TCO Protection)", "done": false },
+        { "id": "st-105-3", "title": "ลงนามในสัญญาจ้างพัฒนาระบบ (Contract Award)", "done": false }
+      ]
+    },
+    {
+      "id": "T2-01",
+      "pillarId": "pillar-2",
+      "code": "T2.1",
+      "title": "จัดเตรียมและ Provisioning โครงสร้างพื้นฐาน Cloud Sirisoft",
+      "scopeSummary": "ติดตั้งระบบประมวลผลบน Cloud Sirisoft รองรับ 2,000–3,000 Concurrent Users, MongoDB Cluster, SAN Storage 35-38TB",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 60,
+      "status": "in_progress",
+      "role": "Cloud Infra Team + Sirisoft Engineers",
+      "dependencyWS": "ผู้ให้บริการ Cloud Sirisoft",
+      "rationale": "สรุปตาราง Compute Spec 2K/3K เสร็จสิ้นแล้ว (App 4x12 cores, MongoDB 3x32 cores, 272GB RAM ต่อโหนด)",
+      "blocker": "รอการส่งมอบทรัพยากร Cloud Environment และการตั้งค่า Virtual Private Cloud (VPC)",
+      "subtasks": [
+        { "id": "st-201-1", "title": "สรุปรายการ Compute Rows รวม Load Balancer และ Storage SAN 35TB+", "done": true },
+        { "id": "st-201-2", "title": "Provisioning เครื่องแม่ข่าย HIS Application Servers และ Database Cluster", "done": true },
+        { "id": "st-201-3", "title": "ติดตั้ง Integration Engine (Mirth Connect) และ Message Broker (Kafka)", "done": false },
+        { "id": "st-201-4", "title": "ทดสอบ Performance Benchmark และ IOPS บน SAN Storage", "done": false }
+      ]
+    },
+    {
+      "id": "T2-02",
+      "pillarId": "pillar-2",
+      "code": "T2.2",
+      "title": "วางโครงข่าย Private Link ความเร็วสูงเชื่อมต่อ Campus สู่ Cloud Sirisoft",
+      "scopeSummary": "เชื่อมต่อวงจรเช่าเฉพาะ (Dedicated High-Speed Private Link) ระหว่าง มข. กับ Cloud Sirisoft เพื่อ Latency < 10ms",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 55,
+      "status": "in_progress",
+      "role": "Network Lead + Telecom Providers",
+      "dependencyWS": "สำนักคอมพิวเตอร์ มข. + กสทช./ผู้ให้บริการวงจร",
+      "rationale": "ออกแบบเส้นทางสาย Fiber Optic คู่ขนาน (Dual Redundant Path) เรียบร้อยแล้ว",
+      "blocker": "อยู่ระหว่างรอผลสำรวจจุดเดินสายเคเบิลเข้าสู่ห้อง Server ตึก Medical Hub",
+      "subtasks": [
+        { "id": "st-202-1", "title": "ออกแบบวงจร Private Link ความเร็วไม่ต่ำกว่า 10 Gbps พร้อมสำรอง 1+1", "done": true },
+        { "id": "st-202-2", "title": "ทดสอบ Latency, Jitter และ Packet Loss ระหว่างวิทยาเขตและดาต้าเซ็นเตอร์", "done": false },
+        { "id": "st-202-3", "title": "กำหนด QoS และแบ่งแยก VLAN คลินิกเพื่อการันตี Bandwidth คำสั่งยาและภาพแพทย์", "done": false }
+      ]
+    },
+    {
+      "id": "T2-03",
+      "pillarId": "pillar-2",
+      "code": "T2.3",
+      "title": "ออกแบบและทดสอบระบบกู้คืนภัยพิบัติ (Disaster Recovery Center - DRC)",
+      "scopeSummary": "วาง DRC Warm Standby ข้ามดาต้าเซ็นเตอร์ การันตี RPO < 15 นาที และ RTO < 2 ชั่วโมง",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 40,
+      "status": "in_progress",
+      "role": "Infra Lead + CISO",
+      "dependencyWS": "Cloud Sirisoft Architect",
+      "rationale": "ตกลงสเปก DRC Warm Standby (15 Compute rows, 226 cores, SAN 25TB) ในแบบแปลนแล้ว",
+      "blocker": "ยังไม่ได้ทดสอบรอบจำลองการตัดสลับระบบจริง (Failover Test)",
+      "subtasks": [
+        { "id": "st-203-1", "title": "ตั้งค่า Database Replication แบบ Real-time ไปยังศูนย์สำรองข้อมูล DRC", "done": true },
+        { "id": "st-203-2", "title": "จัดทำคู่มือการตัดสลับระบบฉุกเฉิน (Automated Failover Runbook)", "done": false },
+        { "id": "st-203-3", "title": "ทดสอบการกู้คืนและวัดค่า RTO จริง (ต้องไม่เกิน 120 นาที)", "done": false }
+      ]
+    },
+    {
+      "id": "T2-04",
+      "pillarId": "pillar-2",
+      "code": "T2.4",
+      "title": "ติดตั้ง Local Survivable Downtime Cache Server ในอาคาร Medical Hub",
+      "scopeSummary": "สถานีฉุกเฉินออฟไลน์ประจำอาคาร เปิดดูประวัติคนไข้ในและประวัติแพ้ยาได้ทันทีแม้เน็ตตัดขาดจากคลาวด์ภายนอก",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 35,
+      "status": "at_risk",
+      "role": "System Engineer + Lead Architect",
+      "dependencyWS": "Vendor HIS + ก่อสร้างอาคาร (ห้องดาต้าเซ็นเตอร์ตึกใหม่)",
+      "rationale": "ออกแบบสถาปัตยกรรม Read-only Edge Cache สำเร็จ แต่ยังไม่ได้รับเครื่อง Server จริง",
+      "blocker": "ห้องดาต้าเซ็นเตอร์ชั้น 3 อาคาร Medical Hub ยังอยู่ระหว่างงานระบบปรับอากาศและดับเพลิง ยังเข้าติดตั้งตู้ Rack ไม่ได้",
+      "subtasks": [
+        { "id": "st-204-1", "title": "จัดหา Server สำหรับรัน Local Offline Cache ประจำอาคาร", "done": true },
+        { "id": "st-204-2", "title": "ซิงก์ข้อมูลผู้ป่วยนอน รพ. (Active Inpatient) และประวัติแพ้ยาล่วงหน้าทุก 15 นาที", "done": false },
+        { "id": "st-204-3", "title": "ทดสอบหน้าจอ Standalone สั่งพิมพ์ใบสั่งยาฉุกเฉินกรณีคลาวด์ดับ", "done": false }
+      ]
+    },
+    {
+      "id": "T2-05",
+      "pillarId": "pillar-2",
+      "code": "T2.5",
+      "title": "จัดหาและติดตั้ง Client Devices หน้างาน (PC, เครื่องพิมพ์สติกเกอร์ยา, เครื่องอ่านบัตร)",
+      "scopeSummary": "เตรียมความพร้อมฮาร์ดแวร์ปลายทางทุกจุดบริการ: จุดลงทะเบียน, ห้องตรวจ, วอร์ด, ห้องยา, ห้องการเงิน",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 50,
+      "status": "in_progress",
+      "role": "Field Support Lead + Hardware Vendor",
+      "dependencyWS": "WS9 (Facility & Space Handover)",
+      "rationale": "จัดทำสเปกเครื่องพิมพ์ความร้อน ฉลากยา และบาร์โค้ดสแกนเนอร์ 2D เสร็จเรียบร้อย",
+      "blocker": "โต๊ะเคาน์เตอร์พยาบาลและห้องตรวจยังส่งมอบงานอินทีเรียร์ไม่ครบ ทำให้ยังเดินสายไฟ/LAN ไม่ได้",
+      "subtasks": [
+        { "id": "st-205-1", "title": "จัดทำรายการสำรวจจำนวน PC, Monitor, Printers และ Scanners รายแผนก", "done": true },
+        { "id": "st-205-2", "title": "ทดสอบความเข้ากันได้ของเครื่องอ่านบัตรประชาชน Smart Card กับบราวเซอร์", "done": true },
+        { "id": "st-205-3", "title": "ทดสอบพิมพ์สติกเกอร์บาร์โค้ดยาและฉลากหลอดเลือด (Tube Sticker) ทุกขนาด", "done": false },
+        { "id": "st-205-4", "title": "ติดตั้งเครื่องประจำจุดบริการและทดสอบเชื่อมต่อเครือข่ายความเร็วสูง", "done": false }
+      ]
+    },
+    {
+      "id": "T2-06",
+      "pillarId": "pillar-2",
+      "code": "T2.6",
+      "title": "วางมาตรการความมั่นคงปลอดภัยไซเบอร์ (Cybersecurity, ISO 27001 & PDPA)",
+      "scopeSummary": "วางระบบพิสูจน์ตัวตนแพทย์/พยาบาล (MFA/Single Sign-On), เข้ารหัสข้อมูลเวชระเบียน และระบบตรวจจับภัยคุกคาม",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 65,
+      "status": "in_progress",
+      "role": "CISO + Security Engineer",
+      "dependencyWS": "WS4 (Digital Security Unit)",
+      "rationale": "นโยบายการเข้ารหัสข้อมูลที่เก็บรักษา (At-rest) และระหว่างส่งผ่าน (In-transit) กำหนดเสร็จแล้ว",
+      "blocker": "รอการเชื่อมต่อระบบ Single Sign-On (SSO) เข้ากับบัญชีอีเมล @kku.ac.th ของมหาวิทยาลัย",
+      "subtasks": [
+        { "id": "st-206-1", "title": "กำหนดสิทธิ์ตามบทบาท (Role-Based Access Control: RBAC) ห้ามพยาบาลเข้าถึงข้อมูลเกินหน้าที่", "done": true },
+        { "id": "st-206-2", "title": "ติดตั้งระบบ Multi-Factor Authentication (MFA) สำหรับการเข้าถึงจากภายนอก", "done": true },
+        { "id": "st-206-3", "title": "จัดตั้งระบบศูนย์เฝ้าระวังความปลอดภัย (SIEM / SOC Log Integration)", "done": false },
+        { "id": "st-206-4", "title": "จัดทำข้อกำหนดความยินยอมการเปิดเผยข้อมูลตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)", "done": false }
+      ]
+    },
+    {
+      "id": "T3-01",
+      "pillarId": "pillar-3",
+      "code": "T3.1",
+      "title": "Cleansing และจัดทำ Master Data มาตรฐานคลินิก (รหัสยา TMT, แล็บ, หัตถการ)",
+      "scopeSummary": "รื้อและทำความสะอาดฐานข้อมูลยาให้ตรงกับมาตรฐานสากล TMT, รหัสแล็บ LOINC และผังราคาบริการ",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 60,
+      "status": "in_progress",
+      "role": "Data Steward + Lead Pharmacist + Lab Specialist",
+      "dependencyWS": "WS1 (Clinical) + ฝ่ายเภสัชกรรม",
+      "rationale": "ทำความสะอาดรหัสยาที่มีการเคลื่อนไหว 1,200 รายการแรกเสร็จแล้ว แมปปิ้งกับรหัสมาตรฐาน TMT สำเร็จ 90%",
+      "blocker": "รอการสรุปรายการยาตึก Medical Hub ที่เป็นยานอกบัญชีและยาเฉพาะทางใหม่จากคณะกรรมการเภสัชกรรม",
+      "subtasks": [
+        { "id": "st-301-1", "title": "จับคู่รหัสยา รพ. กับรหัสมาตรฐานไทย Thai Medicines Terminology (TMT)", "done": true },
+        { "id": "st-301-2", "title": "กำหนดรหัสการตรวจวิเคราะห์ห้องปฏิบัติการ (Standard Lab Test Codes)", "done": true },
+        { "id": "st-301-3", "title": "จัดทำตารางรหัสหัตถการและรหัสผ่าตัดมาตรฐาน ICD-9-CM", "done": false },
+        { "id": "st-301-4", "title": "ล็อกมาตรฐานและจัดทำกระบวนการขอเพิ่มรหัสใหม่เพื่อป้องกันขยะข้อมูล", "done": false }
+      ]
+    },
+    {
+      "id": "T3-02",
+      "pillarId": "pillar-3",
+      "code": "T3.2",
+      "title": "วางระบบ Master Patient Index (EMPI) เชื่อมโยง 3 โรงพยาบาล",
+      "scopeSummary": "สร้างดัชนีระบุตัวตนบุคคลระดับองค์กร เชื่อมโยงประวัติข้ามศรีนครินทร์เดิม, SMC และ Medical Hub โดยไม่เกิด HN ซ้ำซ้อน",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 55,
+      "status": "in_progress",
+      "role": "Data Architect + เวชระเบียน",
+      "dependencyWS": "WS2 (Operations & Registration)",
+      "rationale": "อัลกอริทึม Matching (เลขบัตร ปชช. 13 หลัก, ชื่อ-นามสกุล, วันเกิด) ออกแบบเสร็จแล้ว",
+      "blocker": "ต้องทำ Data Cleansing ประวัติคนไข้เดิมที่มีเลขบัตร ปชช. ซ้ำซ้อนประมาณ 8,000 ระเบียนในฐานข้อมูลเดิม",
+      "subtasks": [
+        { "id": "st-302-1", "title": "ออกแบบ Multi-Attribute Identity Matcher และเกณฑ์ Confidence Score", "done": true },
+        { "id": "st-302-2", "title": "ทดสอบการค้นหาประวัติข้ามตึกศรีนครินทร์เดิมมายังหน้าจอ Medical Hub", "done": true },
+        { "id": "st-302-3", "title": "สร้างหน้าจอสำหรับเจ้าหน้าที่เวชระเบียนพิจารณา Merge/Unmerge ผู้ป่วยที่มีข้อสงสัย", "done": false },
+        { "id": "st-302-4", "title": "ซิงก์ประวัติการแพ้ยารวมศูนย์ (Central Allergy Master) ทุกครั้งที่ผู้ป่วยมารับบริการ", "done": false }
+      ]
+    },
+    {
+      "id": "T3-03",
+      "pillarId": "pillar-3",
+      "code": "T3.3",
+      "title": "พัฒนาและทดสอบท่อเชื่อมต่อห้องปฏิบัติการ (LIS Interface) ผ่าน Mirth Connect",
+      "scopeSummary": "ส่งคำสั่งตรวจแล็บอัตโนมัติจากหน้าจอแพทย์ และรับผลแล็บพร้อมค่าวิกฤต (Critical Value Alert) กลับมายัง HIS ทันที",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 70,
+      "status": "in_progress",
+      "role": "Integration Engineer + LIS Vendor",
+      "dependencyWS": "ห้องปฏิบัติการกลาง (Lab Center)",
+      "rationale": "ทดสอบเชื่อมต่อ HL7 v2.x (ORM/ORU) ส่งผลตรวจพื้นฐาน CBC, Electrolytes สำเร็จแล้วในระดับ Staging",
+      "blocker": "รอการทดสอบผลตรวจพิเศษเพาะเชื้อจุลชีววิทยา (Microbiology Culture & Sensitivity) ซึ่งฟอร์แมตข้อมูลซับซ้อน",
+      "subtasks": [
+        { "id": "st-303-1", "title": "ตั้งค่า Mirth Connect Channel รับส่งข้อความ HL7 ORM และ ORU", "done": true },
+        { "id": "st-303-2", "title": "ทดสอบการส่งคำสั่งแล็บฉุกเฉิน (Stat Lab) และแสดงผลในเวลา < 30 นาที", "done": true },
+        { "id": "st-303-3", "title": "ทดสอบระบบแจ้งเตือนผลแล็บวิกฤต (Critical Lab Alert) เด้งบนจอบันทึกพยาบาล", "done": false },
+        { "id": "st-303-4", "title": "ระบบคิวส่งซ้ำอัตโนมัติ (Retry & Dead-Letter Queue) กรณีเครื่องมือแล็บดับ", "done": false }
+      ]
+    },
+    {
+      "id": "T3-04",
+      "pillarId": "pillar-3",
+      "code": "T3.4",
+      "title": "พัฒนาและทดสอบท่อเชื่อมต่อรังสีวิทยา (RIS/PACS/DICOM Web Services)",
+      "scopeSummary": "เชื่อมต่อคำสั่งตรวจเอกซเรย์/CT/MRI และดึงภาพถ่ายรังสีมาแสดงผลบน Doctor Workstation ได้ภายใน 2 วินาที",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 65,
+      "status": "in_progress",
+      "role": "Integration Engineer + PACS Admin",
+      "dependencyWS": "ภาควิชารังสีวิทยา",
+      "rationale": "เชื่อมต่อ Modality Worklist ผ่าน DICOM มาตรฐานได้แล้ว",
+      "blocker": "รอตั้งค่า DICOM Viewer แบบ Zero-Footprint บนระบบ HIS ใหม่ให้รองรับการเปิดภาพ 3D",
+      "subtasks": [
+        { "id": "st-304-1", "title": "เชื่อมต่อ DICOM Modality Worklist (MWL) สู่เครื่องเอกซเรย์ตึกใหม่", "done": true },
+        { "id": "st-304-2", "title": "ทดสอบการส่งรายงานผลการอ่านเอกซเรย์จากรังสีแพทย์เข้าสู่ประวัติคนไข้ใน HIS", "done": true },
+        { "id": "st-304-3", "title": "ทดสอบความเร็วในการเปิดดูภาพ CT/MRI จาก Cloud สู่ห้องตรวจ (ต้อง < 2 วินาที)", "done": false }
+      ]
+    },
+    {
+      "id": "T3-05",
+      "pillarId": "pillar-3",
+      "code": "T3.5",
+      "title": "เชื่อมต่อระบบการเงินและสิทธิการรักษาพยาบาล (Payer Claims & Tariff)",
+      "scopeSummary": "คิดค่ารักษาตามสิทธิ สปสช., กรมบัญชีกลาง (จ่ายตรง), ประกันสังคม และประกันเอกชน พร้อมส่งเคลม e-Claim/FDH",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 45,
+      "status": "at_risk",
+      "role": "Claims Specialist + Billing System Analyst",
+      "dependencyWS": "WS5 (Finance & Revenue Cycle)",
+      "rationale": "ระบบคำนวณราคาและออกใบเสร็จพื้นฐานทำเสร็จแล้วในระบบทดสอบ",
+      "blocker": "วิกฤต: รอทีม WS5 (การเงิน) สรุปตารางราคา (Tariff) ของอาคาร Medical Hub และเงื่อนไขการเบิกจ่ายสิทธิพรีเมียม",
+      "subtasks": [
+        { "id": "st-305-1", "title": "คอนฟิกผังราคาค่าตรวจ ค่ารักษา และค่าบริการทางการแพทย์ในระบบ Charge Master", "done": true },
+        { "id": "st-305-2", "title": "เชื่อมต่อระบบตรวจสอบสิทธิผู้ป่วยออนไลน์ (สปสช. / กรมบัญชีกลาง API)", "done": true },
+        { "id": "st-305-3", "title": "พัฒนาระบบตัดส่งข้อมูลเบิกจ่ายกองทุนผ่าน Financial Data Hub (FDH)", "done": false },
+        { "id": "st-305-4", "title": "ทดสอบออกใบเสร็จรับเงินอิเล็กทรอนิกส์ (e-Tax Invoice & e-Receipt)", "done": false }
+      ]
+    },
+    {
+      "id": "T3-06",
+      "pillarId": "pillar-3",
+      "code": "T3.6",
+      "title": "เชื่อมต่อระบบบัญชีสถาบัน (University ERP Integration - Interim Phase 1)",
+      "scopeSummary": "เชื่อมต่อสรุปยอดรายรับ-ลูกหนี้รายวันเข้าสู่ ERP มหาวิทยาลัยผ่าน Journal Voucher (JV) แทน Real-time API ซับซ้อน",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 50,
+      "status": "in_progress",
+      "role": "ERP Integration Lead + กองคลัง มข.",
+      "dependencyWS": "กองคลัง มหาวิทยาลัยขอนแก่น",
+      "rationale": "ลดรูปความเสี่ยงใน Phase 1 โดยใช้ Daily Batch Export Journal Voucher เพื่อให้เปิดตึกได้ทันกำหนด",
+      "blocker": "รอกองคลัง มข. ส่งรูปแบบไฟล์แมปปิ้งผังบัญชี (Chart of Accounts) ฉบับใหม่",
+      "subtasks": [
+        { "id": "st-306-1", "title": "ตกลงรูปแบบไฟล์สรุปรายการรับเงินและกระทบยอดเงินฝากธนาคารรายวัน", "done": true },
+        { "id": "st-306-2", "title": "พัฒนาระบบ Export Journal Voucher (JV) อัตโนมัติทุกเที่ยงคืน", "done": false },
+        { "id": "st-306-3", "title": "ทดสอบการนำเข้าไฟล์ทดสอบเข้าสู่ระบบ ERP มหาวิทยาลัยโดยไม่เกิดข้อผิดพลาด", "done": false }
+      ]
+    },
+    {
+      "id": "T4-01",
+      "pillarId": "pillar-4",
+      "code": "T4.1",
+      "title": "คอนฟิกกระบวนการผู้ป่วยนอก (OPD) และระบบคิวหน้างาน",
+      "scopeSummary": "ออกแบบ Flow ตั้งแต่เดินเข้าตึก ตรวจสอบสิทธิ ชั่งน้ำหนักวัดความดัน คัดกรองอาการ และเข้าห้องตรวจแพทย์",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 60,
+      "status": "in_progress",
+      "role": "Clinical Application Specialist + พยาบาล OPD",
+      "dependencyWS": "WS2 (Hospital Operations)",
+      "rationale": "ออกแบบหน้าจอคัดกรองพยาบาล (Triage & Vitals) และคิวตรวจเสร็จแล้ว",
+      "blocker": "รอฝ่ายบริหารตึกสรุปผังห้องตรวจแพทย์ใน Phase 1 ว่าจะเปิดกี่ห้องและสาขาใดบ้าง",
+      "subtasks": [
+        { "id": "st-401-1", "title": "คอนฟิกจุดลงทะเบียนและคัดกรองผู้ป่วยนอกตามมาตรฐาน JCI", "done": true },
+        { "id": "st-401-2", "title": "เชื่อมโยงเครื่องวัดความดันและสัญญาณชีพอัตโนมัติเข้าสู่หน้าจอคัดกรอง", "done": true },
+        { "id": "st-401-3", "title": "คอนฟิกระบบเรียกคิวหน้าห้องตรวจและจอแสดงผลดิจิทัล", "done": false }
+      ]
+    },
+    {
+      "id": "T4-02",
+      "pillarId": "pillar-4",
+      "code": "T4.2",
+      "title": "คอนฟิกระบบสั่งการรักษาทางคลินิก (CPOE & Clinical Decision Support)",
+      "scopeSummary": "ระบบแพทย์สั่งยา ตรวจแล็บ เอ็กซเรย์ พร้อมระบบแจ้งเตือนความปลอดภัย (Drug Allergy, Interaction, Duplication)",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 55,
+      "status": "in_progress",
+      "role": "CMIO + Lead Clinicians + Pharmacist",
+      "dependencyWS": "WS1 (Clinical Governance & Medical Staff)",
+      "rationale": "ฐานข้อมูลความปลอดภัยด้านยา (Clinical Decision Support Knowledgebase) ติดตั้งเสร็จแล้ว",
+      "blocker": "รอตัวแทนแพทย์แต่ละสาขาวิชาส่งชุดคำสั่งการรักษามาตรฐาน (Pre-defined Order Sets) เพื่อลงระบบ",
+      "subtasks": [
+        { "id": "st-402-1", "title": "คอนฟิกหน้าจอ Doctor Workstation และระบบ Single Sign-On", "done": true },
+        { "id": "st-402-2", "title": "เปิดใช้งานระบบแจ้งเตือนแพ้ยาซ้ำและการแพ้ยาข้ามกลุ่ม (Cross-Allergy Alert)", "done": true },
+        { "id": "st-402-3", "title": "จัดทำและบันทึกชุดคำสั่งการรักษามาตรฐาน (Order Sets) ประจำแผนก Day 1", "done": false },
+        { "id": "st-402-4", "title": "ทดสอบการบังคับระบุข้อบ่งชี้ (Indication Required) เมื่อสั่งยาควบคุมพิเศษ", "done": false }
+      ]
+    },
+    {
+      "id": "T4-03",
+      "pillarId": "pillar-4",
+      "code": "T4.3",
+      "title": "คอนฟิกกระบวนการผู้ป่วยใน (IPD Bed Board, Nursing Care & Charting)",
+      "scopeSummary": "ผังบริหารเตียง (Bed Management), การรับผู้ป่วยเข้านอน รพ., Nursing Care Plan, สัญญาณชีพ และบันทึกพยาบาล",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 50,
+      "status": "in_progress",
+      "role": "Nurse Informatics Lead + CNO",
+      "dependencyWS": "ฝ่ายการพยาบาลโรงพยาบาล",
+      "rationale": "โครงสร้าง Bed Board และฟอร์มบันทึกทางการพยาบาลผ่านการเห็นชอบจากหัวหน้าพยาบาลแล้ว",
+      "blocker": "รอการตั้งค่าหอผู้ป่วยจริงที่เปิดบริการในเฟส 1 (หอผู้ป่วย 156 เตียงแรก)",
+      "subtasks": [
+        { "id": "st-403-1", "title": "คอนฟิกผังเตียงผู้ป่วยในและสถานะเตียง (ว่าง/ทำความสะอาด/มีผู้ป่วย/จอง)", "done": true },
+        { "id": "st-403-2", "title": "คอนฟิกแบบฟอร์มการประเมินแรกรับผู้ป่วยใน (Initial Nursing Assessment)", "done": true },
+        { "id": "st-403-3", "title": "จัดทำระบบบันทึกสัญญาณชีพกราฟฟิกและคะแนนเตือนวิกฤต (MEWS / Early Warning Score)", "done": false },
+        { "id": "st-403-4", "title": "ทดสอบกระบวนการจำหน่ายผู้ป่วย (Discharge Summary Workflow)", "done": false }
+      ]
+    },
+    {
+      "id": "T4-04",
+      "pillarId": "pillar-4",
+      "code": "T4.4",
+      "title": "คอนฟิกหอผู้ป่วยวิกฤต (ICU) และห้องผ่าตัด (OR Scheduling & Anesthesia)",
+      "scopeSummary": "ระบบนัดคิวผ่าตัด, บันทึกการดมยา, การนับเครื่องมือผ่าตัด และการดูแลผู้ป่วยกึ่งวิกฤต/วิกฤต",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 40,
+      "status": "at_risk",
+      "role": "OR Nurse Specialist + Anesthesiologist",
+      "dependencyWS": "ภาควิชาวิสัญญีวิทยา + ศัลยศาสตร์",
+      "rationale": "หน้าจอบันทึกการผ่าตัดและนัดคิว OR วางโครงร่างเรียบร้อย",
+      "blocker": "รอการเชื่อมต่อสัญญาณจากเครื่องดมยาสลบและ Bedside Monitor ของห้องผ่าตัดใหม่เข้า EMR",
+      "subtasks": [
+        { "id": "st-404-1", "title": "คอนฟิกระบบจัดตารางห้องผ่าตัด (OR Booking & Scheduling System)", "done": true },
+        { "id": "st-404-2", "title": "จัดทำบันทึกความปลอดภัยก่อนผ่าตัด (WHO Surgical Safety Checklist)", "done": true },
+        { "id": "st-404-3", "title": "ทดสอบเชื่อมโยงข้อมูลติดตามสัญญาณชีพใน ICU แบบต่อเนื่อง", "done": false }
+      ]
+    },
+    {
+      "id": "T4-05",
+      "pillarId": "pillar-4",
+      "code": "T4.5",
+      "title": "คอนฟิกห้องจ่ายยาและวงจรบริหารยาปลอดภัย (Closed-Loop Pharmacy & eMAR/BCMA)",
+      "scopeSummary": "เภสัชกรตรวจสอบคำสั่งยา -> จัดยาและพิมพ์สติกเกอร์บาร์โค้ด -> พยาบาลสแกนข้อมือคู่กับซองยาก่อนให้ยา (BCMA)",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 55,
+      "status": "in_progress",
+      "role": "Head Pharmacist + Nurse Informatics",
+      "dependencyWS": "ฝ่ายเภสัชกรรม + ฝ่ายการพยาบาล",
+      "rationale": "ระบบตรวจสอบใบสั่งยาของเภสัชกร (Pharmacist Verification) ทดสอบเรียบร้อยแล้ว",
+      "blocker": "รอการจัดส่ง Barcode Scanners ไร้สายสำหรับรถเข็นฉีดยาของพยาบาลเพื่อซ้อม Barcode Medication Administration (BCMA)",
+      "subtasks": [
+        { "id": "st-405-1", "title": "คอนฟิกหน้าจอห้องยาสำหรับตรวจสอบคำสั่งยาและตัดจ่ายยา", "done": true },
+        { "id": "st-405-2", "title": "สร้างบาร์โค้ดเฉพาะสำหรับซองยาทุกซองเพื่อผูกกับคำสั่งการรักษาของผู้ป่วย", "done": true },
+        { "id": "st-405-3", "title": "ทดสอบ Closed-Loop: หมอสั่ง -> เภสัชตรวจ -> พยาบาลสแกนข้อมือ + สแกนซองยาก่อนให้ (BCMA)", "done": false },
+        { "id": "st-405-4", "title": "ระบบแจ้งเตือนกรณีสแกนยาผิดคน หรือให้ยาผิดเวลาเกิน 30 นาที", "done": false }
+      ]
+    },
+    {
+      "id": "T5-01",
+      "pillarId": "pillar-5",
+      "code": "T5.1",
+      "title": "ทดสอบระบบทำงานร่วมกันอย่างสมบูรณ์ (System Integration Testing - SIT)",
+      "scopeSummary": "ทดสอบการส่งผ่านข้อมูลข้ามทุกท่อ (HIS, LIS, PACS, Pharmacy, Claims, ERP) ในสถานการณ์โหลดสูง",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 40,
+      "status": "in_progress",
+      "role": "QA Lead + Integration Engineers",
+      "dependencyWS": "Vendor HIS + All Subsystem Vendors",
+      "rationale": "สร้างชุดข้อมูลผู้ป่วยทดสอบ (Test Datasets) 500 รายการครอบคลุมทุกกลุ่มสิทธิเรียบร้อย",
+      "blocker": "ยังรอการต่อเชื่อมของระบบ LIS และ PACS ตึกใหม่ในสภาพแวดล้อมเสมือนจริงให้ครบ 100%",
+      "subtasks": [
+        { "id": "st-501-1", "title": "เตรียม Test Data ผู้ป่วยสมมติ 500 รายการครอบคลุมทุกกลุ่มสิทธิ", "done": true },
+        { "id": "st-501-2", "title": "ทดสอบ End-to-End Data Pipeline: ลงทะเบียน -> สั่งแล็บ -> รายงานผล -> คิดเงิน", "done": true },
+        { "id": "st-501-3", "title": "ทดสอบ Stress Test โหลดพร้อมกัน 1,000 ผู้ใช้งานเสมือน", "done": false },
+        { "id": "st-501-4", "title": "ตรวจสอบ Error Log, Message Queue Dead-Letters และทดสอบระบบกู้ข้อมูล", "done": false }
+      ]
+    },
+    {
+      "id": "T5-02",
+      "pillarId": "pillar-5",
+      "code": "T5.2",
+      "title": "การทดสอบเสมือนจริงทางคลินิก (Scenario-Based UAT 6 Closed Loops)",
+      "scopeSummary": "ให้แพทย์และพยาบาลจริงมาทดสอบเคสสมมติตั้งแต่ต้นจนจบตามมาตรฐาน JCI โดยไม่มีสคริปต์ช่วย",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 30,
+      "status": "in_progress",
+      "role": "UAT Committee + Clinical Super Users",
+      "dependencyWS": "ตัวแทนแพทย์ พยาบาล เภสัชกร ทุกแผนก Day 1",
+      "rationale": "เขียนบททดสอบ UAT ทั้ง 6 Loops สำเร็จแล้ว (OPD, ER, IPD, High-Alert Meds, Chemo, Referral)",
+      "blocker": "รอการนัดหมายตารางเวลาของคณะกรรมการ UAT เพื่อลงมือทดสอบจริงในห้องปฏิบัติการจำลอง",
+      "subtasks": [
+        { "id": "st-502-1", "title": "ทดสอบ Loop 1: ผู้ป่วยนอกทั่วไป สั่งยาและแล็บและจ่ายเงินผ่านแอป", "done": true },
+        { "id": "st-502-2", "title": "ทดสอบ Loop 2: ผู้ป่วยวิกฤตฉุกเฉิน ย้ายด่วนเข้าห้องผ่าตัด OR และส่งต่อ ICU", "done": false },
+        { "id": "st-502-3", "title": "ทดสอบ Loop 3: ผู้ป่วยในรับยาเสี่ยงสูงและบริหารยาผ่านระบบ eMAR / BCMA", "done": false },
+        { "id": "st-502-4", "title": "ลงนามตรวจรับผล UAT และรวบรวมรายการข้อบกพร่องที่ต้องแก้ไขก่อนเปิดตึก", "done": false }
+      ]
+    },
+    {
+      "id": "T5-03",
+      "pillarId": "pillar-5",
+      "code": "T5.3",
+      "title": "ซักซ้อมใหญ่การย้ายข้อมูล (Data Migration Dry Run 1 & 2)",
+      "scopeSummary": "ทดลองย้ายข้อมูลจริงจากระบบเดิม (HealthObject) มายัง HIS ใหม่เพื่อวัดเวลาและตรวจสอบความถูกต้อง",
+      "isPhase1": true,
+      "weight": 4,
+      "progress": 35,
+      "status": "in_progress",
+      "role": "Data Migration Team + Database Admin",
+      "dependencyWS": "ทีมผู้ดูแลระบบ HIS เดิม (HealthObject)",
+      "rationale": "เขียน Migration Script สำหรับดึงประวัติผู้ป่วยเดิม, ยาที่แพ้ และนัดหมายล่วงหน้าแล้ว",
+      "blocker": "รอการสำรองฐานข้อมูลเสมือนจริงของระบบเดิมมาลงในเครื่องทดสอบเพื่อรัน Dry Run ครั้งที่ 1",
+      "subtasks": [
+        { "id": "st-503-1", "title": "จัดทำ ETL Scripts สำหรับดึงประวัติแพ้ยาและประวัติการรักษาเดิม 3 ปีย้อนหลัง", "done": true },
+        { "id": "st-503-2", "title": "รัน Data Migration Dry Run ครั้งที่ 1 และวัดเวลา Downtime ที่ต้องใช้", "done": false },
+        { "id": "st-503-3", "title": "สุ่มตรวจสอบความถูกต้องของข้อมูล (Audit Sample Verification) ต้องตรง 100%", "done": false },
+        { "id": "st-503-4", "title": "รัน Data Migration Dry Run ครั้งที่ 2 ก่อนสัปดาห์ Go-Live เพื่อล็อกเวลา Cutover", "done": false }
+      ]
+    },
+    {
+      "id": "T5-04",
+      "pillarId": "pillar-5",
+      "code": "T5.4",
+      "title": "ซ้อมระบบล่ม (Downtime & Network Disconnection Simulation Test)",
+      "scopeSummary": "จำลองสถานการณ์ตัดอินเทอร์เน็ตไป Cloud Sirisoft 4 ชั่วโมงต่อเนื่อง ตรวจสอบว่าหน้างานรอดหรือไม่",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 25,
+      "status": "at_risk",
+      "role": "CISO + Infra Lead + หน้างานคลินิก",
+      "dependencyWS": "WS2 (Operations) + ทุกแผนกหน้างาน",
+      "rationale": "จัดทำแผนฉุกเฉินและแบบฟอร์มกระดาษสำรอง (Manual Downtime Pack) เรียบร้อย",
+      "blocker": "ยังไม่ได้นัดหมายเวลาซ้อมจริงเพราะต้องประสานงานกับทีมพยาบาลและแพทย์เพื่อไม่ให้กระทบผู้ป่วยจริง",
+      "subtasks": [
+        { "id": "st-504-1", "title": "จัดทำคู่มือและซักซ้อมบุคลากรเมื่อระบบขึ้นหน้าจอ Downtime Mode", "done": true },
+        { "id": "st-504-2", "title": "จำลองการตัดสายใยแก้ว Private Link ไป Cloud Sirisoft จริงเป็นเวลา 4 ชม.", "done": false },
+        { "id": "st-504-3", "title": "ทดสอบว่าแพทย์และพยาบาลสามารถเปิดดูประวัติจาก Local Downtime Server ได้หรือไม่", "done": false },
+        { "id": "st-504-4", "title": "ทดสอบการซิงก์ข้อมูลที่บันทึกย้อนหลัง (Post-Downtime Data Reconciliation) กลับขึ้นคลาวด์", "done": false }
+      ]
+    },
+    {
+      "id": "T5-05",
+      "pillarId": "pillar-5",
+      "code": "T5.5",
+      "title": "ซ้อมใหญ่เสมือนจริงในสถานที่จริง (Full Clinical Dress Rehearsal)",
+      "scopeSummary": "ซ้อมใหญ่ทั้งตึก Medical Hub ใช้คนไข้สมมติเดินผ่านทุกจุดตั้งแต่เช้าจรดเย็นเพื่อทดสอบความพร้อมจริง",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 15,
+      "status": "in_progress",
+      "role": "Executive PMO + All Workstream Leads",
+      "dependencyWS": "All 9 Workstreams",
+      "rationale": "กำหนดวันซักซ้อมใหญ่ 2 สัปดาห์ก่อนเปิดตึกจริงในปฏิทินยุทธศาสตร์แล้ว",
+      "blocker": "รอการส่งมอบพื้นที่อาคารและการติดตั้งอุปกรณ์ทางการแพทย์ทุกชั้นให้เสร็จสมบูรณ์",
+      "subtasks": [
+        { "id": "st-505-1", "title": "จัดทำตารางเวลาและบทบาทผู้เข้าร่วมซ้อมเสมือนจริง (Scripted Patients)", "done": true },
+        { "id": "st-505-2", "title": "ดำเนินกิจกรรม Dress Rehearsal เสมือนจริงทั้งวันในอาคาร Medical Hub", "done": false },
+        { "id": "st-505-3", "title": "ประชุมสรุปบทเรียนและระบุจุดเสี่ยงคอขวดที่ต้องแก้ไขด่วนใน 7 วัน", "done": false }
+      ]
+    },
+    {
+      "id": "T5-06",
+      "pillarId": "pillar-5",
+      "code": "T5.6",
+      "title": "Final Data Cutover, Go/No-Go Decision Gate และเปิดตึก Day 1",
+      "scopeSummary": "การตัดสินใจขั้นเด็ดขาดของผู้บริหาร (Go/No-Go), การย้ายข้อมูลจริง 24 ชม. สุดท้าย และจัดตั้ง 24/7 War Room",
+      "isPhase1": true,
+      "weight": 5,
+      "progress": 10,
+      "status": "in_progress",
+      "role": "Steering Committee + Dean + Lead Architect",
+      "dependencyWS": "คณบดีและคณะกรรมการขับเคลื่อนอาคาร",
+      "rationale": "จัดทำเกณฑ์ตัดสินใจ Go/No-Go (เกณฑ์ความปลอดภัยผู้ป่วยต้องผ่าน 100%)",
+      "blocker": "เป็นขั้นตอนสุดท้ายก่อนวันเปิดตึกจริง 1 ต.ค. 2570",
+      "subtasks": [
+        { "id": "st-506-1", "title": "จัดประชุมตัดสินใจอนุมัติ Go/No-Go Decision โดยคณบดีและผู้บริหาร", "done": false },
+        { "id": "st-506-2", "title": "ดำเนินการ Final Cutover ข้อมูลผู้ป่วยจริงคืนก่อนเปิดตึก", "done": false },
+        { "id": "st-506-3", "title": "จัดตั้ง IT Command Center & War Room ตลอด 24 ชม. พร้อม Floor Support ประจำทุกวอร์ด", "done": false },
+        { "id": "st-506-4", "title": "เปิดตึกให้บริการทางการ (Day 1 Official Go-Live 1 ต.ค. 2570)", "done": false }
+      ]
+    }
+  ]
+}

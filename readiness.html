@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Hub IT Commissioning & Readiness Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0b1120;
+      --bg-card: #131d33;
+      --bg-card-hover: #192744;
+      --bg-input: #0e172a;
+      --border-color: #1e293b;
+      --border-focus: #38bdf8;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --cyan: #06b6d4;
+      --cyan-glow: rgba(6, 182, 212, 0.25);
+      --blue: #3b82f6;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --purple: #8b5cf6;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', 'Sarabun', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Passcode Gate Modal */
+    #lockGate {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11, 17, 32, 0.85) 0%, rgba(11, 17, 32, 0.94) 100%),
+                  url('medical_hub_md_kku_bg.jpg') center/cover no-repeat;
+      backdrop-filter: blur(10px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #lockGate.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .lock-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 50px rgba(6, 182, 212, 0.15);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 440px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .lock-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--cyan);
+    }
+
+    .lock-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .lock-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .lock-input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .lock-input {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 2px;
+      outline: none;
+    }
+
+    .lock-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 2px var(--cyan-glow);
+    }
+
+    .btn-unlock {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      border: none;
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn-unlock:hover {
+      opacity: 0.9;
+    }
+
+    .lock-error {
+      color: var(--rose);
+      font-size: 0.85rem;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* Header & Hero */
+    header {
+      position: relative;
+      background: linear-gradient(90deg, rgba(11, 17, 32, 0.95) 0%, rgba(11, 17, 32, 0.88) 45%, rgba(11, 17, 32, 0.35) 100%),
+                  url('medical_hub_md_kku_bg.jpg') right center/cover no-repeat;
+      border-bottom: 1px solid var(--border-color);
+      padding: 28px 32px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0284c7, #0f766e);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-text span {
+      font-size: 0.85rem;
+      color: var(--cyan);
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--text-muted);
+    }
+
+    .btn-action.btn-primary {
+      background: linear-gradient(135deg, #0284c7, #025cb9);
+      border-color: #38bdf8;
+      color: #fff;
+    }
+
+    .btn-action.btn-primary:hover {
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-action.btn-success {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    /* Countdown & Framework Badges */
+    .hero-meta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      background: rgba(19, 29, 51, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 868px) {
+      .hero-meta {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-summary h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .hero-summary p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .framework-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: #7dd3fc;
+      font-weight: 500;
+    }
+
+    /* Live Countdown Clock */
+    .countdown-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(11, 17, 32, 0.8);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+    }
+
+    .countdown-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: right;
+    }
+
+    .countdown-digits {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .unit-box {
+      text-align: center;
+      min-width: 48px;
+    }
+
+    .unit-value {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--cyan);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .unit-name {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* Main Dashboard Layout */
+    .dashboard-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 32px;
+    }
+
+    /* Speedometer & Key Metrics Section */
+    .executive-score-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .executive-score-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .speedometer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: var(--shadow-card);
+    }
+
+    .gauge-container {
+      position: relative;
+      width: 260px;
+      height: 145px;
+      margin: 0 auto 10px;
+    }
+
+    .gauge-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gauge-value-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .gauge-percent {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .gauge-caption {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .readiness-grade-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .grade-a { background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; }
+    .grade-b { background: rgba(6, 182, 212, 0.15); border: 1px solid #06b6d4; color: #67e8f9; }
+    .grade-c { background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #fcd34d; }
+    .grade-d { background: rgba(244, 63, 94, 0.15); border: 1px solid #f43f5e; color: #fda4af; }
+
+    /* Key KPI Cards */
+    .metrics-summary-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .kpi-card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .kpi-title {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-val {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .kpi-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Filter & Controls Bar */
+    .control-toolbar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Segmented Phase Switch */
+    .phase-toggle-switch {
+      display: flex;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 3px;
+    }
+
+    .phase-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .phase-btn.active {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .filter-select {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .filter-select:focus {
+      border-color: var(--cyan);
+    }
+
+    .search-input {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      outline: none;
+      width: 220px;
+    }
+
+    .search-input:focus {
+      border-color: var(--cyan);
+    }
+
+    /* Pillar Groupings & Task Cards */
+    .pillar-section {
+      margin-bottom: 32px;
+    }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, rgba(19, 29, 51, 0.9), rgba(19, 29, 51, 0.4));
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+    }
+
+    .pillar-info h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pillar-info p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .pillar-progress-stat {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    /* Task Card */
+    .tasks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 640px) {
+      .tasks-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .task-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .task-card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .task-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .task-code-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .task-phase-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .task-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .task-summary {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      line-height: 1.45;
+    }
+
+    .task-meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .meta-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+
+    .meta-tag.dep-tag {
+      border-color: rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    /* Slider and Progress bar */
+    .task-slider-row {
+      margin-bottom: 14px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+    }
+
+    .slider-header span:first-child {
+      color: var(--text-secondary);
+    }
+
+    .task-percent-display {
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .task-range {
+      width: 100%;
+      height: 6px;
+      border-radius: 4px;
+      background: #1e293b;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .task-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .task-range::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Status Selector */
+    .task-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .status-select {
+      flex: 1;
+      padding: 6px 10px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-size: 0.78rem;
+      outline: none;
+    }
+
+    /* Subtasks Checklist */
+    .subtasks-wrapper {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+    }
+
+    .subtasks-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .subtask-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .subtask-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .subtask-item input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+
+    .subtask-item.checked {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* Rationale & Blocker Section */
+    .task-defense-notes {
+      border-top: 1px solid var(--border-color);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .note-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .note-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .note-label.rationale-label {
+      color: #38bdf8;
+    }
+
+    .note-label.blocker-label {
+      color: #fb7185;
+    }
+
+    .note-textarea {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: #e2e8f0;
+      font-size: 0.78rem;
+      padding: 8px;
+      resize: vertical;
+      min-height: 48px;
+      font-family: inherit;
+    }
+
+    .note-textarea:focus {
+      border-color: var(--cyan);
+      outline: none;
+    }
+
+    /* GitHub Cloud Sync Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 17, 32, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 520px;
+      padding: 28px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+      color: #fff;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--cyan);
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    /* Toast Notification */
+    #toastNotice {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      border: 1px solid var(--cyan);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      font-size: 0.85rem;
+      z-index: 10001;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #toastNotice.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Print View Styling */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 11pt;
+      }
+
+      #lockGate, .header-actions, .control-toolbar, .modal-overlay, #toastNotice, .task-range, input[type="range"] {
+        display: none !important;
+      }
+
+      .dashboard-container, header {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .task-card, .kpi-card, .speedometer-card, .pillar-header {
+        background: #fff !important;
+        border: 1px solid #ccc !important;
+        color: #000 !important;
+        break-inside: avoid;
+        box-shadow: none !important;
+      }
+
+      .task-title, .brand-text h1, .kpi-val, .gauge-percent {
+        color: #000 !important;
+      }
+
+      .note-textarea {
+        background: #f9f9f9 !important;
+        border: 1px solid #ddd !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Passcode Gate -->
+  <div id="lockGate">
+    <div class="lock-card">
+      <div class="lock-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      </div>
+      <h2>Medical Hub IT Commissioning</h2>
+      <p>ระบบรักษาความปลอดภัยสำหรับผู้บริหารและทีมขับเคลื่อน<br>กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบ</p>
+      <div class="lock-input-group">
+        <input type="password" id="passcodeField" class="lock-input" placeholder="••••••••" autofocus autocomplete="current-password">
+        <button class="btn-unlock" onclick="verifyPasscode()">เข้าสู่ระบบ</button>
+      </div>
+      <div id="lockError" class="lock-error">รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-top">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        </div>
+        <div class="brand-text">
+          <h1>Medical Hub IT Commissioning & Readiness</h1>
+          <span>อาคารศูนย์ความเป็นเลิศทางการแพทย์ • โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มข.</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" class="btn-action" style="text-decoration:none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          📊 แดชบอร์ดอุปกรณ์ IT
+        </a>
+        <button class="btn-action" onclick="openPhotoModal()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          📷 ภาพอาคารจริง
+        </button>
+        <button class="btn-action" onclick="openGitHubModal()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          ซิงก์ Cloud (GitHub)
+        </button>
+        <button class="btn-action" onclick="exportDataJson()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Export JSON
+        </button>
+        <button class="btn-action" onclick="triggerImportJson()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          Import JSON
+        </button>
+        <input type="file" id="importFileInput" style="display: none;" accept=".json" onchange="handleImportFile(event)">
+        <button class="btn-action btn-primary" onclick="window.print()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          พิมพ์สรุปผู้บริหาร
+        </button>
+      </div>
+    </div>
+
+    <!-- Countdown & Baseline Badges -->
+    <div class="hero-meta">
+      <div class="hero-summary">
+        <h2>ยุทธศาสตร์การเปิดระบบไอทีศูนย์ความเป็นเลิศ (Zero to Day-1 Go-Live)</h2>
+        <p>ขับเคลื่อนด้วยเกณฑ์ความปลอดภัยสากล ปลดล็อกข้อเรียกร้องเฉพาะภาควิชา มุ่งเน้นการเปิดบริการที่ปลอดภัยและระบบคิดเงินที่แม่นยำ</p>
+        <div class="framework-tags">
+          <span class="tag-badge">🛡️ JCI 8th Edition (Patient Safety)</span>
+          <span class="tag-badge">🏥 HIMSS EMRAM Stage 6/7</span>
+          <span class="tag-badge">☁️ Cloud Sirisoft (2K-3K Users)</span>
+          <span class="tag-badge">🔒 Local Downtime Cache Server</span>
+        </div>
+      </div>
+      <div class="countdown-box">
+        <div class="countdown-label">
+          นับถอยหลังสู่วันเปิดตึก<br><strong>1 ต.ค. 2570</strong>
+        </div>
+        <div class="countdown-digits">
+          <div class="unit-box"><div class="unit-value" id="cdDays">00</div><div class="unit-name">วัน</div></div>
+          <div style="font-weight:700;color:var(--cyan);font-size:1.2rem;">:</div>
+          <div class="unit-box"><div class="unit-value" id="cdHours">00</div><div class="unit-name">ชั่วโมง</div></div>
+          <div style="font-weight:700;color:var(--cyan);font-size:1.2rem;">:</div>
+          <div class="unit-box"><div class="unit-value" id="cdMinutes">00</div><div class="unit-name">นาที</div></div>
+          <div style="font-weight:700;color:var(--cyan);font-size:1.2rem;">:</div>
+          <div class="unit-box"><div class="unit-value" id="cdSeconds">00</div><div class="unit-name">วินาที</div></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-container">
+
+    <!-- Executive Gauge & Summary KPIs -->
+    <section class="executive-score-grid">
+      <div class="speedometer-card">
+        <div class="gauge-container">
+          <svg class="gauge-svg" viewBox="0 0 200 110">
+            <!-- Background Arc -->
+            <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#1e293b" stroke-width="18" stroke-linecap="round" />
+            <!-- Active Progress Arc -->
+            <path id="gaugeProgressArc" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGradient)" stroke-width="18" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="125" style="transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);" />
+            <defs>
+              <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f43f5e" />
+                <stop offset="50%" stop-color="#f59e0b" />
+                <stop offset="85%" stop-color="#06b6d4" />
+                <stop offset="100%" stop-color="#10b981" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="gauge-value-overlay">
+            <div class="gauge-percent" id="overallPercentVal">0%</div>
+            <div class="gauge-caption" id="gaugeModeCaption">ความพร้อมรวม Phase 1</div>
+          </div>
+        </div>
+        <div id="readinessGradeBadge" class="readiness-grade-badge grade-c">
+          <span>●</span> <span id="gradeText">Grade C: ความเสี่ยงสูง ต้องเร่งรัด</span>
+        </div>
+      </div>
+
+      <div class="metrics-summary-panel">
+        <div class="kpi-card">
+          <div class="kpi-title">Phase 1 Must-Have <span style="color:#38bdf8;">⚡</span></div>
+          <div class="kpi-val" id="kpiPhase1Percent">0%</div>
+          <div class="kpi-sub" id="kpiPhase1Count">23 งานวิกฤตวันแรก</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">สถานะความคืบหน้า <span>📊</span></div>
+          <div class="kpi-val" id="kpiCompletedCount">0/23</div>
+          <div class="kpi-sub">งานที่เสร็จสมบูรณ์ 100%</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid var(--rose);">
+          <div class="kpi-title" style="color:#fb7185;">จุดวิกฤต (Blockers) <span>🚨</span></div>
+          <div class="kpi-val" id="kpiBlockedCount" style="color:#fb7185;">0</div>
+          <div class="kpi-sub">งานที่รอปลดล็อกข้ามฝ่าย</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid var(--amber);">
+          <div class="kpi-title" style="color:#fcd34d;">จุดเสี่ยง (At Risk) <span>⚠️</span></div>
+          <div class="kpi-val" id="kpiAtRiskCount" style="color:#fcd34d;">0</div>
+          <div class="kpi-sub">งานที่ต้องประกบใกล้ชิด</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls & Filters Toolbar -->
+    <section class="control-toolbar">
+      <div class="toolbar-left">
+        <!-- Phase Selector -->
+        <div class="phase-toggle-switch">
+          <button class="phase-btn active" id="btnFilterPhase1" onclick="setPhaseFilter('phase1')">⚡ เฉพาะ Phase 1 (Day 1)</button>
+          <button class="phase-btn" id="btnFilterFull" onclick="setPhaseFilter('all')">🌐 Full Scale (ทุกงาน)</button>
+        </div>
+
+        <!-- Pillar Filter -->
+        <select id="pillarFilterSelect" class="filter-select" onchange="renderTasks()">
+          <option value="all">ทุกเสาหลัก (All Pillars)</option>
+          <option value="pillar-1">P1: TOR & JCI/HIMSS</option>
+          <option value="pillar-2">P2: Cloud Sirisoft Infra</option>
+          <option value="pillar-3">P3: Master Data & Interop</option>
+          <option value="pillar-4">P4: Clinical Core HIS</option>
+          <option value="pillar-5">P5: Testing & Cutover</option>
+        </select>
+
+        <!-- Status Filter -->
+        <select id="statusFilterSelect" class="filter-select" onchange="renderTasks()">
+          <option value="all">ทุกสถานะ (All Status)</option>
+          <option value="blocked">🚨 เฉพาะงานที่ติดขัด (Blocked)</option>
+          <option value="at_risk">⚠️ เฉพาะงานที่มีความเสี่ยง (At Risk)</option>
+          <option value="in_progress">⏳ อยู่ระหว่างดำเนินการ (In Progress)</option>
+          <option value="done">✅ เสร็จสมบูรณ์ (Done)</option>
+        </select>
+      </div>
+
+      <div class="toolbar-right">
+        <input type="text" id="taskSearchInput" class="search-input" placeholder="ค้นหางาน, รหัส, หรือ Blocker..." oninput="renderTasks()">
+        <button class="btn-action" onclick="resetToInitialBaseline()">↺ คืนค่าเดิม</button>
+      </div>
+    </section>
+
+    <!-- Task List Container -->
+    <section id="tasksPillarsContainer">
+      <!-- Generated Dynamically by JS -->
+    </section>
+
+  </main>
+
+  <!-- GitHub Cloud Sync Modal -->
+  <div id="githubModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>เชื่อมต่อและบันทึกออนไลน์สู่ GitHub</h3>
+        <button class="modal-close" onclick="closeGitHubModal()">&times;</button>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:18px;">
+        ระบบจะทำการ Commit ข้อมูลความพร้อมของ Medical Hub ไปยัง GitHub Repository ของท่านโดยตรง เพื่อให้สามารถเปิดแก้ไขและดูผลจากทุกอุปกรณ์ได้อย่างไร้รอยต่อ
+      </p>
+      <div class="form-group">
+        <label class="form-label">GitHub Repository (Owner/Repo)</label>
+        <input type="text" id="ghRepoInput" class="form-input" placeholder="เช่น your-org/smart-hospital-war-room">
+      </div>
+      <div class="form-group">
+        <label class="form-label">File Path ในคลังข้อมูล</label>
+        <input type="text" id="ghPathInput" class="form-input" placeholder="web/data/medical_hub_it_readiness_data.json" value="web/data/medical_hub_it_readiness_data.json">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Personal Access Token (PAT) ที่มีสิทธิ์ repo write</label>
+        <input type="password" id="ghTokenInput" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        <span style="font-size:0.72rem;color:var(--text-muted);display:block;margin-top:4px;">* โทเค็นจะถูกจัดเก็บไว้เฉพาะใน Browser LocalStorage ของเครื่องนี้เท่านั้น</span>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-action" onclick="closeGitHubModal()">ยกเลิก</button>
+        <button class="btn-action btn-primary" onclick="saveToGitHub()">💾 บันทึกขึ้น GitHub ทันที</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotice">
+    <span id="toastIcon">✓</span>
+    <span id="toastMessage">บันทึกข้อมูลเรียบร้อยแล้ว</span>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       CONSTANTS & APPLICATION STATE
+       ========================================================================== */
+    const PASSCODE = 'itpisa';
+    const TARGET_DATE = new Date('2027-10-01T08:00:00+07:00').getTime();
+    const STORAGE_KEY = 'medical_hub_it_readiness_state_v1';
+    const GH_CONFIG_KEY = 'medical_hub_it_github_cfg';
+
+    let appState = null;
+    let currentPhaseFilter = 'phase1'; // 'phase1' or 'all'
+
+    /* ==========================================================================
+       AUTHENTICATION GATE
+       ========================================================================== */
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('it_medical_hub_auth') === 'true';
+      const gate = document.getElementById('lockGate');
+      if (isAuth) {
+        gate.classList.add('hidden');
+      } else {
+        gate.classList.remove('hidden');
+        document.getElementById('passcodeField').focus();
+      }
+    }
+
+    function verifyPasscode() {
+      const input = document.getElementById('passcodeField').value.trim();
+      const errorMsg = document.getElementById('lockError');
+      if (input === PASSCODE) {
+        sessionStorage.setItem('it_medical_hub_auth', 'true');
+        document.getElementById('lockGate').classList.add('hidden');
+        errorMsg.style.display = 'none';
+        showToast('ปลดล็อกสำเร็จ ยินดีต้อนรับสู่ระบบบริหารความพร้อม IT');
+      } else {
+        errorMsg.style.display = 'block';
+        document.getElementById('passcodeField').select();
+      }
+    }
+
+    document.getElementById('passcodeField').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') verifyPasscode();
+    });
+
+    /* ==========================================================================
+       COUNTDOWN TICKER
+       ========================================================================== */
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = TARGET_DATE - now;
+
+      if (distance < 0) {
+        document.getElementById('cdDays').textContent = '00';
+        document.getElementById('cdHours').textContent = '00';
+        document.getElementById('cdMinutes').textContent = '00';
+        document.getElementById('cdSeconds').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+      document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cdMinutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('cdSeconds').textContent = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    /* ==========================================================================
+       DATA LOADING & INITIALIZATION
+       ========================================================================== */
+    async function initApp() {
+      checkAuth();
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          appState = JSON.parse(saved);
+          calculateScoresAndRender();
+          return;
+        } catch (e) {
+          console.warn('Failed to parse saved state, loading default baseline', e);
+        }
+      }
+
+      // Fetch initial baseline from file
+      try {
+        const res = await fetch('data/medical_hub_it_readiness_initial_data.json');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        appState = await res.json();
+      } catch (err) {
+        console.error('Fetch error, using embedded fallback', err);
+        appState = getEmbeddedFallbackData();
+      }
+      saveLocalState();
+      calculateScoresAndRender();
+    }
+
+    function saveLocalState() {
+      if (!appState) return;
+      appState.meta.lastUpdated = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    }
+
+    /* ==========================================================================
+       SCORING & READINESS CALCULATIONS
+       ========================================================================== */
+    function calculateScoresAndRender() {
+      if (!appState || !appState.tasks) return;
+
+      const tasks = appState.tasks;
+      const phase1Tasks = tasks.filter(t => t.isPhase1);
+
+      // Target tasks for speedometer depends on current toggle
+      const activeEvalTasks = (currentPhaseFilter === 'phase1') ? phase1Tasks : tasks;
+
+      // Weighted score
+      let totalWeight = 0;
+      let weightedSum = 0;
+
+      activeEvalTasks.forEach(t => {
+        const w = t.weight || 1;
+        totalWeight += w;
+        weightedSum += (t.progress || 0) * w;
+      });
+
+      const overallPercent = totalWeight > 0 ? Math.round(weightedSum / totalWeight) : 0;
+
+      // Phase 1 specific percent
+      let p1Weight = 0;
+      let p1WeightedSum = 0;
+      phase1Tasks.forEach(t => {
+        const w = t.weight || 1;
+        p1Weight += w;
+        p1WeightedSum += (t.progress || 0) * w;
+      });
+      const p1Percent = p1Weight > 0 ? Math.round(p1WeightedSum / p1Weight) : 0;
+
+      // Counters
+      const completedCount = activeEvalTasks.filter(t => t.progress >= 100).length;
+      const blockedCount = activeEvalTasks.filter(t => t.status === 'blocked').length;
+      const atRiskCount = activeEvalTasks.filter(t => t.status === 'at_risk').length;
+
+      // Update Gauge SVG
+      const totalArcLength = 251.3; // Pi * r where r=80
+      const strokeOffset = totalArcLength - (totalArcLength * (overallPercent / 100));
+      document.getElementById('gaugeProgressArc').style.strokeDashoffset = strokeOffset;
+      document.getElementById('overallPercentVal').textContent = overallPercent + '%';
+      document.getElementById('gaugeModeCaption').textContent = currentPhaseFilter === 'phase1' 
+        ? 'ความพร้อมรวม Phase 1 (Day-1 Must-Have)' 
+        : 'ความพร้อมรวม Full Scale (ครบทุกระบบ)';
+
+      // Grading Badge
+      const gradeBadge = document.getElementById('readinessGradeBadge');
+      const gradeText = document.getElementById('gradeText');
+      gradeBadge.className = 'readiness-grade-badge';
+
+      if (overallPercent >= 85) {
+        gradeBadge.classList.add('grade-a');
+        gradeText.textContent = 'Grade A: พร้อมเปิดบริการ (Go-Live Ready)';
+      } else if (overallPercent >= 70) {
+        gradeBadge.classList.add('grade-b');
+        gradeText.textContent = 'Grade B: ความเสี่ยงต่ำ พร้อมแบบมีเงื่อนไข';
+      } else if (overallPercent >= 50) {
+        gradeBadge.classList.add('grade-c');
+        gradeText.textContent = 'Grade C: ความเสี่ยงสูง ต้องเร่งรัดแก้ Blocker';
+      } else {
+        gradeBadge.classList.add('grade-d');
+        gradeText.textContent = 'Grade D: วิกฤต ห้ามเปิดบริการ (No-Go)';
+      }
+
+      // Update KPIs
+      document.getElementById('kpiPhase1Percent').textContent = p1Percent + '%';
+      document.getElementById('kpiPhase1Count').textContent = `${phase1Tasks.length} งานวิกฤตวันเปิดตึก`;
+      document.getElementById('kpiCompletedCount').textContent = `${completedCount}/${activeEvalTasks.length}`;
+      document.getElementById('kpiBlockedCount').textContent = blockedCount;
+      document.getElementById('kpiAtRiskCount').textContent = atRiskCount;
+
+      renderTasks();
+    }
+
+    /* ==========================================================================
+       RENDERING TASKS & PILLARS
+       ========================================================================== */
+    function renderTasks() {
+      const container = document.getElementById('tasksPillarsContainer');
+      if (!container || !appState) return;
+
+      const pillarFilter = document.getElementById('pillarFilterSelect').value;
+      const statusFilter = document.getElementById('statusFilterSelect').value;
+      const searchQuery = document.getElementById('taskSearchInput').value.toLowerCase().trim();
+
+      let html = '';
+
+      appState.pillars.forEach(pillar => {
+        // Filter by pillar
+        if (pillarFilter !== 'all' && pillar.id !== pillarFilter) return;
+
+        // Filter tasks belonging to pillar
+        let pillarTasks = appState.tasks.filter(t => t.pillarId === pillar.id);
+
+        // Filter by Phase
+        if (currentPhaseFilter === 'phase1') {
+          pillarTasks = pillarTasks.filter(t => t.isPhase1);
+        }
+
+        // Filter by Status
+        if (statusFilter !== 'all') {
+          pillarTasks = pillarTasks.filter(t => t.status === statusFilter);
+        }
+
+        // Filter by Search Query
+        if (searchQuery) {
+          pillarTasks = pillarTasks.filter(t => 
+            t.title.toLowerCase().includes(searchQuery) ||
+            t.code.toLowerCase().includes(searchQuery) ||
+            t.scopeSummary.toLowerCase().includes(searchQuery) ||
+            (t.rationale && t.rationale.toLowerCase().includes(searchQuery)) ||
+            (t.blocker && t.blocker.toLowerCase().includes(searchQuery))
+          );
+        }
+
+        if (pillarTasks.length === 0) return;
+
+        // Pillar progress
+        let pWeight = 0, pWeightedSum = 0;
+        pillarTasks.forEach(t => {
+          const w = t.weight || 1;
+          pWeight += w;
+          pWeightedSum += (t.progress || 0) * w;
+        });
+        const pPercent = pWeight > 0 ? Math.round(pWeightedSum / pWeight) : 0;
+
+        html += `
+          <div class="pillar-section">
+            <div class="pillar-header" style="border-left-color: ${pillar.color || '#3b82f6'};">
+              <div class="pillar-info">
+                <h3><span style="color:${pillar.color || '#3b82f6'};">${pillar.code}:</span> ${pillar.nameTh}</h3>
+                <p>${pillar.description}</p>
+              </div>
+              <div class="pillar-progress-stat">${pPercent}% พร้อมแล้ว</div>
+            </div>
+            <div class="tasks-grid">
+        `;
+
+        pillarTasks.forEach(task => {
+          html += createTaskCardHtml(task);
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+      });
+
+      if (html === '') {
+        container.innerHTML = `
+          <div style="text-align:center;padding:40px;color:var(--text-muted);">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom:12px;opacity:0.6;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <p>ไม่พบรายการงานที่ตรงกับตัวกรองที่เลือก</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = html;
+      }
+    }
+
+    function createTaskCardHtml(task) {
+      const isBlocked = task.status === 'blocked';
+      const isAtRisk = task.status === 'at_risk';
+      const isDone = task.progress >= 100;
+
+      let cardBorder = 'var(--border-color)';
+      if (isBlocked) cardBorder = 'rgba(244, 63, 94, 0.5)';
+      else if (isAtRisk) cardBorder = 'rgba(245, 158, 11, 0.5)';
+      else if (isDone) cardBorder = 'rgba(16, 185, 129, 0.4)';
+
+      // Subtasks
+      let subtasksHtml = '';
+      if (task.subtasks && task.subtasks.length > 0) {
+        subtasksHtml = `
+          <div class="subtasks-wrapper">
+            <div class="subtasks-title">ขั้นตอนปฏิบัติการ (Subtasks)</div>
+        `;
+        task.subtasks.forEach(st => {
+          subtasksHtml += `
+            <label class="subtask-item ${st.done ? 'checked' : ''}">
+              <input type="checkbox" ${st.done ? 'checked' : ''} onchange="toggleSubtask('${task.id}', '${st.id}', this.checked)">
+              <span>${st.title}</span>
+            </label>
+          `;
+        });
+        subtasksHtml += `</div>`;
+      }
+
+      return `
+        <div class="task-card" style="border-color: ${cardBorder};">
+          <div>
+            <div class="task-top">
+              <span class="task-code-badge">${task.code}</span>
+              <span class="task-phase-badge">${task.isPhase1 ? '⚡ Phase 1 (Day 1)' : 'Phase 2'}</span>
+            </div>
+            <h4 class="task-title">${task.title}</h4>
+            <p class="task-summary">${task.scopeSummary}</p>
+            
+            <div class="task-meta-tags">
+              <span class="meta-tag">👤 ${task.role || 'IT Lead'}</span>
+              ${task.dependencyWS ? `<span class="meta-tag dep-tag">🔗 ${task.dependencyWS}</span>` : ''}
+              <span class="meta-tag">⚖️ น้ำหนัก: ${task.weight}</span>
+            </div>
+
+            <!-- Slider -->
+            <div class="task-slider-row">
+              <div class="slider-header">
+                <span>ระดับความพร้อม</span>
+                <span class="task-percent-display" id="disp-${task.id}">${task.progress || 0}%</span>
+              </div>
+              <input type="range" class="task-range" min="0" max="100" value="${task.progress || 0}" 
+                oninput="handleSliderChange('${task.id}', this.value)">
+            </div>
+
+            <!-- Status -->
+            <div class="task-status-row">
+              <span style="font-size:0.75rem;color:var(--text-secondary);">สถานะงาน:</span>
+              <select class="status-select" onchange="handleStatusChange('${task.id}', this.value)">
+                <option value="in_progress" ${task.status === 'in_progress' ? 'selected' : ''}>⏳ กำลังดำเนินงาน (In Progress)</option>
+                <option value="at_risk" ${task.status === 'at_risk' ? 'selected' : ''}>⚠️ มีความเสี่ยง (At Risk)</option>
+                <option value="blocked" ${task.status === 'blocked' ? 'selected' : ''}>🚨 ติดขัด / มี Blocker</option>
+                <option value="done" ${task.status === 'done' || task.progress >= 100 ? 'selected' : ''}>✅ เสร็จสมบูรณ์ (Done)</option>
+              </select>
+            </div>
+
+            ${subtasksHtml}
+          </div>
+
+          <!-- Rationale & Blocker Defense Notes -->
+          <div class="task-defense-notes">
+            <div class="note-block">
+              <span class="note-label rationale-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                ทำไมถึงได้เท่านี้ % (Rationale / Evidence):
+              </span>
+              <textarea class="note-textarea" placeholder="ระบุหลักฐานหรือความคืบหน้าที่ตรวจรับได้..." 
+                onchange="handleNoteChange('${task.id}', 'rationale', this.value)">${task.rationale || ''}</textarea>
+            </div>
+            <div class="note-block">
+              <span class="note-label blocker-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                อุปสรรค / สิ่งที่รอจากฝ่ายอื่น (Blocker & Dependency):
+              </span>
+              <textarea class="note-textarea" style="border-color: rgba(244, 63, 94, 0.3);" 
+                placeholder="ระบุสิ่งที่ติดขัดและฝ่ายที่ต้องปลดล็อก..." 
+                onchange="handleNoteChange('${task.id}', 'blocker', this.value)">${task.blocker || ''}</textarea>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       USER INTERACTION HANDLERS
+       ========================================================================== */
+    function setPhaseFilter(phase) {
+      currentPhaseFilter = phase;
+      document.getElementById('btnFilterPhase1').classList.toggle('active', phase === 'phase1');
+      document.getElementById('btnFilterFull').classList.toggle('active', phase === 'all');
+      calculateScoresAndRender();
+    }
+
+    function handleSliderChange(taskId, newVal) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      task.progress = parseInt(newVal, 10);
+      document.getElementById(`disp-${taskId}`).textContent = task.progress + '%';
+
+      if (task.progress >= 100) task.status = 'done';
+      else if (task.status === 'done' && task.progress < 100) task.status = 'in_progress';
+
+      saveLocalState();
+      calculateScoresAndRender();
+    }
+
+    function handleStatusChange(taskId, newStatus) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      task.status = newStatus;
+      if (newStatus === 'done' && task.progress < 100) task.progress = 100;
+      saveLocalState();
+      calculateScoresAndRender();
+    }
+
+    function toggleSubtask(taskId, subtaskId, isChecked) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task || !task.subtasks) return;
+      const subtask = task.subtasks.find(st => st.id === subtaskId);
+      if (!subtask) return;
+
+      subtask.done = isChecked;
+
+      // Auto calculate task progress based on subtasks
+      const totalSt = task.subtasks.length;
+      const doneSt = task.subtasks.filter(st => st.done).length;
+      if (totalSt > 0) {
+        task.progress = Math.round((doneSt / totalSt) * 100);
+        if (task.progress >= 100) task.status = 'done';
+        else if (task.status === 'done' && task.progress < 100) task.status = 'in_progress';
+      }
+
+      saveLocalState();
+      calculateScoresAndRender();
+    }
+
+    function handleNoteChange(taskId, field, value) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      task[field] = value.trim();
+      saveLocalState();
+      showToast('บันทึกหมายเหตุเรียบร้อยแล้ว');
+    }
+
+    function resetToInitialBaseline() {
+      if (!confirm('ยืนยันการคืนค่าความพร้อมกลับสู่ค่าเริ่มต้นจากไฟล์ Baseline หรือไม่?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      initApp();
+      showToast('คืนค่า Baseline เรียบร้อย');
+    }
+
+    /* ==========================================================================
+       IMPORT & EXPORT JSON
+       ========================================================================== */
+    function exportDataJson() {
+      if (!appState) return;
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+      const downloadAnchor = document.createElement('a');
+      const dateStr = new Date().toISOString().slice(0, 10);
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `medical_hub_it_readiness_${dateStr}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('ดาวน์โหลดไฟล์ JSON สำเร็จ');
+    }
+
+    function triggerImportJson() {
+      document.getElementById('importFileInput').click();
+    }
+
+    function handleImportFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (imported && imported.tasks && Array.isArray(imported.tasks)) {
+            appState = imported;
+            saveLocalState();
+            calculateScoresAndRender();
+            showToast('นำเข้าข้อมูลสำเร็จและบันทึกสู่เครื่องแล้ว');
+          } else {
+            alert('โครงสร้างไฟล์ JSON ไม่ถูกต้อง');
+          }
+        } catch (err) {
+          alert('เกิดข้อผิดพลาดในการอ่านไฟล์ JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    /* ==========================================================================
+       GITHUB CLOUD SYNC
+       ========================================================================== */
+    function openGitHubModal() {
+      const savedCfg = localStorage.getItem(GH_CONFIG_KEY);
+      if (savedCfg) {
+        try {
+          const cfg = JSON.parse(savedCfg);
+          document.getElementById('ghRepoInput').value = cfg.repo || '';
+          document.getElementById('ghPathInput').value = cfg.path || 'web/data/medical_hub_it_readiness_data.json';
+          document.getElementById('ghTokenInput').value = cfg.token || '';
+        } catch (e) {}
+      }
+      document.getElementById('githubModal').classList.add('active');
+    }
+
+    function closeGitHubModal() {
+      document.getElementById('githubModal').classList.remove('active');
+    }
+
+    async function saveToGitHub() {
+      const repo = document.getElementById('ghRepoInput').value.trim();
+      const path = document.getElementById('ghPathInput').value.trim();
+      const token = document.getElementById('ghTokenInput').value.trim();
+
+      if (!repo || !path || !token) {
+        alert('กรุณากรอกข้อมูล Repository, File Path และ Personal Access Token ให้ครบถ้วน');
+        return;
+      }
+
+      // Save credentials locally
+      localStorage.setItem(GH_CONFIG_KEY, JSON.stringify({ repo, path, token }));
+
+      showToast('กำลังติดต่อ GitHub API เพื่อบันทึกข้อมูล...');
+
+      try {
+        // Step 1: Get existing file sha if exists
+        const getUrl = `https://api.github.com/repos/${repo}/contents/${path}`;
+        let sha = null;
+
+        const getRes = await fetch(getUrl, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          sha = fileData.sha;
+        }
+
+        // Step 2: Encode content in Base64
+        const contentStr = JSON.stringify(appState, null, 2);
+        const encodedContent = btoa(unescape(encodeURIComponent(contentStr)));
+
+        const payload = {
+          message: `Update Medical Hub IT Readiness [${new Date().toISOString().slice(0, 16)}]`,
+          content: encodedContent
+        };
+        if (sha) payload.sha = sha;
+
+        // Step 3: Put file commit
+        const putRes = await fetch(getUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json();
+          throw new Error(errData.message || ('HTTP ' + putRes.status));
+        }
+
+        closeGitHubModal();
+        showToast('🎉 บันทึกขึ้น GitHub สำเร็จแล้ว! เปิดดูได้จากทุกที่');
+      } catch (err) {
+        alert('บันทึกขึ้น GitHub ล้มเหลว: ' + err.message);
+      }
+    }
+
+    /* ==========================================================================
+       TOAST UTILITY
+       ========================================================================== */
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotice');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    /* ==========================================================================
+       PHOTO LIGHTBOX MODAL
+       ========================================================================== */
+    function openPhotoModal() {
+      document.getElementById('photoModal').classList.add('active');
+    }
+
+    function closePhotoModal() {
+      document.getElementById('photoModal').classList.remove('active');
+    }
+
+    // Start App on page load
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+
+  <!-- Photo Modal Lightbox -->
+  <div id="photoModal" class="modal-overlay" onclick="closePhotoModal()">
+    <div class="modal-box" style="max-width:960px;padding:16px;background:#0b1120;" onclick="event.stopPropagation()">
+      <div class="modal-header" style="margin-bottom:12px;">
+        <h3 style="font-size:1rem;color:#fff;">🏢 ทัศนียภาพอาคารศูนย์ความเป็นเลิศทางการแพทย์ (Medical Hub) และโรงพยาบาลศรีนครินทร์</h3>
+        <button class="modal-close" onclick="closePhotoModal()">&times;</button>
+      </div>
+      <div style="border-radius:12px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 8px 30px rgba(0,0,0,0.6);">
+        <img src="medical_hub_md_kku_banner_16_9.jpg" alt="Medical Hub MD KKU" style="width:100%;height:auto;display:block;">
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-secondary);margin-top:10px;text-align:center;">
+        ภาพถ่ายจริง: อาคารศูนย์ความเป็นเลิศทางการแพทย์และอาคารโรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น
+      </p>
+    </div>
+  </div>
+</body>
+</html>
