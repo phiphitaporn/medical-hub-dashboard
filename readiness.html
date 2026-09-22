@@ -243,6 +243,48 @@
       color: #34d399;
     }
 
+    /* Cloud Live Status Pill */
+    .cloud-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 7px 13px;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .cloud-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+
+    .cloud-dot.saving {
+      background-color: var(--amber);
+      box-shadow: 0 0 10px var(--amber);
+      animation: cloudPulse 0.9s infinite alternate;
+    }
+
+    .cloud-dot.offline {
+      background-color: var(--rose);
+      box-shadow: 0 0 10px var(--rose);
+      animation: none;
+    }
+
+    @keyframes cloudPulse {
+      0% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1.15); }
+    }
+
     /* Countdown & Framework Badges */
     .hero-meta {
       display: grid;
@@ -1025,9 +1067,14 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
           📷 ภาพอาคารจริง
         </button>
-        <button class="btn-action" onclick="openGitHubModal()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          ซิงก์ Cloud (GitHub)
+        <!-- Live Cloud Autosave Badge & Refresh -->
+        <div class="cloud-status-badge" id="cloudStatusBadge" title="บันทึกข้อมูลขึ้นคลาวด์อัตโนมัติแบบเรียลไทม์">
+          <span class="cloud-dot" id="cloudDot"></span>
+          <span id="cloudStatusText">เชื่อมต่อคลาวด์ออนไลน์แล้ว</span>
+        </div>
+        <button class="btn-action" onclick="fetchCloudState(true)" title="ดึงข้อมูลล่าสุดจาก Cloud ทันที">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+          ดึงข้อมูลล่าสุด
         </button>
         <button class="btn-action" onclick="exportDataJson()">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -1171,36 +1218,6 @@
 
   </main>
 
-  <!-- GitHub Cloud Sync Modal -->
-  <div id="githubModal" class="modal-overlay">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>เชื่อมต่อและบันทึกออนไลน์สู่ GitHub</h3>
-        <button class="modal-close" onclick="closeGitHubModal()">&times;</button>
-      </div>
-      <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:18px;">
-        ระบบจะทำการ Commit ข้อมูลความพร้อมของ Medical Hub ไปยัง GitHub Repository ของท่านโดยตรง เพื่อให้สามารถเปิดแก้ไขและดูผลจากทุกอุปกรณ์ได้อย่างไร้รอยต่อ
-      </p>
-      <div class="form-group">
-        <label class="form-label">GitHub Repository (Owner/Repo)</label>
-        <input type="text" id="ghRepoInput" class="form-input" placeholder="เช่น your-org/smart-hospital-war-room">
-      </div>
-      <div class="form-group">
-        <label class="form-label">File Path ในคลังข้อมูล</label>
-        <input type="text" id="ghPathInput" class="form-input" placeholder="web/data/medical_hub_it_readiness_data.json" value="web/data/medical_hub_it_readiness_data.json">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Personal Access Token (PAT) ที่มีสิทธิ์ repo write</label>
-        <input type="password" id="ghTokenInput" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-        <span style="font-size:0.72rem;color:var(--text-muted);display:block;margin-top:4px;">* โทเค็นจะถูกจัดเก็บไว้เฉพาะใน Browser LocalStorage ของเครื่องนี้เท่านั้น</span>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-action" onclick="closeGitHubModal()">ยกเลิก</button>
-        <button class="btn-action btn-primary" onclick="saveToGitHub()">💾 บันทึกขึ้น GitHub ทันที</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Toast Notification -->
   <div id="toastNotice">
     <span id="toastIcon">✓</span>
@@ -1214,10 +1231,91 @@
     const PASSCODE = 'itpisa';
     const TARGET_DATE = new Date('2027-10-01T08:00:00+07:00').getTime();
     const STORAGE_KEY = 'medical_hub_it_readiness_state_v1';
-    const GH_CONFIG_KEY = 'medical_hub_it_github_cfg';
+    const CLOUD_API_URL = 'https://medical-hub-readiness-api.phiphitaporn.workers.dev';
 
     let appState = null;
     let currentPhaseFilter = 'phase1'; // 'phase1' or 'all'
+    let cloudAutosaveTimer = null;
+
+    /* ==========================================================================
+       CLOUD LIVE AUTOSAVE & STATUS BADGE
+       ========================================================================== */
+    function updateCloudBadge(state, text) {
+      const dot = document.getElementById('cloudDot');
+      const txt = document.getElementById('cloudStatusText');
+      if (!dot || !txt) return;
+
+      dot.className = 'cloud-dot';
+      if (state === 'saving') {
+        dot.classList.add('saving');
+        txt.textContent = text || 'กำลังบันทึกออนไลน์...';
+      } else if (state === 'synced') {
+        txt.textContent = text || 'บันทึกออนไลน์อัตโนมัติแล้ว';
+      } else if (state === 'error') {
+        dot.classList.add('offline');
+        txt.textContent = text || 'บันทึกในเครื่องแล้ว (รอเน็ต)';
+      } else if (state === 'loading') {
+        dot.classList.add('saving');
+        txt.textContent = text || 'กำลังเชื่อมต่อคลาวด์...';
+      }
+    }
+
+    function scheduleCloudAutosave() {
+      updateCloudBadge('saving', 'กำลังบันทึกออนไลน์...');
+      if (cloudAutosaveTimer) clearTimeout(cloudAutosaveTimer);
+      cloudAutosaveTimer = setTimeout(async () => {
+        try {
+          const res = await fetch(CLOUD_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              ...appState,
+              activePhase: currentPhaseFilter,
+              updatedBy: 'web_online'
+            })
+          });
+          if (res.ok) {
+            const timeStr = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+            updateCloudBadge('synced', `บันทึกออนไลน์แล้ว (${timeStr} น.)`);
+          } else {
+            updateCloudBadge('error', 'บันทึกในเครื่องแล้ว (คลาวด์ตอบสนองช้า)');
+          }
+        } catch (err) {
+          console.warn('Autosave to cloud failed (offline), saved locally', err);
+          updateCloudBadge('error', 'บันทึกในเครื่องแล้ว (ออฟไลน์)');
+        }
+      }, 750);
+    }
+
+    async function fetchCloudState(userInitiated = false) {
+      if (userInitiated) {
+        updateCloudBadge('loading', 'กำลังดึงข้อมูลล่าสุดจากคลาวด์...');
+      }
+      try {
+        const res = await fetch(CLOUD_API_URL + '?t=' + Date.now(), { cache: 'no-store' });
+        if (res.ok) {
+          const cloudData = await res.json();
+          if (cloudData.found && cloudData.tasks && Array.isArray(cloudData.tasks)) {
+            appState = cloudData;
+            if (cloudData.activePhase) {
+              currentPhaseFilter = cloudData.activePhase;
+              document.getElementById('btnFilterPhase1').classList.toggle('active', currentPhaseFilter === 'phase1');
+              document.getElementById('btnFilterFull').classList.toggle('active', currentPhaseFilter === 'all');
+            }
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            calculateScoresAndRender();
+            const timeStr = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+            updateCloudBadge('synced', `ซิงก์ข้อมูลคลาวด์ล่าสุด (${timeStr} น.)`);
+            if (userInitiated) showToast('🎉 ดึงข้อมูลล่าสุดจากคลาวด์สำเร็จ!');
+            return true;
+          }
+        }
+      } catch (err) {
+        console.warn('fetchCloudState error:', err);
+        if (userInitiated) alert('ไม่สามารถเชื่อมต่อ Cloud ได้: ' + err.message);
+      }
+      return false;
+    }
 
     /* ==========================================================================
        AUTHENTICATION GATE
@@ -1284,10 +1382,18 @@
        ========================================================================== */
     async function initApp() {
       checkAuth();
+      updateCloudBadge('loading', 'กำลังเชื่อมต่อคลาวด์ออนไลน์...');
+
+      // 1. Fetch live cloud state from Cloudflare KV
+      const cloudOk = await fetchCloudState(false);
+      if (cloudOk) return;
+
+      // 2. Fallback to LocalStorage
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         try {
           appState = JSON.parse(saved);
+          updateCloudBadge('error', 'บันทึกในเครื่องแล้ว (ออฟไลน์)');
           calculateScoresAndRender();
           return;
         } catch (e) {
@@ -1295,7 +1401,7 @@
         }
       }
 
-      // Fetch initial baseline from file
+      // 3. Fallback to initial baseline from file
       try {
         const res = await fetch('data/medical_hub_it_readiness_initial_data.json');
         if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -1305,13 +1411,16 @@
         appState = getEmbeddedFallbackData();
       }
       saveLocalState();
+      updateCloudBadge('synced', 'คลาวด์ออนไลน์: พร้อมใช้งาน');
       calculateScoresAndRender();
     }
 
     function saveLocalState() {
       if (!appState) return;
+      appState.meta = appState.meta || {};
       appState.meta.lastUpdated = new Date().toISOString();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      scheduleCloudAutosave();
     }
 
     /* ==========================================================================
@@ -1553,7 +1662,7 @@
                 ทำไมถึงได้เท่านี้ % (Rationale / Evidence):
               </span>
               <textarea class="note-textarea" placeholder="ระบุหลักฐานหรือความคืบหน้าที่ตรวจรับได้..." 
-                onchange="handleNoteChange('${task.id}', 'rationale', this.value)">${task.rationale || ''}</textarea>
+                oninput="handleNoteChange('${task.id}', 'rationale', this.value)">${task.rationale || ''}</textarea>
             </div>
             <div class="note-block">
               <span class="note-label blocker-label">
@@ -1562,7 +1671,7 @@
               </span>
               <textarea class="note-textarea" style="border-color: rgba(244, 63, 94, 0.3);" 
                 placeholder="ระบุสิ่งที่ติดขัดและฝ่ายที่ต้องปลดล็อก..." 
-                onchange="handleNoteChange('${task.id}', 'blocker', this.value)">${task.blocker || ''}</textarea>
+                oninput="handleNoteChange('${task.id}', 'blocker', this.value)">${task.blocker || ''}</textarea>
             </div>
           </div>
         </div>
@@ -1625,9 +1734,8 @@
     function handleNoteChange(taskId, field, value) {
       const task = appState.tasks.find(t => t.id === taskId);
       if (!task) return;
-      task[field] = value.trim();
+      task[field] = value;
       saveLocalState();
-      showToast('บันทึกหมายเหตุเรียบร้อยแล้ว');
     }
 
     function resetToInitialBaseline() {
@@ -1680,90 +1788,6 @@
       event.target.value = '';
     }
 
-    /* ==========================================================================
-       GITHUB CLOUD SYNC
-       ========================================================================== */
-    function openGitHubModal() {
-      const savedCfg = localStorage.getItem(GH_CONFIG_KEY);
-      if (savedCfg) {
-        try {
-          const cfg = JSON.parse(savedCfg);
-          document.getElementById('ghRepoInput').value = cfg.repo || '';
-          document.getElementById('ghPathInput').value = cfg.path || 'web/data/medical_hub_it_readiness_data.json';
-          document.getElementById('ghTokenInput').value = cfg.token || '';
-        } catch (e) {}
-      }
-      document.getElementById('githubModal').classList.add('active');
-    }
-
-    function closeGitHubModal() {
-      document.getElementById('githubModal').classList.remove('active');
-    }
-
-    async function saveToGitHub() {
-      const repo = document.getElementById('ghRepoInput').value.trim();
-      const path = document.getElementById('ghPathInput').value.trim();
-      const token = document.getElementById('ghTokenInput').value.trim();
-
-      if (!repo || !path || !token) {
-        alert('กรุณากรอกข้อมูล Repository, File Path และ Personal Access Token ให้ครบถ้วน');
-        return;
-      }
-
-      // Save credentials locally
-      localStorage.setItem(GH_CONFIG_KEY, JSON.stringify({ repo, path, token }));
-
-      showToast('กำลังติดต่อ GitHub API เพื่อบันทึกข้อมูล...');
-
-      try {
-        // Step 1: Get existing file sha if exists
-        const getUrl = `https://api.github.com/repos/${repo}/contents/${path}`;
-        let sha = null;
-
-        const getRes = await fetch(getUrl, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        });
-
-        if (getRes.ok) {
-          const fileData = await getRes.json();
-          sha = fileData.sha;
-        }
-
-        // Step 2: Encode content in Base64
-        const contentStr = JSON.stringify(appState, null, 2);
-        const encodedContent = btoa(unescape(encodeURIComponent(contentStr)));
-
-        const payload = {
-          message: `Update Medical Hub IT Readiness [${new Date().toISOString().slice(0, 16)}]`,
-          content: encodedContent
-        };
-        if (sha) payload.sha = sha;
-
-        // Step 3: Put file commit
-        const putRes = await fetch(getUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify(payload)
-        });
-
-        if (!putRes.ok) {
-          const errData = await putRes.json();
-          throw new Error(errData.message || ('HTTP ' + putRes.status));
-        }
-
-        closeGitHubModal();
-        showToast('🎉 บันทึกขึ้น GitHub สำเร็จแล้ว! เปิดดูได้จากทุกที่');
-      } catch (err) {
-        alert('บันทึกขึ้น GitHub ล้มเหลว: ' + err.message);
-      }
-    }
 
     /* ==========================================================================
        TOAST UTILITY
