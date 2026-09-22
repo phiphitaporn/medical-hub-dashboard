@@ -1054,7 +1054,13 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
         </div>
         <div class="brand-text">
-          <h1>Medical Hub IT Commissioning & Readiness</h1>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <h1 style="margin:0;">Medical Hub IT Commissioning & Readiness</h1>
+            <span style="font-size:0.75rem;padding:3px 10px;border-radius:20px;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.4);color:#38bdf8;font-weight:700;letter-spacing:0.5px;display:inline-flex;align-items:center;gap:5px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#38bdf8;box-shadow:0 0 6px #38bdf8;"></span>
+              v2.2 Enterprise
+            </span>
+          </div>
           <span>อาคารศูนย์ความเป็นเลิศทางการแพทย์ • โรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มข.</span>
         </div>
       </div>
@@ -1063,10 +1069,6 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
           📊 แดชบอร์ดอุปกรณ์ IT
         </a>
-        <button class="btn-action" onclick="openPhotoModal()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-          📷 ภาพอาคารจริง
-        </button>
         <!-- Live Cloud Autosave Badge & Refresh -->
         <div class="cloud-status-badge" id="cloudStatusBadge" title="บันทึกข้อมูลขึ้นคลาวด์อัตโนมัติแบบเรียลไทม์">
           <span class="cloud-dot" id="cloudDot"></span>
@@ -1098,10 +1100,13 @@
         <h2>ยุทธศาสตร์การเปิดระบบไอทีศูนย์ความเป็นเลิศ (Zero to Day-1 Go-Live)</h2>
         <p>ขับเคลื่อนด้วยเกณฑ์ความปลอดภัยสากล ปลดล็อกข้อเรียกร้องเฉพาะภาควิชา มุ่งเน้นการเปิดบริการที่ปลอดภัยและระบบคิดเงินที่แม่นยำ</p>
         <div class="framework-tags">
-          <span class="tag-badge">🛡️ JCI 8th Edition (Patient Safety)</span>
-          <span class="tag-badge">🏥 HIMSS EMRAM Stage 6/7</span>
-          <span class="tag-badge">☁️ Cloud Sirisoft (2K-3K Users)</span>
-          <span class="tag-badge">🔒 Local Downtime Cache Server</span>
+          <span class="tag-badge">🛡️ JCI 8th Ed. (IPSG 1-6)</span>
+          <span class="tag-badge">🏥 HIMSS Stage 6/7</span>
+          <span class="tag-badge">🏢 Building IT & ELV</span>
+          <span class="tag-badge">🩺 Medical Device Integration (MDI)</span>
+          <span class="tag-badge">🖥️ Endpoint & Peripheral Fleet</span>
+          <span class="tag-badge">🔐 Cybersecurity Acceptance</span>
+          <span class="tag-badge">⚙️ 24/7 IT Ops & Hypercare</span>
         </div>
       </div>
       <div class="countdown-box">
@@ -1187,12 +1192,15 @@
 
         <!-- Pillar Filter -->
         <select id="pillarFilterSelect" class="filter-select" onchange="renderTasks()">
-          <option value="all">ทุกเสาหลัก (All Pillars)</option>
-          <option value="pillar-1">P1: TOR & JCI/HIMSS</option>
-          <option value="pillar-2">P2: Cloud Sirisoft Infra</option>
-          <option value="pillar-3">P3: Master Data & Interop</option>
-          <option value="pillar-4">P4: Clinical Core HIS</option>
-          <option value="pillar-5">P5: Testing & Cutover</option>
+          <option value="all">ทุกเสาหลัก (All 8 Pillars)</option>
+          <option value="pillar-1">P1: TOR, มาตรฐาน JCI/HIMSS & จัดซื้อ</option>
+          <option value="pillar-2">P2: โครงสร้าง Cloud Sirisoft & แกนเครือข่าย</option>
+          <option value="pillar-3">P3: โครงข่ายอาคาร & ระบบ ELV (Building IT)</option>
+          <option value="pillar-4">P4: Master Data & เครื่องมือแพทย์ (MDI)</option>
+          <option value="pillar-5">P5: คอมพิวเตอร์ปลายทาง & ครุภัณฑ์ (Endpoints)</option>
+          <option value="pillar-6">P6: กระบวนการคลินิก & ยาปลอดภัย BCMA</option>
+          <option value="pillar-7">P7: สิทธิ์ผู้ใช้งาน & ความมั่นคงไซเบอร์ (Security)</option>
+          <option value="pillar-8">P8: IT Operations & ซ้อมเปิดตึก (Go-Live)</option>
         </select>
 
         <!-- Status Filter -->
@@ -1230,7 +1238,7 @@
        ========================================================================== */
     const PASSCODE = 'itpisa';
     const TARGET_DATE = new Date('2027-10-01T08:00:00+07:00').getTime();
-    const STORAGE_KEY = 'medical_hub_it_readiness_state_v1';
+    const STORAGE_KEY = 'medical_hub_it_readiness_state_v2_2';
     const CLOUD_API_URL = 'https://medical-hub-readiness-api.phiphitaporn.workers.dev';
 
     let appState = null;
@@ -1407,8 +1415,8 @@
         if (!res.ok) throw new Error('HTTP ' + res.status);
         appState = await res.json();
       } catch (err) {
-        console.error('Fetch error, using embedded fallback', err);
-        appState = getEmbeddedFallbackData();
+        console.error('Fetch error, using empty state', err);
+        appState = { meta: {}, pillars: [], tasks: [] };
       }
       saveLocalState();
       updateCloudBadge('synced', 'คลาวด์ออนไลน์: พร้อมใช้งาน');
