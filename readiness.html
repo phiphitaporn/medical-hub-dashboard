@@ -683,6 +683,99 @@
       border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
+    .task-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-card-action {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      color: #94a3b8;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .btn-card-action:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+    }
+
+    .btn-card-delete:hover {
+      background: rgba(244, 63, 94, 0.15);
+      border-color: rgba(244, 63, 94, 0.4);
+      color: #fb7185;
+    }
+
+    .task-modal-box {
+      max-width: 660px;
+      width: 92%;
+      background: #0b1120;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(6, 182, 212, 0.15);
+      border-radius: 14px;
+      padding: 22px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .form-group {
+      margin-bottom: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group label {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    .form-control {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: #f8fafc;
+      font-family: inherit;
+      font-size: 0.83rem;
+      padding: 8px 12px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.25);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .form-row-2, .form-row-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .task-title {
       font-size: 0.98rem;
       font-weight: 600;
@@ -1305,6 +1398,10 @@
       </div>
 
       <div class="toolbar-right">
+        <button class="btn-action btn-primary" onclick="openAddTaskModal()" title="เพิ่มงานหลักใหม่ในเสาหลัก">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          + เพิ่มงานหลัก
+        </button>
         <input type="text" id="taskSearchInput" class="search-input" placeholder="ค้นหางาน, รหัส, หรือ Blocker..." oninput="renderTasks()">
         <button class="btn-action" onclick="resetToInitialBaseline()">↺ คืนค่าเดิม</button>
       </div>
@@ -1680,7 +1777,13 @@
                 <h3><span style="color:${pillar.color || '#3b82f6'};">${pillar.code}:</span> ${pillar.nameTh}</h3>
                 <p>${pillar.description}</p>
               </div>
-              <div class="pillar-progress-stat">${pPercent}% พร้อมแล้ว</div>
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <button type="button" class="btn-action" style="font-size:0.75rem;padding:5px 12px;background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.35);color:#38bdf8;" onclick="openAddTaskModal('${pillar.id}')" title="เพิ่มงานหลักใหม่ในเสานี้">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;vertical-align:middle;margin-right:2px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  + เพิ่มงานหลักในเสานี้
+                </button>
+                <div class="pillar-progress-stat">${pPercent}% พร้อมแล้ว</div>
+              </div>
             </div>
             <div class="tasks-grid">
         `;
@@ -1757,8 +1860,14 @@
         <div class="task-card" style="border-color: ${cardBorder};">
           <div>
             <div class="task-top">
-              <span class="task-code-badge">${task.code}</span>
-              <span class="task-phase-badge">${task.isPhase1 ? '⚡ Phase 1 (Day 1)' : 'Phase 2'}</span>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span class="task-code-badge">${task.code}</span>
+                <span class="task-phase-badge">${task.isPhase1 ? '⚡ Phase 1 (Day 1)' : 'Phase 2'}</span>
+              </div>
+              <div class="task-card-actions">
+                <button type="button" class="btn-card-action" onclick="openEditTaskModal('${task.id}')" title="แก้ไขงานหลัก">✏️ แก้ไข</button>
+                <button type="button" class="btn-card-action btn-card-delete" onclick="deleteMainTask('${task.id}')" title="ลบงานหลัก">🗑️ ลบ</button>
+              </div>
             </div>
             <h4 class="task-title">${task.title}</h4>
             <p class="task-summary">${task.scopeSummary}</p>
@@ -2018,6 +2127,174 @@
       document.getElementById('photoModal').classList.remove('active');
     }
 
+    /* ==========================================================================
+       MAIN TASK CRUD (ADD, EDIT, DELETE)
+       ========================================================================== */
+    function getNextTaskCodeForPillar(pillarId) {
+      if (!appState || !appState.tasks) return 'T1.1';
+      const pTasks = appState.tasks.filter(t => t.pillarId === pillarId);
+      const pillar = appState.pillars.find(p => p.id === pillarId);
+      const pNum = pillar ? pillar.code.replace(/\D/g, '') : '1';
+      
+      let maxNum = 0;
+      pTasks.forEach(t => {
+        const match = t.code.match(/T\d+\.(\d+)/i);
+        if (match) {
+          const n = parseInt(match[1], 10);
+          if (n > maxNum) maxNum = n;
+        }
+      });
+      return `T${pNum}.${maxNum + 1}`;
+    }
+
+    function openAddTaskModal(preselectedPillarId) {
+      const modal = document.getElementById('taskModal');
+      const titleEl = document.getElementById('taskModalTitle');
+      const form = document.getElementById('taskForm');
+      if (!modal || !form) return;
+
+      document.getElementById('taskFormMode').value = 'add';
+      document.getElementById('taskFormId').value = '';
+      titleEl.innerHTML = '➕ เพิ่มงานหลักในเสาหลัก (Pillar)';
+      document.getElementById('btnSaveTask').textContent = 'เพิ่มงานหลัก';
+
+      const pillarSelect = document.getElementById('taskFormPillar');
+      if (preselectedPillarId) {
+        pillarSelect.value = preselectedPillarId;
+      } else {
+        pillarSelect.value = appState.pillars && appState.pillars.length > 0 ? appState.pillars[0].id : 'pillar-1';
+      }
+
+      document.getElementById('taskFormCode').value = getNextTaskCodeForPillar(pillarSelect.value);
+      document.getElementById('taskFormTitle').value = '';
+      document.getElementById('taskFormScope').value = '';
+      document.getElementById('taskFormPhase').value = 'true';
+      document.getElementById('taskFormWeight').value = '3';
+      document.getElementById('taskFormStatus').value = 'in_progress';
+      document.getElementById('taskFormRole').value = 'IT Lead';
+      document.getElementById('taskFormDep').value = '';
+
+      modal.classList.add('active');
+      setTimeout(() => document.getElementById('taskFormTitle').focus(), 100);
+    }
+
+    function handlePillarChangeInModal(newPillarId) {
+      const mode = document.getElementById('taskFormMode').value;
+      if (mode === 'add') {
+        document.getElementById('taskFormCode').value = getNextTaskCodeForPillar(newPillarId);
+      }
+    }
+
+    function openEditTaskModal(taskId) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+
+      const modal = document.getElementById('taskModal');
+      const titleEl = document.getElementById('taskModalTitle');
+      if (!modal) return;
+
+      document.getElementById('taskFormMode').value = 'edit';
+      document.getElementById('taskFormId').value = task.id;
+      titleEl.innerHTML = `✏️ แก้ไขงานหลัก <span style="color:#38bdf8;">(${escapeHtml(task.code)})</span>`;
+      document.getElementById('btnSaveTask').textContent = 'บันทึกการแก้ไข';
+
+      document.getElementById('taskFormPillar').value = task.pillarId || 'pillar-1';
+      document.getElementById('taskFormCode').value = task.code || '';
+      document.getElementById('taskFormTitle').value = task.title || '';
+      document.getElementById('taskFormScope').value = task.scopeSummary || '';
+      document.getElementById('taskFormPhase').value = task.isPhase1 ? 'true' : 'false';
+      document.getElementById('taskFormWeight').value = task.weight || 3;
+      document.getElementById('taskFormStatus').value = task.status || 'in_progress';
+      document.getElementById('taskFormRole').value = task.role || '';
+      document.getElementById('taskFormDep').value = task.dependencyWS || '';
+
+      modal.classList.add('active');
+      setTimeout(() => document.getElementById('taskFormTitle').focus(), 100);
+    }
+
+    function closeTaskModal(event) {
+      if (event && event.target && event.target.id !== 'taskModal' && !event.target.classList.contains('modal-close') && event.target.tagName !== 'BUTTON') {
+        return;
+      }
+      const modal = document.getElementById('taskModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handleTaskFormSubmit(event) {
+      event.preventDefault();
+      const mode = document.getElementById('taskFormMode').value;
+      const taskId = document.getElementById('taskFormId').value;
+
+      const pillarId = document.getElementById('taskFormPillar').value;
+      const code = document.getElementById('taskFormCode').value.trim();
+      const title = document.getElementById('taskFormTitle').value.trim();
+      const scopeSummary = document.getElementById('taskFormScope').value.trim();
+      const isPhase1 = document.getElementById('taskFormPhase').value === 'true';
+      const weight = parseInt(document.getElementById('taskFormWeight').value, 10) || 1;
+      const status = document.getElementById('taskFormStatus').value;
+      const role = document.getElementById('taskFormRole').value.trim();
+      const dependencyWS = document.getElementById('taskFormDep').value.trim();
+
+      if (mode === 'add') {
+        const newTaskId = 'task-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 4);
+        const newTask = {
+          id: newTaskId,
+          pillarId,
+          code,
+          title,
+          scopeSummary,
+          isPhase1,
+          weight,
+          progress: status === 'done' ? 100 : 0,
+          status,
+          role: role || 'IT Lead',
+          dependencyWS: dependencyWS || '',
+          subtasks: [
+            { id: 'st-' + newTaskId + '-1', title: 'กำหนดขอบเขตและขั้นตอนดำเนินงาน', done: false }
+          ],
+          rationale: '',
+          blocker: ''
+        };
+        appState.tasks.push(newTask);
+        saveLocalState();
+        calculateScoresAndRender();
+        closeTaskModal();
+        showToast(`🎉 เพิ่มงาน ${code}: ${title} เรียบร้อยแล้ว`);
+      } else {
+        const task = appState.tasks.find(t => t.id === taskId);
+        if (task) {
+          task.pillarId = pillarId;
+          task.code = code;
+          task.title = title;
+          task.scopeSummary = scopeSummary;
+          task.isPhase1 = isPhase1;
+          task.weight = weight;
+          task.status = status;
+          if (status === 'done' && task.progress < 100) task.progress = 100;
+          task.role = role;
+          task.dependencyWS = dependencyWS;
+
+          saveLocalState();
+          calculateScoresAndRender();
+          closeTaskModal();
+          showToast(`✏️ อัปเดตงาน ${code} เรียบร้อยแล้ว`);
+        }
+      }
+    }
+
+    function deleteMainTask(taskId) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      if (!confirm(`คุณต้องการลบงานหลักนี้ใช่หรือไม่?\n\nรหัส: ${task.code}\nชื่องาน: ${task.title}\n\n⚠️ ข้อมูลขั้นตอนย่อยและคะแนนความพร้อมของงานนี้จะถูกลบออก`)) {
+        return;
+      }
+
+      appState.tasks = appState.tasks.filter(t => t.id !== taskId);
+      saveLocalState();
+      calculateScoresAndRender();
+      showToast(`🗑️ ลบงาน ${task.code} เรียบร้อยแล้ว`);
+    }
+
     // Start App on page load
     window.addEventListener('DOMContentLoaded', initApp);
   </script>
@@ -2035,6 +2312,89 @@
       <p style="font-size:0.78rem;color:var(--text-secondary);margin-top:10px;text-align:center;">
         ภาพถ่ายจริง: อาคารศูนย์ความเป็นเลิศทางการแพทย์และอาคารโรงพยาบาลศรีนครินทร์ คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น
       </p>
+    </div>
+  </div>
+
+  <!-- Task Add / Edit Modal -->
+  <div id="taskModal" class="modal-overlay" onclick="closeTaskModal(event)">
+    <div class="task-modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="taskModalTitle" style="font-size:1.1rem;color:#fff;">✏️ แก้ไขงานหลัก</h3>
+        <button class="modal-close" onclick="closeTaskModal()">&times;</button>
+      </div>
+      <form id="taskForm" onsubmit="handleTaskFormSubmit(event)">
+        <input type="hidden" id="taskFormMode" value="add">
+        <input type="hidden" id="taskFormId" value="">
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="taskFormPillar">เสาหลัก (Pillar)</label>
+            <select id="taskFormPillar" class="form-control" required onchange="handlePillarChangeInModal(this.value)">
+              <option value="pillar-1">P1: TOR, มาตรฐาน JCI/HIMSS & จัดซื้อ</option>
+              <option value="pillar-2">P2: โครงสร้าง Cloud Sirisoft & แกนเครือข่าย</option>
+              <option value="pillar-3">P3: โครงข่ายอาคาร & ระบบ ELV (Building IT)</option>
+              <option value="pillar-4">P4: Master Data & เครื่องมือแพทย์ (MDI)</option>
+              <option value="pillar-5">P5: คอมพิวเตอร์ปลายทาง & ครุภัณฑ์ (Endpoints)</option>
+              <option value="pillar-6">P6: กระบวนการคลินิก & ยาปลอดภัย BCMA</option>
+              <option value="pillar-7">P7: สิทธิ์ผู้ใช้งาน & ความมั่นคงไซเบอร์ (Security)</option>
+              <option value="pillar-8">P8: IT Operations & ซ้อมเปิดตึก (Go-Live)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskFormCode">รหัสงาน (Code)</label>
+            <input type="text" id="taskFormCode" class="form-control" required placeholder="เช่น T3.7">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="taskFormTitle">ชื่องานหลัก (Task Title)</label>
+          <input type="text" id="taskFormTitle" class="form-control" required placeholder="เช่น ตรวจรับระบบ Fiber Backbone และจุดเชื่อมโยง">
+        </div>
+
+        <div class="form-group">
+          <label for="taskFormScope">ขอบเขตงาน / วัตถุประสงค์ (Scope Summary)</label>
+          <textarea id="taskFormScope" class="form-control" rows="3" required placeholder="สรุปขอบเขตและสาระสำคัญของงานนี้..."></textarea>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="taskFormPhase">ระยะเปิดบริการ (Phase)</label>
+            <select id="taskFormPhase" class="form-control">
+              <option value="true">⚡ Phase 1 (Day 1 Must-Have)</option>
+              <option value="false">🌐 Phase 2 (Full Scale)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskFormWeight">ค่าน้ำหนักความสำคัญ (Weight: 1-5)</label>
+            <input type="number" id="taskFormWeight" class="form-control" min="1" max="10" value="3" required>
+          </div>
+          <div class="form-group">
+            <label for="taskFormStatus">สถานะงาน (Status)</label>
+            <select id="taskFormStatus" class="form-control">
+              <option value="in_progress">⏳ In Progress</option>
+              <option value="at_risk">⚠️ At Risk</option>
+              <option value="blocked">🚨 Blocked</option>
+              <option value="done">✅ Done (100%)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="taskFormRole">ผู้รับผิดชอบหลัก (Role / Lead)</label>
+            <input type="text" id="taskFormRole" class="form-control" placeholder="เช่น ทีมโครงข่าย IT / วิศวกรรม">
+          </div>
+          <div class="form-group">
+            <label for="taskFormDep">ความเชื่อมโยง / ฝ่ายที่เกี่ยวข้อง (Dependency)</label>
+            <input type="text" id="taskFormDep" class="form-control" placeholder="เช่น ผู้รับเหมาอาคาร, กองกายภาพ">
+          </div>
+        </div>
+
+        <div class="modal-footer" style="margin-top:20px;display:flex;justify-content:flex-end;gap:10px;">
+          <button type="button" class="btn-action" onclick="closeTaskModal()">ยกเลิก</button>
+          <button type="submit" class="btn-action btn-primary" id="btnSaveTask">บันทึกข้อมูลงาน</button>
+        </div>
+      </form>
     </div>
   </div>
 </body>
