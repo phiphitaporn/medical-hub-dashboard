@@ -1029,7 +1029,7 @@
               <span>⭐ แผนแนะนำจัดหาจริง (Recommended Phasing - ผังจริง)</span>
             </h4>
             <div class="flex items-center gap-1.5">
-              <input type="checkbox" id="edit-is-adjusted" class="rounded accent-emerald-600">
+              <input type="checkbox" id="edit-is-adjusted" onchange="handleAdjustedToggle(this.checked)" class="rounded accent-emerald-600">
               <label for="edit-is-adjusted" class="text-xs font-bold text-emerald-800 cursor-pointer">ปรับเกลี่ยลดส่วนเกิน</label>
             </div>
           </div>
@@ -1171,6 +1171,22 @@
       initSim();
     }
 
+    function sanitizeRow(d, idx) {
+      if (!d.id) d.id = 'dept-' + (idx + 1);
+      d.pc1 = Math.max(0, parseInt(d.pc1) || 0);
+      d.pc2 = Math.max(0, parseInt(d.pc2) || 0);
+      d.nb  = Math.max(0, parseInt(d.nb)  || 0);
+      d.tab = Math.max(0, parseInt(d.tab) || 0);
+      d.total_pc = d.pc1 + d.pc2 + d.nb + d.tab;
+
+      d.rec_pc1 = d.rec_pc1 !== undefined ? Math.max(0, parseInt(d.rec_pc1) || 0) : d.pc1;
+      d.rec_pc2 = d.rec_pc2 !== undefined ? Math.max(0, parseInt(d.rec_pc2) || 0) : d.pc2;
+      d.rec_nb  = d.rec_nb  !== undefined ? Math.max(0, parseInt(d.rec_nb)  || 0) : d.nb;
+      d.rec_tab = d.rec_tab !== undefined ? Math.max(0, parseInt(d.rec_tab) || 0) : d.tab;
+      d.rec_total_pc = d.rec_pc1 + d.rec_pc2 + d.rec_nb + d.rec_tab;
+      return d;
+    }
+
     function loadData() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
@@ -1185,6 +1201,7 @@
       }
       // Load default clone
       hospitalData = JSON.parse(JSON.stringify(DEFAULT_HOSPITAL_DATA));
+      hospitalData.forEach((d, idx) => sanitizeRow(d, idx));
       updateSaveBadge('default');
     }
 
@@ -1221,9 +1238,8 @@
 
     function jsonParseSafe(str) {
       const data = JSON.parse(str);
-      // Ensure each row has valid id
       data.forEach((d, idx) => {
-        if (!d.id) d.id = 'dept-' + (idx + 1);
+        sanitizeRow(d, idx);
       });
       return data;
     }
@@ -1345,31 +1361,21 @@
     }
 
     function getDeviceValues(item) {
-      if (currentPhase === 'Phase 1 Rec') {
-        const pc1 = Number(item.rec_pc1) || 0;
-        const pc2 = Number(item.rec_pc2) || 0;
-        const nb = Number(item.rec_nb) || 0;
-        const tab = Number(item.rec_tab) || 0;
-        const total = item.rec_total_pc !== undefined ? Number(item.rec_total_pc) : (pc1 + pc2 + nb + tab);
-        return {
-          pc1, pc2, nb, tab,
-          total_pc: total,
-          bc_p: Number(item.rec_bc_p) || 0,
-          bc_s: Number(item.rec_bc_s) || 0
-        };
-      } else {
-        const pc1 = Number(item.pc1) || 0;
-        const pc2 = Number(item.pc2) || 0;
-        const nb = Number(item.nb) || 0;
-        const tab = Number(item.tab) || 0;
-        const total = item.total_pc !== undefined ? Number(item.total_pc) : (pc1 + pc2 + nb + tab);
-        return {
-          pc1, pc2, nb, tab,
-          total_pc: total,
-          bc_p: Number(item.bc_p) || 0,
-          bc_s: Number(item.bc_s) || 0
-        };
-      }
+      const isRec = (currentPhase === 'Phase 1 Rec');
+      const pc1 = Number(isRec ? (item.rec_pc1 !== undefined ? item.rec_pc1 : item.pc1) : item.pc1) || 0;
+      const pc2 = Number(isRec ? (item.rec_pc2 !== undefined ? item.rec_pc2 : item.pc2) : item.pc2) || 0;
+      const nb  = Number(isRec ? (item.rec_nb  !== undefined ? item.rec_nb  : item.nb)  : item.nb)  || 0;
+      const tab = Number(isRec ? (item.rec_tab !== undefined ? item.rec_tab : item.tab) : item.tab) || 0;
+      const total_pc = pc1 + pc2 + nb + tab;
+
+      const bc_p = Number(isRec ? (item.rec_bc_p !== undefined ? item.rec_bc_p : item.bc_p) : item.bc_p) || 0;
+      const bc_s = Number(isRec ? (item.rec_bc_s !== undefined ? item.rec_bc_s : item.bc_s) : item.bc_s) || 0;
+
+      return {
+        pc1, pc2, nb, tab,
+        total_pc,
+        bc_p, bc_s
+      };
     }
 
     // =========================================================================
@@ -1383,13 +1389,13 @@
         const p2 = Number(item.pc2) || 0;
         const nb = Number(item.nb) || 0;
         const tab = Number(item.tab) || 0;
-        const rawTot = item.total_pc !== undefined ? Number(item.total_pc) : (p1 + p2 + nb + tab);
+        const rawTot = p1 + p2 + nb + tab;
 
-        const rp1 = Number(item.rec_pc1) || 0;
-        const rp2 = Number(item.rec_pc2) || 0;
-        const rnb = Number(item.rec_nb) || 0;
-        const rtab = Number(item.rec_tab) || 0;
-        const recTot = item.rec_total_pc !== undefined ? Number(item.rec_total_pc) : (rp1 + rp2 + rnb + rtab);
+        const rp1 = Number(item.rec_pc1 !== undefined ? item.rec_pc1 : p1) || 0;
+        const rp2 = Number(item.rec_pc2 !== undefined ? item.rec_pc2 : p2) || 0;
+        const rnb = Number(item.rec_nb !== undefined ? item.rec_nb : nb) || 0;
+        const rtab = Number(item.rec_tab !== undefined ? item.rec_tab : tab) || 0;
+        const recTot = rp1 + rp2 + rnb + rtab;
 
         totAll += rawTot;
         if (item.phase === 'Phase 1') {
@@ -1421,8 +1427,8 @@
     // =========================================================================
     // FILTER & RENDER DASHBOARD
     // =========================================================================
-    function applyFilter() {
-      const filtered = hospitalData.filter(item => {
+    function getFilteredData() {
+      return hospitalData.filter(item => {
         // Phase Filter
         if (currentPhase === 'Phase 1' || currentPhase === 'Phase 1 Rec') {
           if (item.phase !== 'Phase 1') return false;
@@ -1450,16 +1456,15 @@
 
         return true;
       });
-
-      renderDashboard(filtered);
     }
 
-    function renderDashboard(items) {
+    function updateLiveMetrics(items = null) {
+      if (!items) {
+        items = getFilteredData();
+      }
+
       let sumPc = 0, sumPc1 = 0, sumPc2 = 0, sumNb = 0, sumTab = 0;
       let sumPrnStd = 0, sumBcP = 0, sumBcS = 0, sumCid = 0, sumMousePen = 0, sumWebcam = 0;
-
-      const tbody = document.getElementById('table-body');
-      tbody.innerHTML = '';
 
       items.forEach(item => {
         const dev = getDeviceValues(item);
@@ -1476,6 +1481,110 @@
         sumCid += Number(item.cid) || 0;
         sumMousePen += Number(item.mouse_pen) || 0;
         sumWebcam += Number(item.webcam) || 0;
+      });
+
+      // Update KPI Cards
+      const elTot = document.getElementById('kpi-total-pc');
+      if (elTot) elTot.innerText = sumPc.toLocaleString();
+      const elP1 = document.getElementById('kpi-pc1');
+      if (elP1) elP1.innerText = sumPc1.toLocaleString();
+      const elP2 = document.getElementById('kpi-pc2');
+      if (elP2) elP2.innerText = sumPc2.toLocaleString();
+      const elNb = document.getElementById('kpi-nb');
+      if (elNb) elNb.innerText = sumNb.toLocaleString();
+      const elTab = document.getElementById('kpi-tab');
+      if (elTab) elTab.innerText = sumTab.toLocaleString();
+
+      const pct = (val) => sumPc > 0 ? ((val / sumPc) * 100).toFixed(1) + '%' : '0%';
+      const elP1Pct = document.getElementById('kpi-pc1-pct');
+      if (elP1Pct) elP1Pct.innerText = `${pct(sumPc1)} ของคอมทั้งหมด`;
+      const elP2Pct = document.getElementById('kpi-pc2-pct');
+      if (elP2Pct) elP2Pct.innerText = `${pct(sumPc2)} เน้นตรวจ/OPD`;
+      const elNbPct = document.getElementById('kpi-nb-pct');
+      if (elNbPct) elNbPct.innerText = `${pct(sumNb)} งานเคลื่อนที่`;
+      const elTabPct = document.getElementById('kpi-tab-pct');
+      if (elTabPct) elTabPct.innerText = `${pct(sumTab)} หอผู้ป่วย/ICU`;
+
+      const elPrn = document.getElementById('kpi-prn');
+      if (elPrn) elPrn.innerText = (sumPrnStd + sumBcP).toLocaleString();
+      const elPrnSub = document.getElementById('kpi-prn-sub');
+      if (elPrnSub) elPrnSub.innerText = `BC ${sumBcP} | เลเซอร์ ${sumPrnStd}`;
+
+      // Update Chart Bar Widths & Labels
+      const p1W = sumPc > 0 ? (sumPc1 / sumPc) * 100 : 0;
+      const p2W = sumPc > 0 ? (sumPc2 / sumPc) * 100 : 0;
+      const nbW = sumPc > 0 ? (sumNb / sumPc) * 100 : 0;
+      const tabW = sumPc > 0 ? (sumTab / sumPc) * 100 : 0;
+
+      const barPc1 = document.getElementById('bar-pc1');
+      if (barPc1) {
+        barPc1.style.width = p1W + '%';
+        barPc1.innerHTML = `<span class="truncate px-1">PC 1 (${sumPc1})</span>`;
+      }
+      const barPc2 = document.getElementById('bar-pc2');
+      if (barPc2) {
+        barPc2.style.width = p2W + '%';
+        barPc2.innerHTML = `<span class="truncate px-1">PC 2 (${sumPc2})</span>`;
+      }
+      const barNb = document.getElementById('bar-nb');
+      if (barNb) {
+        barNb.style.width = nbW + '%';
+        barNb.innerHTML = `<span class="truncate px-1">NB (${sumNb})</span>`;
+      }
+      const barTab = document.getElementById('bar-tab');
+      if (barTab) {
+        barTab.style.width = tabW + '%';
+        barTab.innerHTML = `<span class="truncate px-1">Tab (${sumTab})</span>`;
+      }
+
+      const legPc1 = document.getElementById('leg-pc1');
+      if (legPc1) legPc1.innerText = `${sumPc1} (${p1W.toFixed(1)}%)`;
+      const legPc2 = document.getElementById('leg-pc2');
+      if (legPc2) legPc2.innerText = `${sumPc2} (${p2W.toFixed(1)}%)`;
+      const legNb = document.getElementById('leg-nb');
+      if (legNb) legNb.innerText = `${sumNb} (${nbW.toFixed(1)}%)`;
+      const legTab = document.getElementById('leg-tab');
+      if (legTab) legTab.innerText = `${sumTab} (${tabW.toFixed(1)}%)`;
+      const chartBadge = document.getElementById('chart-total-badge');
+      if (chartBadge) chartBadge.innerText = `${sumPc.toLocaleString()} เครื่อง`;
+
+      // Update Section Breakdown Cards
+      renderSectionBreakdownCards(items, sumPc);
+
+      // Update Peripherals
+      const elPeriBcP = document.getElementById('peri-bc-p');
+      if (elPeriBcP) elPeriBcP.innerText = `${sumBcP.toLocaleString()} เครื่อง`;
+      const elPeriBcS = document.getElementById('peri-bc-s');
+      if (elPeriBcS) elPeriBcS.innerText = `${sumBcS.toLocaleString()} ตัว`;
+      const elPeriPrnStd = document.getElementById('peri-prn-std');
+      if (elPeriPrnStd) elPeriPrnStd.innerText = `${sumPrnStd.toLocaleString()} เครื่อง`;
+      const elPeriCid = document.getElementById('peri-cid');
+      if (elPeriCid) elPeriCid.innerText = `${sumCid.toLocaleString()} ตัว`;
+      const elPeriMousePen = document.getElementById('peri-mouse-pen');
+      if (elPeriMousePen) elPeriMousePen.innerText = `${sumMousePen.toLocaleString()} ชุด`;
+      const elPeriWebcam = document.getElementById('peri-webcam');
+      if (elPeriWebcam) elPeriWebcam.innerText = `${sumWebcam.toLocaleString()} ตัว`;
+
+      // Footer
+      const elShownCount = document.getElementById('shown-count');
+      if (elShownCount) elShownCount.innerText = items.length;
+      const elTotalCount = document.getElementById('total-count');
+      if (elTotalCount) elTotalCount.innerText = hospitalData.length;
+      const elShownPcSum = document.getElementById('shown-pc-sum');
+      if (elShownPcSum) elShownPcSum.innerText = sumPc.toLocaleString();
+    }
+
+    function applyFilter() {
+      const filtered = getFilteredData();
+      renderDashboard(filtered);
+    }
+
+    function renderDashboard(items) {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      items.forEach(item => {
+        const dev = getDeviceValues(item);
 
         // Render Table Row
         const tr = document.createElement('tr');
@@ -1505,67 +1614,67 @@
           tr.innerHTML = `
             <td class="py-2 px-2 text-slate-500 whitespace-nowrap">
               <input type="text" value="${item.section || ''}" 
-                     class="text-[11px] p-1 border border-slate-300 rounded w-28 bg-white" 
-                     onchange="updateRowField('${item.id}', 'section', this.value)">
+                     class="text-[11px] p-1 border border-slate-300 rounded w-28 bg-white font-medium" 
+                     onchange="handleInlineFieldChange('${item.id}', 'section', this.value)">
             </td>
             <td class="py-2 px-2 min-w-[200px]">
               <input type="text" value="${item.name || ''}" 
                      class="text-xs p-1 border border-slate-300 rounded w-full bg-white font-medium" 
-                     onchange="updateRowField('${item.id}', 'name', this.value)">
+                     onchange="handleInlineFieldChange('${item.id}', 'name', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
               <input type="number" value="${item.floor !== undefined ? item.floor : ''}" 
                      class="inline-edit-input w-11" 
-                     onchange="updateRowField('${item.id}', 'floor', this.value)">
+                     oninput="handleInlineInput('${item.id}', 'floor', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
               <input type="text" value="${item.zone || ''}" 
                      class="text-[11px] p-1 border border-slate-300 rounded w-16 text-center bg-white" 
-                     onchange="updateRowField('${item.id}', 'zone', this.value)">
+                     onchange="handleInlineFieldChange('${item.id}', 'zone', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
               <input type="text" value="${item.rooms || ''}" 
                      class="text-[11px] p-1 border border-slate-300 rounded w-16 text-center bg-white" 
-                     onchange="updateRowField('${item.id}', 'rooms', this.value)">
+                     onchange="handleInlineFieldChange('${item.id}', 'rooms', this.value)">
             </td>
-            <td class="py-2 px-2 text-center font-black text-blue-700 bg-blue-50/50 text-sm">
+            <td id="row-tot-${item.id}" class="py-2 px-2 text-center font-black text-blue-700 bg-blue-50/50 text-sm">
               ${dev.total_pc}
             </td>
             <td class="py-2 px-1 text-center">
-              <input type="number" min="0" value="${item.pc1 || 0}" 
+              <input type="number" min="0" value="${dev.pc1}" 
                      class="inline-edit-input text-blue-800 font-bold" 
-                     onchange="updateRowField('${item.id}', 'pc1', this.value)">
+                     oninput="handleInlineInput('${item.id}', 'pc1', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
-              <input type="number" min="0" value="${item.pc2 || 0}" 
+              <input type="number" min="0" value="${dev.pc2}" 
                      class="inline-edit-input text-indigo-800 font-bold" 
-                     onchange="updateRowField('${item.id}', 'pc2', this.value)">
+                     oninput="handleInlineInput('${item.id}', 'pc2', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
-              <input type="number" min="0" value="${item.nb || 0}" 
+              <input type="number" min="0" value="${dev.nb}" 
                      class="inline-edit-input text-teal-800 font-bold" 
-                     onchange="updateRowField('${item.id}', 'nb', this.value)">
+                     oninput="handleInlineInput('${item.id}', 'nb', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
-              <input type="number" min="0" value="${item.tab || 0}" 
+              <input type="number" min="0" value="${dev.tab}" 
                      class="inline-edit-input text-amber-800 font-bold" 
-                     onchange="updateRowField('${item.id}', 'tab', this.value)">
+                     oninput="handleInlineInput('${item.id}', 'tab', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
-              <input type="number" min="0" value="${item.bc_p || 0}" 
+              <input type="number" min="0" value="${dev.bc_p}" 
                      class="inline-edit-input text-emerald-800 font-bold" 
-                     onchange="updateRowField('${item.id}', 'bc_p', this.value)">
+                     oninput="handleInlineInput('${item.id}', 'bc_p', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
-              <input type="number" min="0" value="${item.bc_s || 0}" 
-                     class="inline-edit-input" 
-                     onchange="updateRowField('${item.id}', 'bc_s', this.value)">
+              <input type="number" min="0" value="${dev.bc_s}" 
+                     class="inline-edit-input text-slate-800 font-semibold" 
+                     oninput="handleInlineInput('${item.id}', 'bc_s', this.value)">
             </td>
             <td class="py-2 px-1 text-center">
               <span class="text-slate-600 font-medium">${ (Number(item.prn_bw)||0) + (Number(item.prn_c)||0) + (Number(item.prn_mf)||0) }</span>
             </td>
             <td class="py-2 px-1 text-center">
-              <select class="text-[10px] font-bold p-1 border rounded bg-white" onchange="updateRowField('${item.id}', 'phase', this.value)">
+              <select class="text-[10px] font-bold p-1 border rounded bg-white" onchange="handleInlineFieldChange('${item.id}', 'phase', this.value)">
                 <option value="Phase 1" ${item.phase === 'Phase 1' ? 'selected' : ''}>Phase 1</option>
                 <option value="Phase 2" ${item.phase === 'Phase 2' ? 'selected' : ''}>Phase 2</option>
                 <option value="Phase 3" ${item.phase === 'Phase 3' ? 'selected' : ''}>Phase 3</option>
@@ -1586,7 +1695,7 @@
             <td class="py-2.5 px-2 text-center font-medium">${item.floor !== undefined ? item.floor : '-'}</td>
             <td class="py-2.5 px-2 text-center text-slate-500">${item.zone || '-'}</td>
             <td class="py-2.5 px-2 text-center text-slate-500">${item.rooms || '-'}</td>
-            <td class="py-2.5 px-2 text-center font-black text-blue-700 bg-blue-50/50 text-sm">${dev.total_pc}</td>
+            <td id="row-tot-${item.id}" class="py-2.5 px-2 text-center font-black text-blue-700 bg-blue-50/50 text-sm">${dev.total_pc}</td>
             <td class="py-2.5 px-2 text-center font-medium ${dev.pc1 > 0 ? 'text-slate-800' : 'text-slate-300'}">${dev.pc1}</td>
             <td class="py-2.5 px-2 text-center font-medium ${dev.pc2 > 0 ? 'text-indigo-700 font-bold' : 'text-slate-300'}">${dev.pc2}</td>
             <td class="py-2.5 px-2 text-center font-medium ${dev.nb > 0 ? 'text-teal-700 font-bold' : 'text-slate-300'}">${dev.nb}</td>
@@ -1607,59 +1716,8 @@
         tbody.appendChild(tr);
       });
 
-      // Update KPI Cards
-      document.getElementById('kpi-total-pc').innerText = sumPc.toLocaleString();
-      document.getElementById('kpi-pc1').innerText = sumPc1.toLocaleString();
-      document.getElementById('kpi-pc2').innerText = sumPc2.toLocaleString();
-      document.getElementById('kpi-nb').innerText = sumNb.toLocaleString();
-      document.getElementById('kpi-tab').innerText = sumTab.toLocaleString();
-
-      const pct = (val) => sumPc > 0 ? ((val / sumPc) * 100).toFixed(1) + '%' : '0%';
-      document.getElementById('kpi-pc1-pct').innerText = `${pct(sumPc1)} ของคอมทั้งหมด`;
-      document.getElementById('kpi-pc2-pct').innerText = `${pct(sumPc2)} เน้นตรวจ/OPD`;
-      document.getElementById('kpi-nb-pct').innerText = `${pct(sumNb)} งานเคลื่อนที่`;
-      document.getElementById('kpi-tab-pct').innerText = `${pct(sumTab)} หอผู้ป่วย/ICU`;
-
-      document.getElementById('kpi-prn').innerText = (sumPrnStd + sumBcP).toLocaleString();
-      document.getElementById('kpi-prn-sub').innerText = `BC ${sumBcP} | เลเซอร์ ${sumPrnStd}`;
-
-      // Update Chart Bar Widths & Labels
-      const p1W = sumPc > 0 ? (sumPc1 / sumPc) * 100 : 0;
-      const p2W = sumPc > 0 ? (sumPc2 / sumPc) * 100 : 0;
-      const nbW = sumPc > 0 ? (sumNb / sumPc) * 100 : 0;
-      const tabW = sumPc > 0 ? (sumTab / sumPc) * 100 : 0;
-
-      document.getElementById('bar-pc1').style.width = p1W + '%';
-      document.getElementById('bar-pc2').style.width = p2W + '%';
-      document.getElementById('bar-nb').style.width = nbW + '%';
-      document.getElementById('bar-tab').style.width = tabW + '%';
-
-      document.getElementById('bar-pc1').innerHTML = `<span class="truncate px-1">PC 1 (${sumPc1})</span>`;
-      document.getElementById('bar-pc2').innerHTML = `<span class="truncate px-1">PC 2 (${sumPc2})</span>`;
-      document.getElementById('bar-nb').innerHTML = `<span class="truncate px-1">NB (${sumNb})</span>`;
-      document.getElementById('bar-tab').innerHTML = `<span class="truncate px-1">Tab (${sumTab})</span>`;
-
-      document.getElementById('leg-pc1').innerText = `${sumPc1} (${p1W.toFixed(1)}%)`;
-      document.getElementById('leg-pc2').innerText = `${sumPc2} (${p2W.toFixed(1)}%)`;
-      document.getElementById('leg-nb').innerText = `${sumNb} (${nbW.toFixed(1)}%)`;
-      document.getElementById('leg-tab').innerText = `${sumTab} (${tabW.toFixed(1)}%)`;
-      document.getElementById('chart-total-badge').innerText = `${sumPc.toLocaleString()} เครื่อง`;
-
-      // Update Section Breakdown Cards
-      renderSectionBreakdownCards(items, sumPc);
-
-      // Update Peripherals
-      document.getElementById('peri-bc-p').innerText = `${sumBcP.toLocaleString()} เครื่อง`;
-      document.getElementById('peri-bc-s').innerText = `${sumBcS.toLocaleString()} ตัว`;
-      document.getElementById('peri-prn-std').innerText = `${sumPrnStd.toLocaleString()} เครื่อง`;
-      document.getElementById('peri-cid').innerText = `${sumCid.toLocaleString()} ตัว`;
-      document.getElementById('peri-mouse-pen').innerText = `${sumMousePen.toLocaleString()} ชุด`;
-      document.getElementById('peri-webcam').innerText = `${sumWebcam.toLocaleString()} ตัว`;
-
-      // Footer
-      document.getElementById('shown-count').innerText = items.length;
-      document.getElementById('total-count').innerText = hospitalData.length;
-      document.getElementById('shown-pc-sum').innerText = sumPc.toLocaleString();
+      // Update all KPI cards and charts!
+      updateLiveMetrics(items);
     }
 
     function renderSectionBreakdownCards(items, totalPc) {
@@ -1718,18 +1776,71 @@
       applyFilter();
     }
 
-    function updateRowField(id, field, value) {
+    let debounceSaveTimer = null;
+
+    function handleInlineInput(id, field, value) {
       const item = hospitalData.find(d => d.id === id);
       if (!item) return;
 
-      if (['pc1', 'pc2', 'nb', 'tab', 'bc_p', 'bc_s', 'floor'].includes(field)) {
-        item[field] = Math.max(0, parseInt(value) || 0);
-        // Recalculate total_pc
+      const val = Math.max(0, parseInt(value) || 0);
+      const isRec = (currentPhase === 'Phase 1 Rec');
+
+      if (['pc1', 'pc2', 'nb', 'tab'].includes(field)) {
+        if (isRec) {
+          item['rec_' + field] = val;
+          if (!item.is_adjusted) {
+            item[field] = val;
+          }
+        } else {
+          item[field] = val;
+          if (!item.is_adjusted) {
+            item['rec_' + field] = val;
+          }
+        }
+        // Recompute row totals dynamically
         item.total_pc = (Number(item.pc1)||0) + (Number(item.pc2)||0) + (Number(item.nb)||0) + (Number(item.tab)||0);
-      } else {
-        item[field] = value;
+        item.rec_total_pc = (Number(item.rec_pc1 !== undefined ? item.rec_pc1 : item.pc1)||0) +
+                            (Number(item.rec_pc2 !== undefined ? item.rec_pc2 : item.pc2)||0) +
+                            (Number(item.rec_nb  !== undefined ? item.rec_nb  : item.nb)||0) +
+                            (Number(item.rec_tab !== undefined ? item.rec_tab : item.tab)||0);
+
+        // Update the row total cell in place directly
+        const rowTotEl = document.getElementById('row-tot-' + id);
+        if (rowTotEl) {
+          rowTotEl.innerText = isRec ? item.rec_total_pc : item.total_pc;
+        }
+      } else if (['bc_p', 'bc_s'].includes(field)) {
+        if (isRec) {
+          item['rec_' + field] = val;
+          if (!item.is_adjusted) {
+            item[field] = val;
+          }
+        } else {
+          item[field] = val;
+          if (!item.is_adjusted) {
+            item['rec_' + field] = val;
+          }
+        }
+      } else if (field === 'floor') {
+        item.floor = parseInt(value) || 0;
       }
 
+      // Instant live recalculation
+      updateLiveMetrics();
+      updatePhaseBadges();
+
+      // Debounce saving
+      clearTimeout(debounceSaveTimer);
+      debounceSaveTimer = setTimeout(() => {
+        saveData(false);
+      }, 350);
+    }
+
+    function handleInlineFieldChange(id, field, value) {
+      const item = hospitalData.find(d => d.id === id);
+      if (!item) return;
+
+      item[field] = value.trim();
       saveData(false);
       updatePhaseBadges();
       updateSectionFilterOptions();
@@ -1864,6 +1975,23 @@
       const tab = Math.max(0, parseInt(document.getElementById('edit-tab').value) || 0);
       const total = p1 + p2 + nb + tab;
       document.getElementById('modal-calc-total-pc').innerText = `รวม ${total} เครื่อง`;
+
+      const isAdj = document.getElementById('edit-is-adjusted').checked;
+      if (!isAdj) {
+        document.getElementById('edit-rec-pc1').value = p1;
+        document.getElementById('edit-rec-pc2').value = p2;
+        document.getElementById('edit-rec-nb').value = nb;
+        document.getElementById('edit-rec-tab').value = tab;
+      }
+    }
+
+    function handleAdjustedToggle(checked) {
+      if (!checked) {
+        document.getElementById('edit-rec-pc1').value = document.getElementById('edit-pc1').value;
+        document.getElementById('edit-rec-pc2').value = document.getElementById('edit-pc2').value;
+        document.getElementById('edit-rec-nb').value = document.getElementById('edit-nb').value;
+        document.getElementById('edit-rec-tab').value = document.getElementById('edit-rec-tab').value;
+      }
     }
 
     function saveModalChanges() {
@@ -1883,16 +2011,24 @@
       }
 
       const id = document.getElementById('edit-id').value;
+      const isAdjusted = document.getElementById('edit-is-adjusted').checked;
       const p1 = Math.max(0, parseInt(document.getElementById('edit-pc1').value) || 0);
       const p2 = Math.max(0, parseInt(document.getElementById('edit-pc2').value) || 0);
       const nb = Math.max(0, parseInt(document.getElementById('edit-nb').value) || 0);
       const tab = Math.max(0, parseInt(document.getElementById('edit-tab').value) || 0);
       const total_pc = p1 + p2 + nb + tab;
 
-      const rec_p1 = Math.max(0, parseInt(document.getElementById('edit-rec-pc1').value) || 0);
-      const rec_p2 = Math.max(0, parseInt(document.getElementById('edit-rec-pc2').value) || 0);
-      const rec_nb = Math.max(0, parseInt(document.getElementById('edit-rec-nb').value) || 0);
-      const rec_tab = Math.max(0, parseInt(document.getElementById('edit-rec-tab').value) || 0);
+      let rec_p1 = Math.max(0, parseInt(document.getElementById('edit-rec-pc1').value) || 0);
+      let rec_p2 = Math.max(0, parseInt(document.getElementById('edit-rec-pc2').value) || 0);
+      let rec_nb = Math.max(0, parseInt(document.getElementById('edit-rec-nb').value) || 0);
+      let rec_tab = Math.max(0, parseInt(document.getElementById('edit-rec-tab').value) || 0);
+
+      if (!isAdjusted) {
+        rec_p1 = p1;
+        rec_p2 = p2;
+        rec_nb = nb;
+        rec_tab = tab;
+      }
       const rec_total_pc = rec_p1 + rec_p2 + rec_nb + rec_tab;
 
       const itemData = {
@@ -2129,6 +2265,7 @@
       if (confirm('คุณต้องการรีเซ็ตข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้นทางการ (17.9.69) ใช่หรือไม่?\n\nข้อมูลที่คุณปรับแต่งไว้จะถูกแทนที่ด้วยค่าตั้งต้น')) {
         localStorage.removeItem(STORAGE_KEY);
         hospitalData = JSON.parse(JSON.stringify(DEFAULT_HOSPITAL_DATA));
+        hospitalData.forEach((d, idx) => sanitizeRow(d, idx));
         updateSaveBadge('default');
         document.getElementById('custom-badge').classList.add('hidden');
         populateFloorFilter();
